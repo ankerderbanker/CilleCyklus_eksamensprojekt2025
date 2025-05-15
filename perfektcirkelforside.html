@@ -81,30 +81,25 @@
       <path id="labelPath3" d="M105 250 A145 145 0 0 1 250 105"/>
     </defs>
 
-    <g id="ring">
-      <!-- 0 · Lutealfase  (images/forside/cirkel-fase4.svg) -->
-      <image id="phase0" class="phase"
-             href="images/forside/cirkel-fase4.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(0 250 250)"/>
-      
-      <!-- 1 · Menstruation  (images/forside/cirkel-fase1.svg) -->
-      <image id="phase1" class="phase"
-             href="images/forside/cirkel-fase1.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(90 250 250)"/>
-      
-      <!-- 2 · Follikelfase  (images/forside/cirkel-fase2.svg) -->
-      <image id="phase2" class="phase"
-             href="images/forside/cirkel-fase2.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(180 250 250)"/>
-      
-      <!-- 3 · Ægløsning    (images/forside/cirkel-fase3.svg) -->
-      <image id="phase3" class="phase"
-             href="images/forside/cirkel-fase3.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(270 250 250)"/>
+    <g id="labels">
+      <text  id="label0" class="label">
+        <textPath href="#labelPath0" startOffset="50%" text-anchor="middle">Lutealfase</textPath>
+      </text>
+      <text  id="label1" class="label">
+        <textPath href="#labelPath1" startOffset="50%" text-anchor="middle">Menstruation</textPath>
+      </text>
+      <text  id="label2" class="label">
+        <textPath href="#labelPath2" startOffset="50%" text-anchor="middle">Follikelfase</textPath>
+      </text>
+      <text  id="label3" class="label">
+        <textPath href="#labelPath3" startOffset="50%" text-anchor="middle">Ægløsning</textPath>
+      </text>
+    </g>
+
+    <!-- Trækkecirkel -->
+    <g id="handle">
+      <circle id="handleCircle" r="20"/>
+      <text   id="handleText" text-anchor="middle" dy="4">OPLEV</text>
     </g>
   </svg>
 

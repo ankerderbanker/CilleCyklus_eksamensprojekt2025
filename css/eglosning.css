@@ -1,12 +1,30 @@
+/* css for æggeløsnings fasen */
+
+/* Bagrundsfarven */
 body {
     background-color: var(--color-primar-lysebla);
   }
-
-.eglosning-cille {
-    display: block;
-    margin-left: 60px; 
-    max-width: 100%;
-    height: auto;
+/* billedet af Cille */
+  .eglosning-cille {
+    margin-left: 8%; 
+  }
+/* introduktions teksten */
+  .introduktionstekst {
+    color: var(--color-primar-rod); /* eller brug farvekode direkte fx #7F1524 */
+    text-align: left;
+    padding: 40px 60px;
+    max-width: 700px;
   }
   
+  .introduktionstekst h1 {
+    font-family: 'Super Funky', sans-serif; /* eller den du bruger */
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
   
+  .introduktionstekst p {
+    font-family: Georgia, serif; /* eller din brødtekst-font */
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }

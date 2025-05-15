@@ -1,4 +1,10 @@
 body {
     background-color: var(--color-primar-lysebla);
   }
+
+.eglosning-cille {
+    display: block;
+    margin-left: 50px; /* eller fx 5%, alt efter hvor langt du vil rykke det */
+  }
+  
   

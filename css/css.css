@@ -17,4 +17,7 @@
     --color-sekundar-orange: #EF966F;
     --color-sekundar-gul: #F7F797;
   }
-  
+  *
+  {
+    font-family: 'Poppins', sans-serif;
+  }

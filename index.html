@@ -15,9 +15,6 @@
 
     /* ——— RING & FASER ——— */
     .phase{
-      fill:none;
-      stroke-width:40;
-      stroke-linecap:round;
       opacity:.45;
       transition:opacity .25s filter .25s;
     }
@@ -35,8 +32,17 @@
     <!-- Midter-ansigt / placeholder -->
     <circle cx="250" cy="250" r="75" fill="#fffbe7" stroke="#e9e2ce" stroke-width="4" />
 
-    <!-- Ring-segmenter -->
-    <g id="ring"></g>
+    <!-- Ring-segmenter – færdigroterede SVG-filer fra Illustrator -->
+    <g id="ring">
+      <!-- 0: Lutealfasen (øverst–højre kvadrant) -->
+      <image id="phase0" class="phase" href="images/forside/cirkel-fase4.svg" x="60" y="60" width="380" height="380" />
+      <!-- 1: Menstruation (øverst–venstre kvadrant) -->
+      <image id="phase1" class="phase" href="images/forside/cirkel-fase1.svg" x="60" y="60" width="380" height="380" />
+      <!-- 2: Follikelfasen (nederst–venstre kvadrant) -->
+      <image id="phase2" class="phase" href="images/forside/cirkel-fase2.svg" x="60" y="60" width="380" height="380" />
+      <!-- 3: Ægløsning (nederst–højre kvadrant) -->
+      <image id="phase3" class="phase" href="images/forside/cirkel-fase3.svg" x="60" y="60" width="380" height="380" />
+    </g>
 
     <!-- Trækkecirkel -->
     <g id="handle">
@@ -46,7 +52,7 @@
   </svg>
 
 <script>
-/**
+/*
  * Prototype-logik for menstruations-ringen
  *  – lille cirkel starter øverst uden tekst
  *  – drag rundt: highlight + baggrundsskift
@@ -64,7 +70,6 @@ const phases = [
 
 /* ——— ELEMENTER ——— */
 const svg          = document.getElementById('scene');
-const ringGroup    = document.getElementById('ring');
 const handleGroup  = document.getElementById('handle');
 const handleCircle = document.getElementById('handleCircle');
 const handleText   = document.getElementById('handleText');
@@ -73,7 +78,7 @@ const iconsBox     = document.getElementById('icons');
 /* ——— GEOMETRI-KONSTANTER ——— */
 const CENTER = {x:250,y:250};
 const RADIUS = 170;          // midten af selve ringen
-const STROKE = 40;           // ring-bredde
+const STROKE = 40;           // ring-bredde i Illustrator-filerne
 const OUTER_R = RADIUS + STROKE/2 + 40; // hvor trækkecirklen bevæger sig
 
 /* ——— STATE ——— */
@@ -83,27 +88,8 @@ let dragMoved       = false;
 let dragStartPt     = {x:0,y:0};
 
 /* ——— INIT ——— */
-createRing();
 placeHandleAtAngle(0, true); // lille, øverst
 updateBackground(null);
-
-/* ——— RINGOPBYGNING ——— */
-function createRing(){
-  const C = 2*Math.PI*RADIUS;
-  const quarter = C/4;
-  for(let i=0;i<4;i++){
-    const seg = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    seg.classList.add('phase');
-    seg.id = `phase${i}`;
-    seg.setAttribute('cx',CENTER.x);
-    seg.setAttribute('cy',CENTER.y);
-    seg.setAttribute('r',RADIUS);
-    seg.style.stroke = phases[i].color;
-    seg.style.strokeDasharray  = `${quarter} ${C-quarter}`;
-    seg.style.strokeDashoffset = -quarter*i;
-    ringGroup.appendChild(seg);
-  }
-}
 
 /* ——— EVENTS ——— */
 handleCircle.addEventListener('pointerdown', pointerDown);

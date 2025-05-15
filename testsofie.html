@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ægløsningfasen-siden</title>
+
+        <!-- general css -->
+        <link rel="stylesheet" href="css/css.css">
+
+        <!-- specifikt til ægløsningsiden -->
+       
+</head>
+
+<div id="lottie"></div>
+
+<div> <h1>
+    hej
+</h1></div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById('lottie'),
+    renderer: 'svg', // <- dette er SVG-rendering
+    loop: true,
+    autoplay: true,
+    path: 'data.json' // <- sørg for at filnavnet matcher din json
+  });
+</script>

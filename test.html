@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <title>Menstruations­cyklus – interaktiv prototype</title>
+
+  <style>
+    /* ——— BASIS ——— */
+    html,body{margin:0;height:100%}
+    body{
+      display:flex;align-items:center;justify-content:center;
+      background:#f9d9e5;            /* falder tilbage-farve  */
+      transition:background .4s ease;
+      font-family:system-ui,sans-serif;
+    }
+
+    /* ——— FASE-GRAFIK (importeret SVG) ——— */
+    .phaseImage{opacity:.55;transition:opacity .25s filter .25s;pointer-events:none}
+    .phaseImage.active{opacity:1;filter:brightness(.85)}
+
+    /* ——— TRÆKKECIRKEL (“handle”) ——— */
+    #handleCircle{fill:#333;cursor:pointer;touch-action:none;transition:transform .2s ease}
+    #handleText{fill:#fff;font-weight:600;font-size:11px;font-family:inherit;user-select:none;pointer-events:none;display:none}
+  </style>
+</head>
+
+<body>
+  <div id="icons"></div>  <!-- her kan du senere sætte fase-ikoner ind -->
+
+  <svg id="scene" width="600" height="600" viewBox="0 0 600 600">
+    <!-- Midter-ansigt (placeholder) -->
+    <circle cx="300" cy="300" r="90" fill="#fffbe7" stroke="#e9e2ce" stroke-width="4"/>
+
+    <!-- Ring-segmenter (bygges af SVG-filer) -->
+    <g id="ring"></g>
+
+    <!-- Trækkecirkel (“handle”) -->
+    <g id="handle">
+      <circle id="handleCircle" r="24"/>
+      <text id="handleText" text-anchor="middle" dy="5">OPLEV</text>
+    </g>
+  </svg>
+
+<script>
+/*
+ *  Interaktiv cyklus-ring
+ *  — indlæser fire eksterne SVG-filer (kvart-ringe) fra Illustrator
+ *  — drag-handle bevæger sig rundt, klik åbner oplevelse
+ */
+
+/* ——— DATA ——— */
+const phases = [
+  {name:'Lutealfasen',   color:'#FBE3EF', svg:'images/forside/cirkel-fase1.svg', icons:[]},
+  {name:'Menstruation',  color:'#F9A5B5', svg:'images/forside/cirkel-fase2.svg', icons:[]},
+  {name:'Follikelfasen', color:'#BFE6FF', svg:'images/forside/cirkel-fase3.svg', icons:[]},
+  {name:'Ægløsning',     color:'#FFE4A2', svg:'images/forside/cirkel-fase4.svg', icons:[]}
+];
+
+/* ——— ELEMENTER ——— */
+const svg          = document.getElementById('scene');
+const ringGroup    = document.getElementById('ring');
+const handleGroup  = document.getElementById('handle');
+const handleCircle = document.getElementById('handleCircle');
+const handleText   = document.getElementById('handleText');
+const iconsBox     = document.getElementById('icons');
+
+/* ——— GEOMETRI ——— */
+const CENTER   = {x:300, y:300};   // midtpunkt i viewBox
+const RADIUS   = 70;              // radius til fasernes midterlinje
+const STROKE   = 60;               // ringens tykkelse
+const OUTER_R  = RADIUS + STROKE/2 + 24;  // hvor håndtaget kører
+
+/* Illustrator-filerne er tegnet til en 600×600 viewBox */
+const VIEWBOX  = 600;
+const SCALE    = (RADIUS*2 + STROKE) / VIEWBOX;   // skalerer buerne til korrekt størrelse
+
+/* ——— STATE ——— */
+let currentPhaseIdx = null;
+let dragging        = false;
+let dragMoved       = false;
+let dragStartPt     = {x:0, y:0};
+
+/* ——— INIT ——— */
+importPhaseSVGs();          // læg buerne ind
+placeHandleAtAngle(0, true); // håndtag øverst
+updateBackground(null);      // baggrundsfarve
+
+/* ——————————————————————————————————————————
+   IMPORTÉR DE FIRE ILLUSTRATOR-FILER
+   ——————————————————————————————————————————*/
+function importPhaseSVGs(){
+  for (let i = 0; i < 4; i++){
+    const img = document.createElementNS('http://www.w3.org/2000/svg','image');
+    img.setAttribute('href', phases[i].svg);      // stien til Illustrator-filen
+    img.setAttribute('width',  VIEWBOX);
+    img.setAttribute('height', VIEWBOX);
+    img.setAttribute('preserveAspectRatio','xMidYMid slice'); // bevar formatet
+
+    /* centrér + skalér + drej om (300,300) */
+    img.setAttribute(
+      'transform',
+      `translate(${CENTER.x} ${CENTER.y})
+       scale(${SCALE})
+       rotate(${i*90})
+       translate(${-VIEWBOX/2} ${-VIEWBOX/2})`
+    );
+
+    img.classList.add('phaseImage');
+    img.id = `phase${i}`;
+    ringGroup.appendChild(img);
+  }
+}
+
+/* ——————————————————————————————————————————
+   EVENTS PÅ HÅNDTAGET
+   ——————————————————————————————————————————*/
+handleCircle.addEventListener('pointerdown', pointerDown);
+handleCircle.addEventListener('click',        onHandleClick);
+
+function pointerDown(e){
+  dragging   = true;
+  dragMoved  = false;
+  dragStartPt = {x:e.clientX, y:e.clientY};
+
+  handleCircle.setPointerCapture(e.pointerId);
+  handleCircle.style.transform = 'scale(.7)';
+  handleText.style.display     = 'none';
+
+  document.addEventListener('pointermove', pointerMove);
+  document.addEventListener('pointerup',   pointerUp);
+}
+
+function pointerMove(e){
+  if(!dragging) return;
+
+  if(!dragMoved && Math.hypot(e.clientX-dragStartPt.x, e.clientY-dragStartPt.y) > 3)
+    dragMoved = true;
+
+  const loc  = clientToSvg(e.clientX, e.clientY);
+  const ang  = pointToAngle(loc.x, loc.y);
+  placeHandleAtAngle(ang);
+
+  const idx = angleToPhase(ang);
+  if(idx !== currentPhaseIdx){
+    highlightPhase(idx);
+    currentPhaseIdx = idx;
+  }
+}
+
+function pointerUp(e){
+  dragging = false;
+  handleCircle.releasePointerCapture(e.pointerId);
+  document.removeEventListener('pointermove', pointerMove);
+  document.removeEventListener('pointerup',   pointerUp);
+
+  const loc    = clientToSvg(e.clientX, e.clientY);
+  const onRing = Math.abs(pointDist(loc, CENTER) - OUTER_R) < STROKE; // tolerance
+
+  onRing ? snapToPhase(currentPhaseIdx) : resetToTop();
+}
+
+function onHandleClick(){
+  if(!dragMoved && handleText.style.display !== 'none' && currentPhaseIdx !== null){
+    // her kan du fx åbne modal eller navigere
+    console.log(`Åbn oplevelse for: ${phases[currentPhaseIdx].name}`);
+  }
+}
+
+/* ——————————————————————————————————————————
+   VISUEL OPDATERING
+   ——————————————————————————————————————————*/
+function placeHandleAtAngle(angle, forceSmall = false){
+  const rad = (angle - 90) * Math.PI / 180;
+  const pos = {
+    x: CENTER.x + OUTER_R * Math.cos(rad),
+    y: CENTER.y + OUTER_R * Math.sin(rad)
+  };
+  handleGroup.setAttribute('transform', `translate(${pos.x} ${pos.y})`);
+  if(forceSmall){
+    handleCircle.style.transform = 'scale(.7)';
+    handleText.style.display     = 'none';
+  }
+}
+
+function highlightPhase(idx){
+  for(let i = 0; i < 4; i++)
+    document.getElementById(`phase${i}`).classList.toggle('active', i === idx);
+  updateBackground(idx);
+}
+
+function snapToPhase(idx){
+  const midAng = idx * 90 + 45;   // midten af kvartcirklen
+  placeHandleAtAngle(midAng);
+  handleCircle.style.transform = 'scale(1)';
+  handleText.style.display     = 'block';
+  updateBackground(idx);
+}
+
+function resetToTop(){
+  currentPhaseIdx = null;
+  for(let i = 0; i < 4; i++)
+    document.getElementById(`phase${i}`).classList.remove('active');
+  placeHandleAtAngle(0, true);
+  updateBackground(null);
+}
+
+function updateBackground(idx){
+  if(idx === null){
+    document.body.style.background = '#f9d9e5';   // basis-farve
+    iconsBox.innerHTML = '';
+  }else{
+    document.body.style.background = phases[idx].color;
+    /* her kunne du tilføje ikoner til #icons */
+  }
+}
+
+/* ——————————————————————————————————————————
+   HJÆLPEFUNKTIONER
+   ——————————————————————————————————————————*/
+function clientToSvg(x, y){
+  const pt = svg.createSVGPoint();
+  pt.x = x; pt.y = y;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+function pointToAngle(x, y){ return (Math.atan2(y - CENTER.y, x - CENTER.x) * 180 / Math.PI + 90 + 360) % 360; }
+function angleToPhase(a){    return Math.floor(a / 90) % 4; }
+function pointDist(a, b){    return Math.hypot(a.x - b.x, a.y - b.y); }
+</script>
+</body>
+</html>

@@ -45,19 +45,19 @@ body {
 }
 
 /* Individuel placering af punktet */
-.punkt-hoved {
+.punkt-hjerne {
   top: 60px;
   left: 600px;
 }
 
-.punkt-bryst {
-  top: 180px;
-  left: 120px;
+.punkt-øjne {
+  top: 220px;
+  left: 670px;
 }
 
-.punkt-mave {
-  top: 270px;
-  left: 118px;
+.punkt-hjerte {
+  top: 500px;
+  left: 650px;
 }
 
 /* Popup-boks */

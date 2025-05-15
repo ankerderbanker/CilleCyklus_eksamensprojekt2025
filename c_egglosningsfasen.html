@@ -26,34 +26,26 @@
   
 <!-- billedet af selve cille -->
 <div class="eglosning-cille">
-    <img src="images/eglosningfase/eglosningcille.svg">
-
-  <!-- Punkt 1: hjerne -->
-  <button class="punkt punkt-hjerne" onclick="åbnPopup('popup1')">●</button>
-
-  <!-- Punkt 2: øjne -->
-  <button class="punkt punkt-øjne" onclick="åbnPopup('popup2')">●</button>
-
-  <!-- Punkt 3: hjerte -->
-  <button class="punkt punkt-hjerte" onclick="åbnPopup('popup3')">●</button>
-  </div>
+    <img src="images/eglosningfase/eglosningcille.svg" alt="Cille">
   
-  <!-- Popup-indhold -->
- <div id="popup1" class="popup">
-  <button onclick="lukPopup('popup1')">Luk</button>
-  <p>Du kan føle øget energi eller hovedpine under ægløsning.</p>
-</div>
-
-<div id="popup2" class="popup">
-  <button onclick="lukPopup('popup2')">Luk</button>
-  <p>Brysterne kan føles spændte og ømme.</p>
-</div>
-
-<div id="popup3" class="popup">
-  <button onclick="lukPopup('popup3')">Luk</button>
-  <p>Oppustethed eller let ubehag i maven kan forekomme.</p>
-</div>
-
+    <!-- Punkt 1: hjerne -->
+    <button class="punkt punkt-hjerne" onclick="togglePopup('popup1')">●</button>
+    <div id="popup1" class="popup-ved-prik">
+      <p>Du kan føle øget energi eller hovedpine under ægløsning.</p>
+    </div>
+  
+    <!-- Punkt 2: øjne -->
+    <button class="punkt punkt-øjne" onclick="togglePopup('popup2')">●</button>
+    <div id="popup2" class="popup-ved-prik">
+      <p>Brysterne kan føles spændte og ømme.</p>
+    </div>
+  
+    <!-- Punkt 3: hjerte -->
+    <button class="punkt punkt-hjerte" onclick="togglePopup('popup3')">●</button>
+    <div id="popup3" class="popup-ved-prik">
+      <p>Oppustethed eller let ubehag i maven kan forekomme.</p>
+    </div>
+  </div>
 
   <script src="js/eglosning.js"></script>
 

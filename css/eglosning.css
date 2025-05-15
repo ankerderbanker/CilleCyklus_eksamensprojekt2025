@@ -35,8 +35,8 @@ body {
 /* Punkter – basisudseende */
 .punkt {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   background: red; /* Du kan ændre til fx var(--color-sekundar-gul) */
   border: none;
   border-radius: 50%;
@@ -46,8 +46,18 @@ body {
 
 /* Individuel placering af punktet */
 .punkt-hoved {
-  top: 100px;
-  left: 100px;
+  top: 60px;
+  left: 600px;
+}
+
+.punkt-bryst {
+  top: 180px;
+  left: 120px;
+}
+
+.punkt-mave {
+  top: 270px;
+  left: 118px;
 }
 
 /* Popup-boks */

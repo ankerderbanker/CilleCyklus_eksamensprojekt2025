@@ -27,14 +27,33 @@
 <!-- billedet af selve cille -->
 <div class="eglosning-cille">
     <img src="images/eglosningfase/eglosningcille.svg">
-    <button class="punkt punkt-hoved" onclick="åbnPopup('popup1')">●</button>
+
+  <!-- Punkt 1: Hoved -->
+  <button class="punkt punkt-hoved" onclick="åbnPopup('popup1')">●</button>
+
+  <!-- Punkt 2: Bryst -->
+  <button class="punkt punkt-bryst" onclick="åbnPopup('popup2')">●</button>
+
+  <!-- Punkt 3: Mave -->
+  <button class="punkt punkt-mave" onclick="åbnPopup('popup3')">●</button>
   </div>
   
   <!-- Popup-indhold -->
-  <div id="popup1" class="popup">
-    <button onclick="lukPopup('popup1')">Luk</button>
-    <p>Dette er en simpel popup med tekst.</p>
-  </div>
+ <div id="popup1" class="popup">
+  <button onclick="lukPopup('popup1')">Luk</button>
+  <p>Du kan føle øget energi eller hovedpine under ægløsning.</p>
+</div>
+
+<div id="popup2" class="popup">
+  <button onclick="lukPopup('popup2')">Luk</button>
+  <p>Brysterne kan føles spændte og ømme.</p>
+</div>
+
+<div id="popup3" class="popup">
+  <button onclick="lukPopup('popup3')">Luk</button>
+  <p>Oppustethed eller let ubehag i maven kan forekomme.</p>
+</div>
+
 
   <script src="js/eglosning.js"></script>
 

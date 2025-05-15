@@ -4,7 +4,9 @@ body {
 
 .eglosning-cille {
     display: block;
-    margin-left: 50px; /* eller fx 5%, alt efter hvor langt du vil rykke det */
+    margin-left: 60px; 
+    max-width: 100%;
+    height: auto;
   }
   
   

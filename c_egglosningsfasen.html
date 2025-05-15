@@ -16,7 +16,6 @@
 </head>
 <body>
 
-
 <!-- introduktionsteksten -->
 <section class="introduktionstekst">
     <h1>ÆGLØSNINGSFASEN</h1>
@@ -28,7 +27,16 @@
 <!-- billedet af selve cille -->
 <div class="eglosning-cille">
     <img src="images/eglosningfase/eglosningcille.svg">
-   </div>
+    <button class="punkt punkt-hoved" onclick="åbnPopup('popup1')">●</button>
+  </div>
+  
+  <!-- Popup-indhold -->
+  <div id="popup1" class="popup">
+    <button onclick="lukPopup('popup1')">Luk</button>
+    <p>Dette er en simpel popup med tekst.</p>
+  </div>
+
+  <script src="js/eglosning.js"></script>
 
 </body>
 </html>

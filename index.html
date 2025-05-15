@@ -9,8 +9,62 @@
 </head>
 <body>
   <main>
-    ... Indhold her ...
+   
+
+
+    <div class="circle-container" id="circleContainer">
+      <div class="center-image">
+        <!-- Udskift med din pige-billede -->
+        <img src="pige.png" alt="Pige" width="200" />
+      </div>
+    
+      <!-- Faser -->
+      <div class="phase phase-1" data-phase="1" tabindex="0">
+        <img src="fase1.png" alt="Lutealfasen" class="default" />
+        <img src="fase1-hover.png" alt="Lutealfasen" class="hover" />
+      </div>
+      <div class="phase phase-2" data-phase="2" tabindex="0">
+        <img src="fase2.png" alt="Menstruation" class="default" />
+        <img src="fase2-hover.png" alt="Menstruation" class="hover" />
+      </div>
+      <div class="phase phase-3" data-phase="3" tabindex="0">
+        <img src="fase3.png" alt="Ægløsning" class="default" />
+        <img src="fase3-hover.png" alt="Ægløsning" class="hover" />
+      </div>
+      <div class="phase phase-4" data-phase="4" tabindex="0">
+        <img src="fase4.png" alt="Folikulærfasen" class="default" />
+        <img src="fase4-hover.png" alt="Folikulærfasen" class="hover" />
+      </div>
+    
+      <!-- Den trækbare cirkel -->
+      <div class="draggable" id="dragger"><span class="text">OPLEV</span></div>
+    </div>
+
+
+
+
+
+<div class="phase" data-phase="1" data-link="fase1.html" onclick="playTransition(this)">
+    <video class="transition-video" preload="metadata">
+        <source src="video1.mp4" type="video/mp4">
+        Din browser understøtter ikke video.
+    </video>
+</div>
+
+
+
+<div class="phase" data-phase="2" data-link="fase2.html" onclick="playTransition(this)">
+  <video class="transition-video" preload="metadata">
+      <source src="video2.mp4" type="video/mp4">
+      Din browser understøtter ikke video.
+  </video>
+</div>
+
+
+
+
+    
   </main>
-  <script src="js/js.js"></script>
+  <script src="js/forside.js"></script>
 </body>
 </html>

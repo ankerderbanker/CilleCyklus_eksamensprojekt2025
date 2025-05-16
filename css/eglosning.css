@@ -37,47 +37,47 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
-  background: red; /* Du kan ændre til fx var(--color-sekundar-gul) */
-  border: none;
+  background:var(--color-sekundar-gul);
+  border: 2px solid var(--color-sekundar-orange);
   border-radius: 50%;
   cursor: pointer;
-  font-size: 0; /* skjuler prikken "●" */
+  font-size: 0; /* skjuler prikken */
 }
 
-/* Individuel placering af punktet */
+/* Individuel placering af punkterne */
 .punkt-hjerne {
   top: 60px;
-  left: 600px;
+  left: 570px;
 }
 
 .punkt-øjne {
-  top: 220px;
-  left: 670px;
+  top: 210px;
+  left: 635px;
 }
 
 .punkt-hjerte {
-  top: 500px;
-  left: 650px;
+  top: 490px;
+  left: 620px;
 }
 
 .punkt-bryst {
-  top: 610px;
-  left: 500px;
+  top: 590px;
+  left: 450px;
 }
 
 .punkt-muskler {
-  top: 920px;
-  left: 670px;
+  top: 660px;
+  left: 770px;
 }
 
 .punkt-mave {
-  top: 100px;
-  left: 650px;
+  top: 810px;
+  left: 480px;
 }
 
 .punkt-æggestokke {
-  top: 810px;
-  left: 500px;
+  top: 920px;
+  left: 580px;
 }
 
 /* Popup-boks */
@@ -85,50 +85,49 @@ body {
 .popup-ved-prik {
   display: none;
   position: absolute;
-  background: white;
+  background: var(--color-hvid);
   padding: 10px 14px;
-  border: 1px solid #aaa;
+  border: 1px solid var(--color-sort);
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  max-width: 200px;
+  max-width: 400px;
   z-index: 10;
+  box-shadow: 0 2px 6px var(--color-primar-morkebla)
 }
-
 
 /* Placering af popup ved hvert punkt */
 #popup1 {
   top: 60px;
-  left: 650px;
+  left: 620px;
 }
 
 #popup2 {
-  top: 220px;
-  left: 720px;
+  top: 210px;
+  left: 685px;
 }
 
 #popup3 {
-  top: 500px;
-  left: 700px;
+  top: 490px;
+  left: 670px;
 }
 
 #popup4 {
-  top: 610px;
-  left: 260px;
+  top: 590px;
+  left: 110px;
 }
 
 #popup5 {
-  top: 920px;
-  left: 720px;
+  top: 660px;
+  left: 820px;
 }
 
 #popup6 {
-  top: 100px;
-  left: 700px;
+  top: 810px;
+  left: 390px;
 }
 
 #popup7 {
-  top: 310px;
-  left: 260px;
+  top: 920px;
+  left: 630px;
 }

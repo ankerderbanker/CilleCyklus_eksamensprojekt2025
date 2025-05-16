@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <title>Menstruationscyklus – interaktiv prototype</title>
+  <style>
+    /* ——— BASIS ——— */
+    html,body{margin:0;height:100%}
+    body{
+      display:flex;align-items:center;justify-content:center;
+      background:#f9d9e5; /* default pink */
+      transition:background 0.4s ease;
+      font-family:system-ui,sans-serif;
+    }
+
+    /* ——— RING & FASER ——— */
+    .phase{
+      opacity:.45;
+      transition:opacity .25s filter .25s;
+    }
+    .phase.active{opacity:1;filter:brightness(.8)}
+
+    /* ——— TRÆKKECIRKEL (“HANDLE”) ——— */
+    #handleCircle{fill:#333;cursor:pointer;touch-action:none;transition:transform .2s ease;}
+    #handleText{fill:#fff;font-weight:600;font-size:11px;font-family:inherit;user-select:none;pointer-events:none;display:none}
+  </style>
+</head>
+<body>
+  <div id="icons"></div>
+
+  <svg id="scene" width="500" height="500" viewBox="0 0 500 500">
+    <!-- Midter-ansigt / placeholder -->
+    <circle cx="250" cy="250" r="75" fill="#fffbe7" stroke="#e9e2ce" stroke-width="4" />
+
+    <!-- Ring-segmenter – færdigroterede SVG-filer fra Illustrator -->
+    <g id="ring">
+      <!-- 0: Lutealfasen (øverst–højre kvadrant) -->
+      <image id="phase0" class="phase" href="images/forside/cirkel-fase4.svg" x="60" y="0" width="180" height="380" />
+      <!-- 1: Menstruation (øverst–venstre kvadrant) -->
+      <image id="phase1" class="phase" href="images/forside/cirkel-fase1.svg" x="240" y="0" width="180" height="380" />
+      <!-- 2: Follikelfasen (nederst–venstre kvadrant) -->
+      <image id="phase2" class="phase" href="images/forside/cirkel-fase2.svg" x="240" y="180" width="180" height="380" />
+      <!-- 3: Ægløsning (nederst–højre kvadrant) -->
+      <image id="phase3" class="phase" href="images/forside/cirkel-fase3.svg" x="60" y="180" width="180" height="380" />
+    </g>
+
+    <!-- Trækkecirkel -->
+    <g id="handle">
+      <circle id="handleCircle" r="20" />
+      <text id="handleText" text-anchor="middle" dy="4">OPLEV</text>
+    </g>
+  </svg>
+
+<script>
+/*
+ * Prototype-logik for menstruations-ringen
+ *  – lille cirkel starter øverst uden tekst
+ *  – drag rundt: highlight + baggrundsskift
+ *  – slip → snap, bliver stor + viser “OPLEV”
+ *  – klik på stor cirkel åbner oplevelse (ingen popup ved slip)
+ */
+
+/* ——— DATA ——— */
+const phases = [
+  {name:'Lutealfasen',   color:'#FBE3EF', icons:[]},
+  {name:'Menstruation',  color:'#F9A5B5', icons:[]},
+  {name:'Follikelfasen', color:'#BFE6FF', icons:[]},
+  {name:'Ægløsning',     color:'#FFE4A2', icons:[]}
+];
+
+/* ——— ELEMENTER ——— */
+const svg          = document.getElementById('scene');
+const handleGroup  = document.getElementById('handle');
+const handleCircle = document.getElementById('handleCircle');
+const handleText   = document.getElementById('handleText');
+const iconsBox     = document.getElementById('icons');
+
+/* ——— GEOMETRI-KONSTANTER ——— */
+const CENTER = {x:250,y:250};
+const RADIUS = 170;          // midten af selve ringen
+const STROKE = 40;           // ring-bredde i Illustrator-filerne
+const OUTER_R = RADIUS + STROKE/2 + 40; // hvor trækkecirklen bevæger sig
+
+/* ——— STATE ——— */
+let currentPhaseIdx = null;
+let dragging        = false;
+let dragMoved       = false;
+let dragStartPt     = {x:0,y:0};
+
+/* ——— INIT ——— */
+placeHandleAtAngle(0, true); // lille, øverst
+updateBackground(null);
+
+/* ——— EVENTS ——— */
+handleCircle.addEventListener('pointerdown', pointerDown);
+handleCircle.addEventListener('click',        onHandleClick);
+
+function pointerDown(e){
+  dragging   = true;
+  dragMoved  = false;
+  dragStartPt = {x:e.clientX,y:e.clientY};
+  handleCircle.setPointerCapture(e.pointerId);
+  // Gør lille & skjul tekst
+  handleCircle.style.transform='scale(.7)';
+  handleText.style.display='none';
+  document.addEventListener('pointermove', pointerMove);
+  document.addEventListener('pointerup',   pointerUp);
+}
+
+function pointerMove(e){
+  if(!dragging) return;
+  if(!dragMoved){
+    const dx=e.clientX-dragStartPt.x, dy=e.clientY-dragStartPt.y;
+    if(Math.hypot(dx,dy)>3) dragMoved=true; // tærskel: >3px betragtes som drag
+  }
+  const loc = clientToSvg(e.clientX,e.clientY);
+  const ang = pointToAngle(loc.x,loc.y);
+  placeHandleAtAngle(ang);
+  const idx = angleToPhase(ang);
+  if(idx!==currentPhaseIdx){highlightPhase(idx);currentPhaseIdx=idx;}
+}
+
+function pointerUp(e){
+  dragging=false;
+  handleCircle.releasePointerCapture(e.pointerId);
+  document.removeEventListener('pointermove',pointerMove);
+  document.removeEventListener('pointerup',pointerUp);
+
+  const loc = clientToSvg(e.clientX,e.clientY);
+  const dist = pointDist(loc,CENTER);
+  const onRing = Math.abs(dist-OUTER_R) < STROKE; // tolerance
+
+  if(onRing){
+    snapToPhase(currentPhaseIdx);
+  }else{
+    resetToTop();
+  }
+}
+
+function onHandleClick(){
+  // Kun hvis der IKKE er blevet draget, og teksten er synlig → gå til oplevelse
+  if(!dragMoved && handleText.style.display!=="none" && currentPhaseIdx!==null){
+    // TODO: erstat console.log med navigation/modal
+    console.log(`Åbn oplevelse for: ${phases[currentPhaseIdx].name}`);
+  }
+}
+
+/* ——— VISUEL LOGIK ——— */
+function placeHandleAtAngle(angle,forceSmall=false){
+  const rad = (angle-90)*Math.PI/180;
+  const pos = {x: CENTER.x + OUTER_R*Math.cos(rad), y: CENTER.y + OUTER_R*Math.sin(rad)};
+  handleGroup.setAttribute('transform',`translate(${pos.x},${pos.y})`);
+  if(forceSmall){handleCircle.style.transform='scale(.7)';handleText.style.display='none';}
+}
+
+function highlightPhase(idx){
+  for(let i=0;i<4;i++) document.getElementById(`phase${i}`).classList.toggle('active',i===idx);
+  updateBackground(idx);
+}
+
+function snapToPhase(idx){
+  const midAng = idx*90 + 45;
+  placeHandleAtAngle(midAng);
+  handleCircle.style.transform='scale(1)';
+  handleText.style.display='block';
+  updateBackground(idx);
+}
+
+function resetToTop(){
+  currentPhaseIdx = null;
+  for(let i=0;i<4;i++) document.getElementById(`phase${i}`).classList.remove('active');
+  placeHandleAtAngle(0,true);
+  updateBackground(null);
+}
+
+/* ——— BAGGRUND & IKONER ——— */
+function updateBackground(idx){
+  if(idx===null){
+    document.body.style.background='#f9d9e5';
+    iconsBox.innerHTML='';
+  }else{
+    document.body.style.background=phases[idx].color;
+    // iconsBox.innerHTML = '…'; // indsæt SVG-ikoner pr. fase her
+  }
+}
+
+/* ——— HJÆLPEFUNKTIONER ——— */
+function clientToSvg(x,y){
+  const pt = svg.createSVGPoint();pt.x=x;pt.y=y;return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+function pointToAngle(x,y){return (Math.atan2(y-CENTER.y,x-CENTER.x)*180/Math.PI+90+360)%360;}
+function angleToPhase(angle){return Math.floor(angle/90)%4;}
+function pointDist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+</script>
+</body>
+</html>

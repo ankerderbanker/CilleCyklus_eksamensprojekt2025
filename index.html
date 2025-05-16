@@ -1,246 +1,244 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="utf-8" />
-  <title>Menstruationscyklus – interaktiv prototype</title>
-  <!-- googlefont: Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
- 
-  <style>
-  /* ——— BASIS ——— */
-  html,body{margin:0;height:100%}
-  body{
-    display:flex;align-items:center;justify-content:center;
-    background:#f9d9e5;
-    transition:background .4s ease;
-    font-family:"Rubik",system-ui,sans-serif;
-  }
+<meta charset="utf-8" />
+<title>Interaktiv menstruationscyklus</title>
 
-  /* ——— RING & LABELS ——— */
-  .phase{
-    stroke:#b48293;         /* base stroke */
-    stroke-width:40;
-    fill:none;
-    stroke-linecap:butt;
-    opacity:.45;
-    transition:opacity .25s, filter .25s;
-  }
-  .label{
-    fill:#ffffff;
-    font-size:22px;
-    font-weight:700;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    user-select:none;
-    pointer-events:none;
-    opacity:.45;
-    transition:opacity .25s, filter .25s;
-  }
-  .phase.active,
-  .label.active{
-    opacity:1;
-    filter:brightness(.8);
-  }
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 
-  /* ——— TRÆKKECIRKEL (“HANDLE”) ——— */
-  #handleCircle{
-    fill:#333;cursor:pointer;touch-action:none;
-    transition:transform .2s ease;
-  }
-  #handleText{
-    fill:#fff;font-weight:600;font-size:11px;
-    user-select:none;pointer-events:none;
-    display:none;
-  }
-  </style>
+<style>
+/* ---------- PAGE LAYOUT ---------- */
+html,body{margin:0;height:100%}
+body{
+  display:flex;align-items:center;justify-content:center;
+  background:#f9d9e5;
+  transition:background .4s ease;
+  font-family:"Rubik",system-ui,sans-serif;
+  overflow:hidden;                     /* keep off-screen icons hidden */
+}
+
+/* ---------- BACKGROUND ICONS ---------- */
+#bgIcons{position:fixed;inset:0;pointer-events:none;z-index:0}
+.bgIcon{
+  position:absolute;width:120px;
+  opacity:0;
+  transition:opacity .75s ease, transform .75s ease;
+}
+
+/* ---------- CYCLE + LOTTIE ---------- */
+#cycle-wrapper{position:relative;width:650px;height:650px}
+#lottie{
+  position:absolute;width:300px;height:300px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;z-index:1;
+}
+
+/* ---------- RING / QUADRANTS ---------- */
+.phase{stroke:transparent;stroke-width:40;fill:none;stroke-linecap:butt}
+.phaseImg{opacity:.45;transition:opacity .25s,filter .25s}
+.phaseImg.active{opacity:1;filter:brightness(.8)}
+
+/* ---------- HANDLE ---------- */
+#handleCircle{fill:#7f1524;cursor:pointer;touch-action:none;transition:transform .2s ease}
+#handleText{fill:#fff;font-weight:600;font-size:11px;user-select:none;pointer-events:none;display:none}
+</style>
 </head>
 
 <body>
-  <div id="icons"></div>
 
-  <svg id="scene" width="500" height="500" viewBox="0 0 500 500">
+<!-- background icons -->
+<div id="bgIcons"></div>
 
-    <!-- Midter-ansigt / placeholder -->
-    <circle cx="250" cy="250" r="75" fill="#fffbe7" stroke="#e9e2ce" stroke-width="4"/>
+<div id="cycle-wrapper">
+  <div id="lottie"></div>
 
-    <!-- Ring – fire 90°-buer -->
-    <g id="ring">
-      <path id="phase0" class="phase"
-            d="M250 80 A170 170 0 0 1 420 250"/>
-      <path id="phase1" class="phase"
-            d="M420 250 A170 170 0 0 1 250 420"/>
-      <path id="phase2" class="phase"
-            d="M250 420 A170 170 0 0 1 80 250"/>
-      <path id="phase3" class="phase"
-            d="M80 250  A170 170 0 0 1 250 80"/>
+  <svg id="scene" width="650" height="650" viewBox="0 0 500 500">
+    <!-- Quadrant wedges -->
+    <g id="ringImgs">
+      <image id="phaseImg0" class="phaseImg" href="images/forside/cirkel-fase1.svg"
+             width="340" height="340" x="80" y="80" transform="translate(220,30) scale(0.50)"/>
+      <image id="phaseImg1" class="phaseImg" href="images/forside/cirkel-fase2.svg"
+             width="340" height="340" x="80" y="80" transform="translate(220,220) scale(0.50)"/>
+      <image id="phaseImg2" class="phaseImg" href="images/forside/cirkel-fase3.svg"
+             width="340" height="340" x="80" y="80" transform="translate(30,220) scale(0.50)"/>
+      <image id="phaseImg3" class="phaseImg" href="images/forside/cirkel-fase4.svg"
+             width="340" height="340" x="80" y="80" transform="translate(30,30) scale(0.50)"/>
     </g>
 
-    <!-- Buede etiketter -->
-    <defs>
-      <path id="labelPath0" d="M250 105 A145 145 0 0 1 395 250"/>
-      <path id="labelPath1" d="M395 250 A145 145 0 0 1 250 395"/>
-      <path id="labelPath2" d="M250 395 A145 145 0 0 1 105 250"/>
-      <path id="labelPath3" d="M105 250 A145 145 0 0 1 250 105"/>
-    </defs>
-
+    <!-- geometry paths -->
     <g id="ring">
-      <!-- 0 · Lutealfase  (images/forside/cirkel-fase4.svg) -->
-      <image id="phase0" class="phase"
-             href="images/forside/cirkel-fase4.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(0 250 250)"/>
-      
-      <!-- 1 · Menstruation  (images/forside/cirkel-fase1.svg) -->
-      <image id="phase1" class="phase"
-             href="images/forside/cirkel-fase1.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(90 250 250)"/>
-      
-      <!-- 2 · Follikelfase  (images/forside/cirkel-fase2.svg) -->
-      <image id="phase2" class="phase"
-             href="images/forside/cirkel-fase2.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(180 250 250)"/>
-      
-      <!-- 3 · Ægløsning    (images/forside/cirkel-fase3.svg) -->
-      <image id="phase3" class="phase"
-             href="images/forside/cirkel-fase3.svg"
-             x="0" y="0" width="500" height="500"
-             transform="rotate(270 250 250)"/>
+      <path class="phase" d="M250 80 A170 170 0 0 1 420 250"/>
+      <path class="phase" d="M420 250 A170 170 0 0 1 250 420"/>
+      <path class="phase" d="M250 420 A170 170 0 0 1 80 250"/>
+      <path class="phase" d="M80 250  A170 170 0 0 1 250 80"/>
+    </g>
+
+    <!-- drag handle -->
+    <g id="handle">
+      <circle id="handleCircle" r="25"/>
+      <text   id="handleText" text-anchor="middle" dy="4">OPLEV</text>
     </g>
   </svg>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
 <script>
-/* ——— DATA ——— */
-const phases = [
-  {name:'Lutealfasen',   color:'#FBE3EF'},
-  {name:'Menstruation',  color:'#F9A5B5'},
-  {name:'Follikelfasen', color:'#BFE6FF'},
-  {name:'Ægløsning',     color:'#FFE4A2'}
+/* ---------- LOTTIE ---------- */
+lottie.loadAnimation({
+  container : document.getElementById('lottie'),
+  renderer  : 'svg',
+  loop      : true,
+  autoplay  : true,
+  path      : 'data.json'             // ← your JSON file
+});
+
+/* ---------- PHASE → ICON FILE MAP ---------- */
+/*  Re-order these four entries if your wedges are arranged differently.          */
+const phaseIconBases = [
+  {folder:'Fase1', base:'menstruation-icon'},    // index 0
+  {folder:'Fase2', base:'follikelfase-icon'},    // index 1
+  {folder:'Fase3', base:'ægløsning-icon'},       // index 2
+  {folder:'Fase4', base:'luteal-icon'}           // index 3
 ];
 
-/* ——— ELEMENTER ——— */
+/* one set of positions / fly-in directions, reused for all phases */
+const iconLayout = [
+  {x:'88vw', y:'40vh', dir:'left'},
+  {x:'15vw', y:'10vh', dir:'top'},
+  {x:'74vw', y:'10vh', dir:'right'},
+  {x:'5vw',  y:'44vh', dir:'left'},
+  {x:'15vw', y:'78vh', dir:'bottom'},
+  {x:'74vw', y:'70vh', dir:'right'}
+];
+
+/* ---------- BUILD ICON ELEMENTS ---------- */
+const bgIconsEl = document.getElementById('bgIcons');
+const phaseImgs = phaseIconBases.map((p,idx)=>{
+  return iconLayout.map((pos,i)=>{
+    const img = document.createElement('img');
+    img.src = `images/baggrund/${p.folder}/${p.base}${i+1}.svg`;
+    img.className = 'bgIcon';
+    img.style.left = pos.x;
+    img.style.top  = pos.y;
+
+    /* store "off-screen" transform depending on direction */
+    switch(pos.dir){
+      case 'left':   img.dataset.init='translateX(-120vw) scale(.7)'; break;
+      case 'right':  img.dataset.init='translateX(120vw)  scale(.7)'; break;
+      case 'top':    img.dataset.init='translateY(-120vh) scale(.7)'; break;
+      case 'bottom': img.dataset.init='translateY(120vh)  scale(.7)'; break;
+    }
+    img.style.transform = img.dataset.init;
+    bgIconsEl.appendChild(img);
+    return img;
+  });
+});
+
+/* show only the icons belonging to the active phase */
+function togglePhaseIcons(activeIdx){
+  phaseImgs.forEach((set,idx)=>{
+    const show = idx === activeIdx;
+    set.forEach(img=>{
+      img.style.opacity   = show ? 1 : 0;
+      img.style.transform = show ? 'translate(0,0) scale(1)' : img.dataset.init;
+    });
+  });
+}
+
+/* ---------- PHASE DATA ---------- */
+const phases = [
+  {name:'Menstruation',  color:'#C2858C'},
+  {name:'Follikelfasen', color:'#Ac6773'},
+  {name:'Ægløsning',     color:'#8DA1BD'},
+  {name:'Lutealfasen',   color:'#6F8095'}
+];
+
+/* ---------- SVG INTERACTION ---------- */
 const svg          = document.getElementById('scene');
 const handleGroup  = document.getElementById('handle');
 const handleCircle = document.getElementById('handleCircle');
 const handleText   = document.getElementById('handleText');
-const iconsBox     = document.getElementById('icons');
 
-/* ——— GEOMETRI ——— */
 const CENTER = {x:250,y:250};
 const RADIUS = 170;
 const STROKE = 40;
 const OUTER_R = RADIUS + STROKE/2 + 40;
 
-/* ——— STATE ——— */
 let currentPhaseIdx = null;
-let dragging        = false;
-let dragMoved       = false;
-let dragStartPt     = {x:0,y:0};
+let dragging=false, dragMoved=false, dragStartPt={x:0,y:0};
 
-/* ——— INIT ——— */
+/* init */
 placeHandleAtAngle(0,true);
 updateBackground(null);
 
-/* ——— EVENTS ——— */
+/* events */
 handleCircle.addEventListener('pointerdown', pointerDown);
 handleCircle.addEventListener('click',        onHandleClick);
 
 function pointerDown(e){
-  dragging   = true;
-  dragMoved  = false;
-  dragStartPt = {x:e.clientX,y:e.clientY};
+  dragging=true;dragMoved=false;dragStartPt={x:e.clientX,y:e.clientY};
   handleCircle.setPointerCapture(e.pointerId);
-  handleCircle.style.transform='scale(.7)';
-  handleText.style.display='none';
+  handleCircle.style.transform='scale(.7)';handleText.style.display='none';
   document.addEventListener('pointermove', pointerMove);
   document.addEventListener('pointerup',   pointerUp);
 }
-
 function pointerMove(e){
   if(!dragging) return;
-  if(!dragMoved){
-    const dx=e.clientX-dragStartPt.x, dy=e.clientY-dragStartPt.y;
-    if(Math.hypot(dx,dy)>3) dragMoved=true;
-  }
+  if(!dragMoved && Math.hypot(e.clientX-dragStartPt.x,e.clientY-dragStartPt.y)>3) dragMoved=true;
   const loc = clientToSvg(e.clientX,e.clientY);
   const ang = pointToAngle(loc.x,loc.y);
   placeHandleAtAngle(ang);
   const idx = angleToPhase(ang);
   if(idx!==currentPhaseIdx){highlightPhase(idx);currentPhaseIdx=idx;}
 }
-
 function pointerUp(e){
-  dragging=false;
-  handleCircle.releasePointerCapture(e.pointerId);
+  dragging=false;handleCircle.releasePointerCapture(e.pointerId);
   document.removeEventListener('pointermove',pointerMove);
   document.removeEventListener('pointerup',pointerUp);
-
-  const loc  = clientToSvg(e.clientX,e.clientY);
-  const dist = pointDist(loc,CENTER);
-  const onRing = Math.abs(dist-OUTER_R) < STROKE;
-
-  onRing ? snapToPhase(currentPhaseIdx) : resetToTop();
+  const loc=clientToSvg(e.clientX,e.clientY),dist=pointDist(loc,CENTER);
+  Math.abs(dist-OUTER_R)<STROKE ? snapToPhase(currentPhaseIdx) : resetToTop();
 }
-
 function onHandleClick(){
   if(!dragMoved && handleText.style.display!=="none" && currentPhaseIdx!==null){
     console.log(`Åbn oplevelse for: ${phases[currentPhaseIdx].name}`);
   }
 }
 
-/* ——— VISUEL LOGIK ——— */
+/* ---------- VISUAL LOGIC ---------- */
 function placeHandleAtAngle(angle,forceSmall=false){
-  const rad = (angle-90)*Math.PI/180;
+  const rad=(angle-90)*Math.PI/180;
   handleGroup.setAttribute('transform',
     `translate(${CENTER.x+OUTER_R*Math.cos(rad)},${CENTER.y+OUTER_R*Math.sin(rad)})`);
-  if(forceSmall){
-    handleCircle.style.transform='scale(.7)';
-    handleText.style.display='none';
-  }
+  if(forceSmall){handleCircle.style.transform='scale(.7)';handleText.style.display='none';}
 }
-
 function highlightPhase(idx){
   for(let i=0;i<4;i++){
-    document.getElementById(`phase${i}`).classList.toggle('active',i===idx);
-    document.getElementById(`label${i}`).classList.toggle('active',i===idx);
+    document.getElementById(`phaseImg${i}`).classList.toggle('active',i===idx);
   }
+  togglePhaseIcons(idx);
   updateBackground(idx);
 }
-
 function snapToPhase(idx){
   placeHandleAtAngle(idx*90+45);
-  handleCircle.style.transform='scale(1)';
-  handleText.style.display='block';
+  handleCircle.style.transform='scale(1)';handleText.style.display='block';
   updateBackground(idx);
 }
-
 function resetToTop(){
-  currentPhaseIdx = null;
-  for(let i=0;i<4;i++){
-    document.getElementById(`phase${i}`).classList.remove('active');
-    document.getElementById(`label${i}`).classList.remove('active');
-  }
+  currentPhaseIdx=null;
+  for(let i=0;i<4;i++){document.getElementById(`phaseImg${i}`).classList.remove('active');}
+  togglePhaseIcons(-1);
   placeHandleAtAngle(0,true);
   updateBackground(null);
 }
 
-/* ——— BAGGRUND ——— */
+/* ---------- BACKGROUND COLOUR ---------- */
 function updateBackground(idx){
-  document.body.style.background =
-    idx===null ? '#f9d9e5' : phases[idx].color;
+  document.body.style.background = idx===null ? '#a36a73' : phases[idx].color;
 }
 
-/* ——— HJÆLPEFUNKTIONER ——— */
-function clientToSvg(x,y){
-  const pt = svg.createSVGPoint();pt.x=x;pt.y=y;
-  return pt.matrixTransform(svg.getScreenCTM().inverse());
-}
-function pointToAngle(x,y){
-  return (Math.atan2(y-CENTER.y,x-CENTER.x)*180/Math.PI+90+360)%360;
-}
+/* ---------- HELPERS ---------- */
+function clientToSvg(x,y){ const pt=svg.createSVGPoint();pt.x=x;pt.y=y;return pt.matrixTransform(svg.getScreenCTM().inverse()); }
+function pointToAngle(x,y){return (Math.atan2(y-CENTER.y,x-CENTER.x)*180/Math.PI+90+360)%360;}
 function angleToPhase(angle){return Math.floor(angle/90)%4;}
 function pointDist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
 </script>

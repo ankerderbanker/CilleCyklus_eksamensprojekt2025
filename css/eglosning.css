@@ -80,8 +80,7 @@ body {
   left: 580px;
 }
 
-/* Popup-boks */
-/* Popup ved prikken */
+/* Popup box ved prikken */
 .popup-ved-prik {
   display: none;
   position: absolute;
@@ -94,6 +93,15 @@ body {
   max-width: 400px;
   z-index: 10;
   box-shadow: 0 2px 6px var(--color-primar-morkebla)
+}
+
+.popup-ved-prik h3 {
+  margin: 0 0 4px 0; /* Fjern top-margin, lav lidt luft nedenunder */
+}
+
+.popup-ved-prik p {
+  margin: 0;         /* Fjern ekstra mellemrum under p-tagget */
+  line-height: 2;
 }
 
 /* Placering af popup ved hvert punkt */
@@ -114,7 +122,7 @@ body {
 
 #popup4 {
   top: 590px;
-  left: 110px;
+  left: 10px;
 }
 
 #popup5 {
@@ -124,7 +132,7 @@ body {
 
 #popup6 {
   top: 810px;
-  left: 390px;
+  left: 40px;
 }
 
 #popup7 {

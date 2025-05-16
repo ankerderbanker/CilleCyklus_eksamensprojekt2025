@@ -37,14 +37,14 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
-  background: red; /* Du kan ændre til fx var(--color-sekundar-gul) */
-  border: none;
+  background:var(--color-sekundar-gul);
+  border: 2px solid var(--color-sekundar-orange);
   border-radius: 50%;
   cursor: pointer;
-  font-size: 0; /* skjuler prikken "●" */
+  font-size: 0; /* skjuler prikken */
 }
 
-/* Individuel placering af punktet */
+/* Individuel placering af punkterne */
 .punkt-hjerne {
   top: 60px;
   left: 600px;
@@ -66,18 +66,18 @@ body {
 }
 
 .punkt-muskler {
-  top: 920px;
-  left: 670px;
+  top: 670px;
+  left: 810px;
 }
 
 .punkt-mave {
-  top: 100px;
-  left: 650px;
+  top: 830px;
+  left: 490px;
 }
 
 .punkt-æggestokke {
-  top: 810px;
-  left: 500px;
+  top: 970px;
+  left: 600px;
 }
 
 /* Popup-boks */
@@ -85,9 +85,9 @@ body {
 .popup-ved-prik {
   display: none;
   position: absolute;
-  background: white;
+  background: var(--color-hvid);
   padding: 10px 14px;
-  border: 1px solid #aaa;
+  border: 1px solid var(--color-sort);
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
@@ -95,7 +95,6 @@ body {
   max-width: 200px;
   z-index: 10;
 }
-
 
 /* Placering af popup ved hvert punkt */
 #popup1 {
@@ -119,16 +118,16 @@ body {
 }
 
 #popup5 {
-  top: 920px;
-  left: 720px;
+  top: 670px;
+  left: 860px;
 }
 
 #popup6 {
-  top: 100px;
-  left: 700px;
+  top: 830px;
+  left: 400px;
 }
 
 #popup7 {
-  top: 310px;
-  left: 260px;
+  top: 970px;
+  left: 650px;
 }

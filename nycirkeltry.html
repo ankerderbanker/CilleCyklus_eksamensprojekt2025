@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <title>Menstruationscyklus – interaktiv prototype</title>
+
+  <style>
+  /* ---------- LAYOUT ---------- */
+  html,body{margin:0;height:100%}
+  body{
+    display:flex;align-items:center;justify-content:center;
+    background:#f9d9e5;
+    transition:background .4s ease;
+    font-family:"Rubik",system-ui,sans-serif;
+  }
+
+  /* ---------- INVISIBLE GEOMETRY RING ---------- */
+  .phase{
+    stroke:transparent;      /* kept for hit-testing only */
+    stroke-width:40;
+    fill:none;
+    stroke-linecap:butt;
+  }
+
+  /* ---------- ILLUSTRATOR WEDGES ---------- */
+  .phaseImg{
+    opacity:.45;
+    transition:opacity .25s, filter .25s;
+  }
+  .phaseImg.active{
+    opacity:1;
+    filter:brightness(.8);   /* darken when active */
+  }
+
+  /* ---------- DRAG HANDLE ---------- */
+  #handleCircle{
+    fill:#333;cursor:pointer;touch-action:none;
+    transition:transform .2s ease;
+  }
+  #handleText{
+    fill:#fff;font-weight:600;font-size:11px;
+    user-select:none;pointer-events:none;
+    display:none;
+  }
+  </style>
+</head>
+
+<body>
+  <svg id="scene" width="600" height="600" viewBox="0 0 500 500">
+
+    <!-- Midter-ansigt / placeholder -->
+    <circle cx="250" cy="250" r="75" fill="#fffbe7" stroke="#e9e2ce" stroke-width="4"/>
+
+    <!-- Illustrator-eksporterede kvarte cirkel-SVG’er -->
+    <!-- 2·RADIUS = 340 ;   250-170 = 80 → centreret kvadrat -->
+    <g id="ringImgs">
+  <!-- TOP -->
+  <image id="phaseImg0" class="phaseImg"
+         href="images/forside/cirkel-fase1.svg"
+         width="340" height="340" x="80" y="80"
+         transform="translate(240,-0) scale(0.50)" />
+
+  <!-- RIGHT -->
+  <image id="phaseImg1" class="phaseImg"
+         href="images/forside/cirkel-fase2.svg"
+         width="340" height="340" x="80" y="80"
+         transform="translate(240,220) scale(0.50)" />
+
+  <!-- BOTTOM -->
+  <image id="phaseImg2" class="phaseImg"
+         href="images/forside/cirkel-fase3.svg"
+         width="340" height="340" x="80" y="80"
+         transform="translate(20,200) scale(0.50)" />
+
+  <!-- LEFT -->
+  <image id="phaseImg3" class="phaseImg"
+         href="images/forside/cirkel-fase4.svg"
+         width="340" height="340" x="80" y="80"
+         transform="translate(20,0) scale(0.50)" />
+</g>
+
+    <!-- Usynlig ring (bruges kun til geometri / hit-testing) -->
+    <g id="ring">
+      <path id="phase0" class="phase" d="M250 80 A170 170 0 0 1 420 250"/>
+      <path id="phase1" class="phase" d="M420 250 A170 170 0 0 1 250 420"/>
+      <path id="phase2" class="phase" d="M250 420 A170 170 0 0 1 80 250"/>
+      <path id="phase3" class="phase" d="M80 250  A170 170 0 0 1 250 80"/>
+    </g>
+
+    <!-- Trækkecirkel -->
+    <g id="handle">
+      <circle id="handleCircle" r="20"/>
+      <text   id="handleText" text-anchor="middle" dy="4">OPLEV</text>
+    </g>
+  </svg>
+
+<script>
+/* ---------- DATA ---------- */
+const phases = [
+  {name:'Lutealfasen',   color:'#FBE3EF'},
+  {name:'Menstruation',  color:'#F9A5B5'},
+  {name:'Follikelfasen', color:'#BFE6FF'},
+  {name:'Ægløsning',     color:'#FFE4A2'}
+];
+
+/* ---------- ELEMENTER ---------- */
+const svg          = document.getElementById('scene');
+const handleGroup  = document.getElementById('handle');
+const handleCircle = document.getElementById('handleCircle');
+const handleText   = document.getElementById('handleText');
+
+/* ---------- GEOMETRI ---------- */
+const CENTER = {x:250,y:250};
+const RADIUS = 170;
+const STROKE = 40;
+const OUTER_R = RADIUS + STROKE/2 + 40;
+
+/* ---------- STATE ---------- */
+let currentPhaseIdx = null;
+let dragging        = false;
+let dragMoved       = false;
+let dragStartPt     = {x:0,y:0};
+
+/* ---------- INIT ---------- */
+placeHandleAtAngle(0,true);
+updateBackground(null);
+
+/* ---------- EVENTS ---------- */
+handleCircle.addEventListener('pointerdown', pointerDown);
+handleCircle.addEventListener('click',        onHandleClick);
+
+function pointerDown(e){
+  dragging   = true;
+  dragMoved  = false;
+  dragStartPt = {x:e.clientX,y:e.clientY};
+  handleCircle.setPointerCapture(e.pointerId);
+  handleCircle.style.transform='scale(.7)';
+  handleText.style.display='none';
+  document.addEventListener('pointermove', pointerMove);
+  document.addEventListener('pointerup',   pointerUp);
+}
+
+function pointerMove(e){
+  if(!dragging) return;
+  if(!dragMoved){
+    const dx=e.clientX-dragStartPt.x, dy=e.clientY-dragStartPt.y;
+    if(Math.hypot(dx,dy)>3) dragMoved=true;
+  }
+  const loc = clientToSvg(e.clientX,e.clientY);
+  const ang = pointToAngle(loc.x,loc.y);
+  placeHandleAtAngle(ang);
+  const idx = angleToPhase(ang);
+  if(idx!==currentPhaseIdx){highlightPhase(idx);currentPhaseIdx=idx;}
+}
+
+function pointerUp(e){
+  dragging=false;
+  handleCircle.releasePointerCapture(e.pointerId);
+  document.removeEventListener('pointermove',pointerMove);
+  document.removeEventListener('pointerup',pointerUp);
+
+  const loc  = clientToSvg(e.clientX,e.clientY);
+  const dist = pointDist(loc,CENTER);
+  const onRing = Math.abs(dist-OUTER_R) < STROKE;
+
+  onRing ? snapToPhase(currentPhaseIdx) : resetToTop();
+}
+
+function onHandleClick(){
+  if(!dragMoved && handleText.style.display!=="none" && currentPhaseIdx!==null){
+    console.log(`Åbn oplevelse for: ${phases[currentPhaseIdx].name}`);
+  }
+}
+
+/* ---------- VISUEL LOGIK ---------- */
+function placeHandleAtAngle(angle,forceSmall=false){
+  const rad = (angle-90)*Math.PI/180;
+  handleGroup.setAttribute('transform',
+    `translate(${CENTER.x+OUTER_R*Math.cos(rad)},${CENTER.y+OUTER_R*Math.sin(rad)})`);
+  if(forceSmall){
+    handleCircle.style.transform='scale(.7)';
+    handleText.style.display='none';
+  }
+}
+
+function highlightPhase(idx){
+  for(let i=0;i<4;i++){
+    document.getElementById(`phaseImg${i}`)
+            .classList.toggle('active',i===idx);
+  }
+  updateBackground(idx);
+}
+
+function snapToPhase(idx){
+  placeHandleAtAngle(idx*90+45);
+  handleCircle.style.transform='scale(1)';
+  handleText.style.display='block';
+  updateBackground(idx);
+}
+
+function resetToTop(){
+  currentPhaseIdx = null;
+  for(let i=0;i<4;i++){
+    document.getElementById(`phaseImg${i}`).classList.remove('active');
+  }
+  placeHandleAtAngle(0,true);
+  updateBackground(null);
+}
+
+/* ---------- BAGGRUND ---------- */
+function updateBackground(idx){
+  document.body.style.background =
+    idx===null ? '#f9d9e5' : phases[idx].color;
+}
+
+/* ---------- HJÆLPEFUNKTIONER ---------- */
+function clientToSvg(x,y){
+  const pt = svg.createSVGPoint();pt.x=x;pt.y=y;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+function pointToAngle(x,y){
+  return (Math.atan2(y-CENTER.y,x-CENTER.x)*180/Math.PI+90+360)%360;
+}
+function angleToPhase(angle){return Math.floor(angle/90)%4;}
+function pointDist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+</script>
+</body>
+</html>

@@ -24,3 +24,17 @@ body{
 
     margin-bottom: 5rem;
 }
+/* placer masken hvor du vil: */
+#livmorhals{
+    position:absolute;           /* ← fast, ikke responsiv   */
+    top:120%; left:48.7%;         /* ✏️  flyt som du ønsker   */
+    transform:translateX(-50%);  /*   centrer horisontalt    */
+    width:220px; height:900px;   /* ✏️  bredde/højde på kanalen */
+    overflow:hidden;
+  }
+  
+  .boble{position:absolute;background:#770016;border-radius:50%;}
+  .sma   {width:30px; height:30px;}
+  .mellem{width:60px;height:60px;}
+  .stor  {width:90px;height:90px;}
+  

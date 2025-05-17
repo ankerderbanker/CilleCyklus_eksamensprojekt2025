@@ -10,6 +10,17 @@ h1 {
   margin-bottom: -1rem;
 }
 
+.infographic{
+  display: flex;
+  justify-content: center; /* vandret centreret */
+  align-items: center;     /* lodret centreret */
+}
+
+.infographic img{
+  max-width: 75%;
+  max-height: auto; 
+}
+
 /* Container for begge rækker */
 .flip-card-container {
   display: flex;

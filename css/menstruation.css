@@ -1,9 +1,11 @@
 body{
     background-color:   var(--color-primar-rod) ;
+
 }
 
 .intro{
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    margin: auto 0;
 }

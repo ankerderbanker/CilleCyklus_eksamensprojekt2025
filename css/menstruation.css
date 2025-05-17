@@ -27,7 +27,7 @@ body{
 /* placer masken hvor du vil: */
 #livmorhals{
     position:absolute;           /* ← fast, ikke responsiv   */
-    top:120%; left:48.7%;         /* ✏️  flyt som du ønsker   */
+    top:100%; left:48.7%;         /* ✏️  flyt som du ønsker   */
     transform:translateX(-50%);  /*   centrer horisontalt    */
     width:220px; height:900px;   /* ✏️  bredde/højde på kanalen */
     overflow:hidden;
@@ -38,3 +38,10 @@ body{
   .mellem{width:60px;height:60px;}
   .stor  {width:90px;height:90px;}
   
+  h1{
+    font-size: 2rem;
+    color: var( --color-primar-rod);
+    position: absolute;
+    top: 120rem; left: 40%;
+    text-align: center;
+    margin-top: 5rem;}

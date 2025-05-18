@@ -120,7 +120,7 @@ body{
       
 
       .typewriter-section {
-        min-height: 100vh;
+        
         display: flex;
       }
       
@@ -141,8 +141,8 @@ body{
       /* Hele kolonnen */
 .smerteskala{
     width: 300px;                       /* bredde på søjlen */
-    margin: 0 auto;
-    background:#401c20;                 /* mørkerød baggrund */
+    margin: 3rem auto;
+    background:var(--color-primar-rod);                 /* mørkerød baggrund */
     padding:2rem 0;
     border-radius:3rem;
     display:flex;
@@ -151,64 +151,65 @@ body{
     gap:3rem;                           /* afstand mellem cirklerne */
   }
   
-  /* Ét niveau (cirkel + evt. infoboks) */
   .niveau{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
-    transition:all .25s ease;
+    transition:.25s ease;
   }
   
-  /* Cirklen */
   .cirkel{
-    width:150px;height:150px;
+    width:150px; height:150px;
     border-radius:50%;
-    background:var(--color-primar-lyserod);                /* lyserød cirkel */
-    display:flex;justify-content:center;align-items:center;
-    border:none;cursor:pointer;
+    background:var(--color-primar-lyserod);
+    display:flex; justify-content:center; align-items:center;
+    cursor:pointer; border:none;
+    transition:.2s;                       /* hover-pop */
   }
   
-  /* Tallet */
   .nummer{
-    font-family:"Super Funky", sans-serif;
-    font-size:5rem;
+    font:700 5rem "Super Funky", sans-serif;
     color:#7b1622;
-    font-weight:700;
   }
   
-  /* Ikonet er skjult indtil aktiv */
-  .ikon{display:none;width:60%;}
+  .ikon{
+    width:60%; display:none;              /* vises først når aktiv */
+  }
   
-  /* Infoboksen */
+  /* Infoboks  (lukket = 0 højde + 0 opacitet) */
   .info{
-    display:none;                       /* skjult som standard */
-    width:160px;
-    background:var(--color-primar-lyserod); 
-    color:#2a2a2a;
-    text-align:center;
-    padding:.9rem;
+    position:relative;                    /* til pseudo-stilk */
+    width:160px; margin-top:.5rem;
+    padding:.9rem; text-align:center;
+    font:.9rem/1.3 'Poppins', sans-serif;
+    background:var(--color-primar-lyserod);
     border-radius:1rem;
-    margin-top:.5rem;
-    font-family:'Poppins', sans-serif;
-    font-size:.9rem;
-    line-height:1.3;
+    color:#2a2a2a;
+    max-height:0; opacity:0; overflow:hidden;
+    transition:max-height .35s, opacity .35s;
   }
   
-  /* Når niveauet er åbent */
-  .niveau.open .nummer{display:none;}
-  .niveau.open .ikon{display:block;}
-  .niveau.open .info{display:block;}
+  /* ─────────────────────────  INTERAKTION  ───────────────────────── */
   
-  /* Lille “stilk” mellem cirkel og boks (pseudo-element) */
+  /* Hover-pop */
+  .cirkel:hover{transform:scale(1.1)}
+  
+  /* Bounce når niveau åbnes */
+  @keyframes pop{40%{transform:scale(1.25)}60%{transform:scale(.9)}}
+  .niveau.open .cirkel{animation:pop .35s}
+  
+  /* Skift tal → ikon + fold infoboks ud */
+  .niveau.open .nummer{display:none; opacity:0}
+  .niveau.open .ikon  {display:block; opacity:1}
+  .niveau.open .info  {max-height:180px; opacity:1}
+  
+  /* Stilk mellem cirkel og boks */
   .niveau.open .info::before{
     content:"";
     position:absolute;
-    top:-8px;left:50%;translate:-50% 0;
-    width:10px;height:10px;
-    background:var(--color-primar-lyserod); 
+    top:-8px; left:50%; transform:translateX(-50%);
+    width:10px; height:10px;
+    background:var(--color-primar-lyserod);
     clip-path:polygon(50% 0,0 100%,100% 100%);
   }
-  .niveau .info{position:relative;}     /* for pseudo-element */
-  
-

@@ -1,12 +1,11 @@
 body{
     background-color:   var(--color-primar-rod) ;
-
+    overflow-x: hidden;
 }
 
 .intro{
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
     justify-self: center;
     align-items: center;
 }
@@ -26,10 +25,10 @@ body{
 }
 /* placer masken hvor du vil: */
 #livmorhals{
-    position:absolute;           /* ← fast, ikke responsiv   */
-    top:100%; left:48.7%;         /* ✏️  flyt som du ønsker   */
-    transform:translateX(-50%);  /*   centrer horisontalt    */
-    width:220px; height:900px;   /* ✏️  bredde/højde på kanalen */
+    position:absolute;          
+    top:100%; left:48.7%;       
+    transform:translateX(-50%); 
+    width:220px; height:900px;   
     overflow:hidden;
   }
   
@@ -38,10 +37,106 @@ body{
   .mellem{width:60px;height:60px;}
   .stor  {width:90px;height:90px;}
   
-  h1{
+  .personer h1{
     font-size: 2rem;
     color: var( --color-primar-rod);
     position: absolute;
-    top: 120rem; left: 40%;
+    top: 120rem;
     text-align: center;
     margin-top: 5rem;}
+
+    .personer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 5rem;}
+
+   
+      
+    
+      
+      #person1 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:135rem;
+        left: 20rem;
+      }
+      #person2 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:150rem;
+        left: 45rem;
+      }
+      #person3 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:170rem;
+        left: 25rem;
+      }
+      .videoContainer{
+        width: 100%;
+        display: none;
+     }
+      .videoContainer,
+      .audio {
+        display: none;
+
+
+      }
+      
+      .clickImage {
+        cursor: pointer;
+        width: 300px;
+      }
+      
+      .myVideo {
+        width: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+
+
+
+.smerteskala{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5rem;
+    position: absolute;
+    top: 200rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+      .smerteskala h1{
+        font-size: 2rem;
+        color: var( --color-primar-rod);
+      }
+      
+
+      .typewriter-section {
+        min-height: 100vh;
+        display: flex;
+      }
+      
+      #typewriter {
+        font-family: 'Poppins', sans-serif;
+        white-space: nowrap;
+        overflow: hidden;
+    
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--color-primar-rod);
+        animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+        width: 100%;
+         white-space: pre-wrap; /* så \n bliver til linjeskift */
+         text-align: center;
+
+        }
+      
+

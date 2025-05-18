@@ -37,9 +37,79 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
 
-    
+
     /* ── 4. AOS: start animationerne ───────────────────────── */
     AOS.init({ duration: 900, mirror: true, once: false });
   
   });
+
+
+
+  // Hent alle person-elementer (dem med billede, video og lyd)
+const personer = document.querySelectorAll('.person');
+
+// Gennemgå hver person én for én
+personer.forEach((person) => {
+
+  // Find de relevante elementer inde i denne person
+  const img = person.querySelector('.clickImage');         // Billedet der kan klikkes
+  const videoContainer = person.querySelector('.videoContainer'); // Container med video
+  const video = person.querySelector('.myVideo');          // Selve videoelementet
+  const audio = person.querySelector('.audio');            // Lydfilen der passer til videoen
+
+  let playing = false; // Husk om videoen er i gang
+
+  // Når man klikker på billedet → start video og lyd
+  img.addEventListener('click', () => {
+    img.style.display = 'none';             // Skjul billede
+    videoContainer.style.display = 'block'; // Vis video
+    video.currentTime = 0;                  // Start video fra begyndelsen
+    audio.currentTime = 0;                  // Start lyd fra begyndelsen
+    video.play();
+    audio.play();
+    playing = true;
+  });
+
+  // Når man klikker på videoen → stop og vis billede igen
+  video.addEventListener('click', () => {
+    video.pause();
+    audio.pause();
+    videoContainer.style.display = 'none';
+    img.style.display = 'block';
+    playing = false;
+  });
+
+  // Når videoen slutter af sig selv → vis billedet igen
+  video.addEventListener('ended', () => {
+    videoContainer.style.display = 'none';
+    img.style.display = 'block';
+    playing = false;
+  });
+});
+
   
+
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = "Mens-smerter føles ikke ens for alle.\n\nFor nogen svarer det til en hovedpine. \nFor andre føles det som en nyresten.\n\nDe fleste ligger et sted mellem niveau 5 og 7.\n\n\nTryk dig gennem skalaen og få en fornemmelse af, \nhvor ondt det kan gøre.";
+
+          el.textContent = ''; // sørg for den starter tom
+          let i = 0;
+          const interval = setInterval(() => {
+            el.textContent += text.charAt(i);
+            i++;
+            if (i === text.length) clearInterval(interval);
+          }, 40);
+          observer.unobserve(el);
+        }
+      });
+    });
+
+    observer.observe(document.getElementById("typewriter"));n 
+  });

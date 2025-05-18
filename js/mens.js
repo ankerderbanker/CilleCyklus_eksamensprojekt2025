@@ -113,3 +113,18 @@ personer.forEach((person) => {
 
     observer.observe(document.getElementById("typewriter"));n 
   });
+
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const niveauer = document.querySelectorAll('.niveau');
+
+  niveauer.forEach(niv=>{
+    niv.querySelector('.cirkel').addEventListener('click', ()=>{
+      // luk alle andre
+      niveauer.forEach(n=> n===niv ? n.classList.toggle('open')
+                                   : n.classList.remove('open'));
+    });
+  });
+});
+

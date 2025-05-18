@@ -65,25 +65,102 @@
       </div>
     </article>
 
-    <aside class="smerteskala">
+    <aside class="smerteskalaSection">
       <h1>
         Smerteskala
       </h1>
         
-    <section class="typewriter-section">
+    <section class="typewriter-section">  
       <p id="typewriter"></p>
-</section>
+    </section>
 
-<div class="smerteniveau" data-nr="1">
-  <div class="knap" onclick="toggleNiveau(1)">
-    <span class="tal">1</span>
-  </div>
+   <!-- Smerteskala -->
+<div class="smerteskala">
+<!-- Niveau 1 -->
+<div class="niveau" data-nr="1">
+  <button class="cirkel">
+    <span class="nummer">1</span>
+    <img class="ikon" src="images/menstruation/hovedpine.svg" alt="Hovedpine">
+  </button>
   <div class="info">
-    <img src="images/hovedpine.svg" alt="hovedpine" />
-    <p><strong>1. Hovedpine</strong><br>Mildt ubehag – du kan stadig smile lidt.</p>
+    <strong>1. Hovedpine</strong><br>
+    Mildt ubehag – du kan stadig smile lidt.
   </div>
 </div>
 
+<!-- Niveau 2 -->
+<div class="niveau" data-nr="2">
+  <button class="cirkel">
+    <span class="nummer">2</span>
+    <img class="ikon" src="images/menstruation/bloat.svg" alt="Oppustet mave">
+  </button>
+  <div class="info">
+    <strong>2. Oppustet mave</strong><br>
+    Strammer i buksekanten og humøret.
+  </div>
+</div>
+
+<!-- Niveau 3 -->
+<div class="niveau" data-nr="3">
+  <button class="cirkel">
+    <span class="nummer">3</span>
+    <img class="ikon" src="images/menstruation/muskel.svg" alt="Muskelømhed">
+  </button>
+  <div class="info">
+    <strong>3. Muskelømhed</strong><br>
+    Du bevæger dig langsommere og med lyde.
+  </div>
+</div>
+
+<!-- Niveau 4 -->
+<div class="niveau" data-nr="4">
+  <button class="cirkel">
+    <span class="nummer">4</span>
+    <img class="ikon" src="images/menstruation/fod.svg" alt="Forstuvet fod">
+  </button>
+  <div class="info">
+    <strong>4. Forstuvet fod</strong><br>
+    Du har brug for en pause og plaster på egoet.
+  </div>
+</div>
+
+<!-- Niveau 5 -->
+<div class="niveau" data-nr="5">
+  <button class="cirkel">
+    <span class="nummer">5</span>
+    <img class="ikon" src="images/menstruation/riben.svg" alt="Brækket ribben">
+  </button>
+  <div class="info">
+    <strong>5. Brækket ribben</strong><br>
+    Det gør ondt at trække vejret og tænke.
+  </div>
+</div>
+
+<!-- Niveau 6 -->
+<div class="niveau" data-nr="6">
+  <button class="cirkel">
+    <span class="nummer">6</span>
+    <img class="ikon" src="images/menstruation/nyresten.svg" alt="Nyresten">
+  </button>
+  <div class="info">
+    <strong>6. Nyresten</strong><br>
+    Du ved ikke om du skal kaste op eller skrige.
+  </div>
+</div>
+
+<!-- Niveau 7 -->
+<div class="niveau" data-nr="7">
+  <button class="cirkel">
+    <span class="nummer">7</span>
+    <img class="ikon" src="images/menstruation/surlivmor.svg" alt="Livmoderen går amok">
+  </button>
+  <div class="info">
+    <strong>7. Livmoderen går amok</strong><br>
+    Du ligger i fosterstilling og overvejer at ringe 112.
+  </div>
+</div>
+
+</div>
 </aside>
   <!-- AOS + din logik -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>

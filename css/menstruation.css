@@ -102,7 +102,7 @@ body{
 
 
 
-.smerteskala{
+.smerteskalaSection{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +113,7 @@ body{
     left: 50%;
     transform: translateX(-50%);
 }
-      .smerteskala h1{
+      .smerteskalaSection h1{
         font-size: 2rem;
         color: var( --color-primar-rod);
       }
@@ -138,5 +138,77 @@ body{
          text-align: center;
 
         }
-      
+      /* Hele kolonnen */
+.smerteskala{
+    width: 300px;                       /* bredde på søjlen */
+    margin: 0 auto;
+    background:#401c20;                 /* mørkerød baggrund */
+    padding:2rem 0;
+    border-radius:3rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3rem;                           /* afstand mellem cirklerne */
+  }
+  
+  /* Ét niveau (cirkel + evt. infoboks) */
+  .niveau{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transition:all .25s ease;
+  }
+  
+  /* Cirklen */
+  .cirkel{
+    width:150px;height:150px;
+    border-radius:50%;
+    background:var(--color-primar-lyserod);                /* lyserød cirkel */
+    display:flex;justify-content:center;align-items:center;
+    border:none;cursor:pointer;
+  }
+  
+  /* Tallet */
+  .nummer{
+    font-family:"Super Funky", sans-serif;
+    font-size:5rem;
+    color:#7b1622;
+    font-weight:700;
+  }
+  
+  /* Ikonet er skjult indtil aktiv */
+  .ikon{display:none;width:60%;}
+  
+  /* Infoboksen */
+  .info{
+    display:none;                       /* skjult som standard */
+    width:160px;
+    background:var(--color-primar-lyserod); 
+    color:#2a2a2a;
+    text-align:center;
+    padding:.9rem;
+    border-radius:1rem;
+    margin-top:.5rem;
+    font-family:'Poppins', sans-serif;
+    font-size:.9rem;
+    line-height:1.3;
+  }
+  
+  /* Når niveauet er åbent */
+  .niveau.open .nummer{display:none;}
+  .niveau.open .ikon{display:block;}
+  .niveau.open .info{display:block;}
+  
+  /* Lille “stilk” mellem cirkel og boks (pseudo-element) */
+  .niveau.open .info::before{
+    content:"";
+    position:absolute;
+    top:-8px;left:50%;translate:-50% 0;
+    width:10px;height:10px;
+    background:var(--color-primar-lyserod); 
+    clip-path:polygon(50% 0,0 100%,100% 100%);
+  }
+  .niveau .info{position:relative;}     /* for pseudo-element */
+  
 

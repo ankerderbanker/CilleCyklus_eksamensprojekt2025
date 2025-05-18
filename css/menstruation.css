@@ -1,9 +1,47 @@
 body{
     background-color:   var(--color-primar-rod) ;
+
 }
 
 .intro{
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    justify-self: center;
+    align-items: center;
 }
+#overskrift{
+    width: 60rem;
+   
+}
+#piger{
+  width: 40rem;
+    margin-top: -9rem;
+    margin-bottom: 5rem;
+}
+#livmor{
+    width: 100rem;
+
+    margin-bottom: 5rem;
+}
+/* placer masken hvor du vil: */
+#livmorhals{
+    position:absolute;           /* ← fast, ikke responsiv   */
+    top:100%; left:48.7%;         /* ✏️  flyt som du ønsker   */
+    transform:translateX(-50%);  /*   centrer horisontalt    */
+    width:220px; height:900px;   /* ✏️  bredde/højde på kanalen */
+    overflow:hidden;
+  }
+  
+  .boble{position:absolute;background:#770016;border-radius:50%;}
+  .sma   {width:30px; height:30px;}
+  .mellem{width:60px;height:60px;}
+  .stor  {width:90px;height:90px;}
+  
+  h1{
+    font-size: 2rem;
+    color: var( --color-primar-rod);
+    position: absolute;
+    top: 120rem; left: 40%;
+    text-align: center;
+    margin-top: 5rem;}

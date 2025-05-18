@@ -29,12 +29,62 @@
           Boblerne bliver lagt ind her fra script.js  -->
     <section id="livmorhals"></section>
 
-<article>
-  <h1>
-    Hør deres historier
-  </h1>
-</article>
+    <article class="personer">
+    <h1>
+      Hør deres historier
+    </h1>
+    
+      <div class="person" id="person1">
+        <img class="clickImage" src="images/menstruation/cille2000.svg" alt="Klik for at starte">
+        <div class="videoContainer">
+          <video class="myVideo" autoplay muted>
+            <source src="mp4/cille2000.mp4" type="video/mp4">
+          </video>
+        </div>
+        <audio class="audio" src="lyd/Åhusene 2.mp3"></audio>
+      </div>
+    
+      <div class="person" id="person2">
+        <img class="clickImage" src="images/menstruation/Cille1800.svg" alt="Klik for at starte">
+        <div class="videoContainer">
+          <video class="myVideo" autoplay muted>
+            <source src="mp4/cille2002.mp4" type="video/mp4">
+          </video>
+        </div>
+        <audio class="audio" src="lyd/Åhusene 2.mp3"></audio>
+      </div>
+    
+      <div class="person" id="person3">
+        <img class="clickImage" src="images/menstruation/cille1600.svg" alt="Klik for at starte">
+        <div class="videoContainer">
+          <video class="myVideo" autoplay muted>
+            <source src="mp4/cille1600.mp4" type="video/mp4">
+          </video>
+        </div>
+        <audio class="audio" src="lyd/Åhusene 2.mp3"></audio>
+      </div>
+    </article>
 
+    <aside class="smerteskala">
+      <h1>
+        Smerteskala
+      </h1>
+        
+    <section class="typewriter-section">
+      <p id="typewriter"></p>
+</section>
+
+<div class="smerteniveau" data-nr="1">
+  <div class="knap" onclick="toggleNiveau(1)">
+    <span class="tal">1</span>
+  </div>
+  <div class="info">
+    <img src="images/hovedpine.svg" alt="hovedpine" />
+    <p><strong>1. Hovedpine</strong><br>Mildt ubehag – du kan stadig smile lidt.</p>
+  </div>
+</div>
+
+</aside>
   <!-- AOS + din logik -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 

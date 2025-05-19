@@ -13,3 +13,13 @@ function togglePopup(id) {
     }
   }
   
+   // ikonerne med paralax
+   document.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+  
+    document.querySelectorAll('.parallax').forEach(el => {
+      const speed = parseFloat(el.dataset.speed);
+      el.style.transform = `translate(-50%, calc(-50% + ${scrollY * speed * 0.05}px))`;
+    });
+  });
+  

@@ -22,11 +22,9 @@
     }
 
     /* ─────────────── FIXED ELEMENTS ─────────────── */
-
     #floating-girl {
       position: fixed;
       bottom: -100px;
- 
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
@@ -36,19 +34,18 @@
     #floating-girl img {
       width: 800px;
       height: auto;
-      transform: rotate(270deg); /* rotate 90 degrees clockwise */
+      transform: rotate(270deg); /* Rotate 90 degrees clockwise */
     }
 
-   #bølge-container {
-  position: fixed;
-  bottom: -100px; /* Push wave lower */
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 10;
-  pointer-events: none;
-}
-
+    #bølge-container {
+      position: fixed;
+      bottom: -100px;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 10;
+      pointer-events: none;
+    }
 
     .nav-btn {
       position: fixed;
@@ -76,7 +73,6 @@
     }
 
     /* ─────────────── OVERLAY TITLE ─────────────── */
-
     #section-title {
       position: fixed;
       top: 20px;
@@ -90,7 +86,6 @@
     }
 
     /* ─────────────── HORIZONTAL SCROLL ─────────────── */
-
     #scroll-wrapper {
       position: absolute;
       top: 0;
@@ -106,11 +101,12 @@
     }
 
     #journey {
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-      width: 300vw; /* 3 scenes */
-    }
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 400vw; /* 4 scenes */
+}
+
 
     .scene {
       width: 100vw;
@@ -124,69 +120,95 @@
       color: white;
     }
 
+    /* ─────────────── Scene 1: Spejl ─────────────── */
+    .mirror-wrapper {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 40%;
+      z-index: 5;
+    }
 
-    /* ─────────────── scene 1 spejl─────────────── */
-.mirror-wrapper {
+    .mirror-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .follikel-wrapper {
   position: absolute;
-  top: 30%; /* Move up */
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 40%;
   z-index: 5;
 }
 
-
-.mirror-wrapper img {
+.follikel-wrapper img {
   width: 100%;
   height: auto;
   display: block;
 }
-
 
   </style>
 </head>
 
 <body>
 
-  <!-- Fixed floating girl image -->
+  <!-- Floating girl image -->
   <div id="floating-girl">
     <img src="Data/billeder/girlonbind.png" alt="Flydende pige" />
   </div>
 
-  <!-- Injected animated wave -->
+  <!-- Animated wave -->
   <div id="bølge-container"></div>
 
-  <!-- Fixed section title (updates via JS) -->
+  <!-- Fixed scene title -->
   <div id="section-title">Scene 0: Intro</div>
 
-  <!-- Arrows for navigation -->
+  <!-- Navigation arrows -->
   <button class="nav-btn" id="left-btn">←</button>
   <button class="nav-btn" id="right-btn">→</button>
 
-  <!-- Scrollable container -->
+  <!-- Horizontal scroll area -->
   <div id="scroll-wrapper">
     <div id="journey">
+      
+      <!-- Scene 0 -->
       <section class="scene" id="scene0">
         <p>Velkommen til rejsen. Scroll til højre for at begynde.</p>
       </section>
 
-
-
+      <!-- Scene 1 -->
       <section class="scene" id="scene1">
-          <div class="mirror-wrapper">
-    <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl" />
-  </div>
-        
+        <div class="mirror-wrapper">
+          <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl" />
+        </div>
       </section>
 
-
-
+      <!-- Scene 2 -->
       <section class="scene" id="scene2">
         <p>Scene 2 indhold her.</p>
       </section>
+
+      <!-- Scene 3 -->
+<section class="scene" id="scene3">
+  <div class="follikel-wrapper">
+    <img src="images/folikelfase/follikelgrafik.svg" alt="Follikelfasen illustration" />
+  </div>
+</section>
+
+      
+
+      
+
+      
+
     </div>
   </div>
 
+  <!-- JavaScript -->
   <script>
     // Inject bølge SVG
     fetch('bolge.html')
@@ -195,14 +217,12 @@
         document.getElementById('bølge-container').innerHTML = html;
       });
 
-
-      
-
     const scrollWrapper = document.getElementById("scroll-wrapper");
     const titleOverlay = document.getElementById("section-title");
-    const sectionTitles = ["Scene 0: Intro", "Scene 1: Spejl", "Scene 2: Hormoner"];
+    const sectionTitles = ["Scene 0: Intro", "Scene 1: Spejl", "Scene 2: Hormoner", "Scene 3: Follikelfasen"];
 
-    // Scroll to next/previous section
+
+    // Navigation arrows
     document.getElementById("left-btn").addEventListener("click", () => {
       scrollWrapper.scrollBy({ left: -window.innerWidth, behavior: "smooth" });
     });
@@ -211,7 +231,7 @@
       scrollWrapper.scrollBy({ left: window.innerWidth, behavior: "smooth" });
     });
 
-    // Update overlay title based on scroll position
+    // Update scene title on scroll
     scrollWrapper.addEventListener("scroll", () => {
       const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
       titleOverlay.textContent = sectionTitles[index] || "";

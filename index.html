@@ -46,6 +46,22 @@ body{
 </style>
 </head>
 
+
+
+
+<!-- Video transition overlay -->
+<div id="videoOverlay" style="
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:black;display:none;z-index:9999;justify-content:center;align-items:center;">
+  <video id="transitionVideo" width="100%" height="100%" style="object-fit:cover" autoplay></video>
+</div>
+
+
+
+
+
+
+
 <body>
 
 <!-- background icons -->
@@ -84,6 +100,7 @@ body{
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+
 <script>
 /* ---------- LOTTIE ---------- */
 lottie.loadAnimation({
@@ -91,19 +108,17 @@ lottie.loadAnimation({
   renderer  : 'svg',
   loop      : true,
   autoplay  : true,
-  path      : 'data.json'             // ← your JSON file
+  path      : 'data.json'
 });
 
 /* ---------- PHASE → ICON FILE MAP ---------- */
-/*  Re-order these four entries if your wedges are arranged differently.          */
 const phaseIconBases = [
-  {folder:'Fase1', base:'menstruation-icon'},    // index 0
-  {folder:'Fase2', base:'follikelfase-icon'},    // index 1
-  {folder:'Fase3', base:'ægløsning-icon'},       // index 2
-  {folder:'Fase4', base:'luteal-icon'}           // index 3
+  {folder:'Fase1', base:'menstruation-icon'},
+  {folder:'Fase2', base:'follikelfase-icon'},
+  {folder:'Fase3', base:'ægløsning-icon'},
+  {folder:'Fase4', base:'luteal-icon'}
 ];
 
-/* one set of positions / fly-in directions, reused for all phases */
 const iconLayout = [
   {x:'88vw', y:'40vh', dir:'left'},
   {x:'15vw', y:'10vh', dir:'top'},
@@ -123,7 +138,6 @@ const phaseImgs = phaseIconBases.map((p,idx)=>{
     img.style.left = pos.x;
     img.style.top  = pos.y;
 
-    /* store "off-screen" transform depending on direction */
     switch(pos.dir){
       case 'left':   img.dataset.init='translateX(-120vw) scale(.7)'; break;
       case 'right':  img.dataset.init='translateX(120vw)  scale(.7)'; break;
@@ -136,7 +150,6 @@ const phaseImgs = phaseIconBases.map((p,idx)=>{
   });
 });
 
-/* show only the icons belonging to the active phase */
 function togglePhaseIcons(activeIdx){
   phaseImgs.forEach((set,idx)=>{
     const show = idx === activeIdx;
@@ -200,9 +213,35 @@ function pointerUp(e){
   const loc=clientToSvg(e.clientX,e.clientY),dist=pointDist(loc,CENTER);
   Math.abs(dist-OUTER_R)<STROKE ? snapToPhase(currentPhaseIdx) : resetToTop();
 }
+
 function onHandleClick(){
-  if(!dragMoved && handleText.style.display!=="none" && currentPhaseIdx!==null){
-    console.log(`Åbn oplevelse for: ${phases[currentPhaseIdx].name}`);
+  if(!dragMoved && handleText.style.display !== "none" && currentPhaseIdx !== null){
+    const videoFiles = [
+      'mp4/overgang-til-mens.mp4',
+      'videos/follikelfase.mp4',
+      'videos/aeglosning.mp4',
+      'mp4/videos/lutealfase.mp4'
+    ];
+    const targetPages = [
+      '1menstruationsfasen.html',
+      '2follikelfasen.html',
+      '3eeglosningsfasen.html',
+      '4lutealfasen.html'
+    ];
+
+    const videoSrc = videoFiles[currentPhaseIdx];
+    const targetURL = targetPages[currentPhaseIdx];
+
+    const videoOverlay = document.getElementById('videoOverlay');
+    const video = document.getElementById('transitionVideo');
+
+    video.src = videoSrc;
+    videoOverlay.style.display = 'flex';
+
+    video.play();
+    video.onended = () => {
+      window.location.href = targetURL;
+    };
   }
 }
 
@@ -244,5 +283,6 @@ function pointToAngle(x,y){return (Math.atan2(y-CENTER.y,x-CENTER.x)*180/Math.PI
 function angleToPhase(angle){return Math.floor(angle/90)%4;}
 function pointDist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
 </script>
+
 </body>
 </html>

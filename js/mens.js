@@ -128,3 +128,43 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const icons = document.querySelectorAll('.mood-icon');
+    const iconsContainer = document.querySelector('.humor-icons');
+    const typewriterSection = document.querySelector('.typewriter-section');
+    const typewriter = document.getElementById('typewriter');
+    const diagram = document.querySelector('.diagram-container');
+  
+    const text = "Dit humør påvirker ikke bare dig –\ndet påvirker hele din cyklus. 💭\n\nLad os kigge lidt nærmere...";
+  
+    function showTypewriter(callback) {
+      typewriter.textContent = '';
+      let i = 0;
+      const interval = setInterval(() => {
+        typewriter.textContent += text.charAt(i);
+        i++;
+        if (i === text.length) {
+          clearInterval(interval);
+          callback();
+        }
+      }, 40);
+    }
+  
+    icons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        iconsContainer.style.display = 'none';
+        typewriterSection.style.display = 'flex';
+  
+        showTypewriter(() => {
+          diagram.style.display = 'flex';
+          setTimeout(() => {
+            const bars = diagram.querySelectorAll('.bar');
+            bars.forEach(bar => {
+              bar.style.transform = 'scaleY(1)';
+            });
+          }, 100);
+        });
+      });
+    });
+  });
+  

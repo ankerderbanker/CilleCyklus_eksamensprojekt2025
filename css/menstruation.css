@@ -1,6 +1,7 @@
 body{
-    background-color:   var(--color-primar-rod) ;
+    backgroundcolor:   var(--color-primar-rod) ;
     overflow-x: hidden;
+    height: 100%;
 }
 
 .intro{
@@ -128,7 +129,6 @@ body{
         font-family: 'Poppins', sans-serif;
         white-space: nowrap;
         overflow: hidden;
-    
         font-size: 1.8rem;
         font-weight: 700;
         color: var(--color-primar-rod);
@@ -213,3 +213,48 @@ body{
     background:var(--color-primar-lyserod);
     clip-path:polygon(50% 0,0 100%,100% 100%);
   }
+
+
+  .baggrundHumor{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 500rem;
+  
+  }
+  .humor-icons {
+    position: absolute;
+    top: 515rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .humor-icons img {
+    width: 130px;
+    height: auto;    
+    border-radius: 40%;
+    border: 2px solid var(--color-primar-rod);
+    background-color: var(--color-sekundar-lyserod);
+    padding: 1rem;
+    cursor: pointer;
+  }
+  
+  /* Diagrammet */
+  .diagram-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    height: 200px;
+  }
+  
+  .bar {
+    width: 30px;
+    background-color: var(--color-primar-rod);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 1s ease;
+  }
+  

@@ -97,7 +97,7 @@ personer.forEach((person) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const text = "Mens-smerter føles ikke ens for alle.\n\nFor nogen svarer det til en hovedpine. \nFor andre føles det som en nyresten.\n\nDe fleste ligger et sted mellem niveau 5 og 7.\n\n\nTryk dig gennem skalaen og få en fornemmelse af, \nhvor ondt det kan gøre.";
+          const text = "Mens-smerter føles ikke ens for alle.\n\nFor nogen svarer det til en hovedpine. \nFor andre føles det som en nyresten.\n\nDe fleste ligger et sted mellem niveau 5 og 7.\n\nTryk dig gennem skalaen og få en fornemmelse af, \nhvor ondt det kan gøre.";
 
           el.textContent = ''; // sørgerr for den starter tom
           let i = 0;

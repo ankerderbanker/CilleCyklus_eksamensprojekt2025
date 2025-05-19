@@ -106,22 +106,23 @@ body{
 .smerteskalaSection{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:center;         /* ★  børn (h1 + typewriter + kolonne) midt */
+    gap:3rem;       
     flex-direction: column;
-    margin-top: 5rem;
     position: absolute;
     top: 200rem;
     left: 50%;
     transform: translateX(-50%);
 }
       .smerteskalaSection h1{
-        font-size: 2rem;
+        font-size: 4rem;
         color: var( --color-primar-rod);
+       
       }
       
 
       .typewriter-section {
-        
+          
         display: flex;
       }
       
@@ -134,21 +135,29 @@ body{
         color: var(--color-primar-rod);
         animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
         width: 100%;
-         white-space: pre-wrap; /* så \n bliver til linjeskift */
-         text-align: center;
-
+        white-space: pre-wrap; /* så \n bliver til linjeskift */
+        text-align:center;    
+        margin:0 auto;        
         }
+           
+
+
+        
       /* Hele kolonnen */
 .smerteskala{
-    width: 300px;                       /* bredde på søjlen */
-    margin: 3rem auto;
+    width: 400px;                       /* bredde på søjlen */
+   
     background:var(--color-primar-rod);                 /* mørkerød baggrund */
     padding:2rem 0;
     border-radius:3rem;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:3rem;                           /* afstand mellem cirklerne */
+    gap:3rem;      
+    position: absolute; 
+    top: 52rem;          
+    left: 50%;
+    transform:translateX(-50%);        
   }
   
   .niveau{
@@ -174,19 +183,21 @@ body{
   }
   
   .ikon{
-    width:60%; display:none;              /* vises først når aktiv */
+    width:80%; display:none;              /* vises først når aktiv */
   }
   
   /* Infoboks  (lukket = 0 højde + 0 opacitet) */
   .info{
     position:relative;                    /* til pseudo-stilk */
-    width:160px; margin-top:.5rem;
+    width:185px; margin-top:.5rem;
     padding:.9rem; text-align:center;
-    font:.9rem/1.3 'Poppins', sans-serif;
+    font:1.5rem 'Poppins', sans-serif;
     background:var(--color-primar-lyserod);
     border-radius:1rem;
-    color:#2a2a2a;
-    max-height:0; opacity:0; overflow:hidden;
+    color:var(--color-primar-rod);
+    max-height:0; 
+    opacity:0; 
+    overflow:hidden;
     transition:max-height .35s, opacity .35s;
   }
   
@@ -202,7 +213,7 @@ body{
   /* Skift tal → ikon + fold infoboks ud */
   .niveau.open .nummer{display:none; opacity:0}
   .niveau.open .ikon  {display:block; opacity:1}
-  .niveau.open .info  {max-height:180px; opacity:1}
+  .niveau.open .info  {max-height:400px; opacity:1}
   
   /* Stilk mellem cirkel og boks */
   .niveau.open .info::before{
@@ -241,7 +252,7 @@ body{
 
   .humor-icons {
     position: absolute;
-    top: 515rem;
+    top: 519rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -342,7 +353,7 @@ body{
 
   .next-arrow{
     position:absolute;
-    top:515rem;               /* justér så den ligger under teksten */
+    top:530rem;               /* justér så den ligger under teksten */
     left:50%; transform:translateX(-50%);
     background:none; border:none; cursor:pointer;
     animation:blink 1s infinite;
@@ -355,7 +366,7 @@ body{
     100% {opacity:1; transform:translate(-50%,0)}
   }
   
-  .next-arrow img{width:60px;height:auto}
+  .next-arrow img{width:150px;height:auto}
   
 
 

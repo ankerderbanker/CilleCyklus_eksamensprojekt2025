@@ -1,25 +1,293 @@
+<!--
+  Full-screen horizontally-scrollable menstrual journey for iPad 12.9 "
+  ────────────────────────────────────────────────────────────────
+  • Fixed elements: floating girl (PNG) + infinite wave (bolge.html)
+  • 3 scenes in a scroll‑snap carousel (intro + mirror + hormones + placeholder)
+  • Arrow button advances one section to the right; swipe/drag also works
+  • Scene 1: mirror SVG + cycling affirmations
+  • Scene 2: hormone wheel + 4‑part vulva (top legs gently bobbing)
+  • Scene 3: TBD
+  Replace image/src paths with your actual asset filenames.
+-->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-      <!-- googlefont: Poppins -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <!-- superfunky font fra DaFont her -->
-        <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
-</head>
-<body>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menstruationsrejsen</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #693f49; /* burgundy‑rose background */
+        --accent: #f2e07c; /* pastel yellow for text & buttons */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        background: var(--bg);
+        font-family: "Poppins", sans-serif;
+        overflow: hidden; /* keep viewport clean; journey scrolls inside */
+      }
+
+      /* ─── Fixed floating girl ─── */
+      #floating-girl {
+        position: fixed;
+        bottom: 140px; /* sits just above the wave */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        pointer-events: none;
+      }
+      #floating-girl img {
+        width: 160px;
+        height: auto;
+      }
+
+      /* ─── Fixed wave container ─── */
+      #bølge-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      
+       overflow: hidden;
+        z-index: 15;
+      }
+
+      /* ─── Horizontal journey wrapper ─── */
+      #journey {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        width: 400vw; /* 4 scenes (update if you add more) */
+        height: 100vh;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+      }
+
+      .scene {
+        width: 100vw;
+        height: 100vh;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        position: relative;
+        color: var(--accent);
+        padding: 2rem;
+      }
+
+      /* ─── Arrow navigation button ─── */
+      .arrow-btn {
+        position: fixed;
+        bottom: 160px; /* just above the girl */
+        right: 2rem;
+        width: 64px;
+        height: 64px;
+        border: none;
+        border-radius: 50%;
+        background: var(--accent);
+        color: var(--bg);
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 30;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        transition: transform 0.1s;
+      }
+      .arrow-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* ──────────────────────────── Scene 1: Mirror ──────────────────────────── */
+      #mirror-wrapper {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        width: 40%;
+      }
+      #affirmation {
+        position: absolute;
+        top: 30%;
+        right: 10%;
+        font-family: "Super Funky", cursive;
+        font-size: 4rem;
+        text-align: right;
+      }
+
+      /* ──────────────────────────── Scene 2: Hormones ──────────────────────────── */
+      #hormone-wheel {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 220px;
+      }
+
+      #vulva {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        max-width: 600px;
+      }
+
+      .leg {
+        position: absolute;
+      }
+      .leg.bottom {
+        top: 0;
+      }
+      .leg.top {
+        top: 0;
+        animation: floatLeg 3s ease-in-out infinite;
+      }
+      @keyframes floatLeg {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Fixed floating girl -->
+    <div id="floating-girl">
+      <img src="Data/billeder/girlonbind.png" alt="Flydende pige" />
+    </div>
+
+    <!-- Fixed wave (SVG loaded later) -->
     <div id="bølge-container"></div>
 
-<script>
-  fetch('bolge.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('bølge-container').innerHTML = html;
-    });
-</script>
-</body>
+    <!-- Arrow navigation → next scene -->
+    <button class="arrow-btn" id="arrow-next">→</button>
+
+    <!-- Horizontally scrolling journey -->
+    <div id="journey">
+      <!-- Scene 0: Intro -->
+      <section class="scene" id="scene0">
+        <h1>Velkommen!</h1>
+        <p>Tryk på pilen eller swipe til højre for at starte rejsen.</p>
+      </section>
+
+      <!-- Scene 1: Mirror of Affirmations -->
+      <section class="scene" id="scene1">
+        <div id="mirror-wrapper">
+          <img src="mirror.svg" alt="Spejl" style="width: 100%" />
+        </div>
+        <div id="affirmation">JEG ER DEJLIG</div>
+      </section>
+
+      <!-- Scene 2: Hormone Landscape -->
+      <section class="scene" id="scene2">
+        <img
+          id="hormone-wheel"
+          src="hormone_wheel.svg"
+          alt="Hormon-niveau cirkel"
+        />
+
+        <div id="vulva">
+          <!-- Bottom, static parts -->
+          <img
+            src="leftleg.svg"
+            class="leg bottom"
+            style="left: 0; width: 50%"
+          />
+          <img
+            src="leg_bottom_right.svg"
+            class="leg bottom"
+            style="right: 0; width: 50%"
+          />
+
+          <!-- Top, animated parts -->
+          <img
+            src="images/folikelfase/leftleg.svg"
+            class="leg top"
+            style="left: 0; width: 50%"
+          />
+          <img
+            src="images/folikelfase/rightleg.svg"
+            class="leg top"
+            style="right: 0; width: 50%"
+          />
+        </div>
+      </section>
+
+      <!-- Scene 3: Placeholder for future content -->
+      <section class="scene" id="scene3">
+        <h2>Scene 3 – kommer snart …</h2>
+      </section>
+    </div>
+
+    <script>
+      /* ── Inject the wave SVG ── */
+      fetch("bolge.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("bølge-container").innerHTML = html;
+        });
+
+      /* ── Arrow button scrolls one viewport right ── */
+      const journey = document.getElementById("journey");
+      document.getElementById("arrow-next").addEventListener("click", () => {
+        journey.scrollBy({ left: window.innerWidth, behavior: "smooth" });
+      });
+
+      /* ── Affirmations cycle every 1.8 s ── */
+      const affirmations = [
+        "JEG ER DEJLIG",
+        "JEG ER SMUK",
+        "JEG ER STÆRK",
+        "JEG ER NOK",
+      ];
+      let affIndex = 0;
+      setInterval(() => {
+        affIndex = (affIndex + 1) % affirmations.length;
+        document.getElementById("affirmation").textContent = affirmations[affIndex];
+      }, 1800);
+
+      /* ── Hide arrow on last scene (optional quality‑of‑life) ── */
+      journey.addEventListener("scroll", () => {
+        const maxScroll = journey.scrollWidth - journey.clientWidth - 1;
+        if (journey.scrollLeft >= maxScroll) {
+          arrowNext.style.opacity = 0.2;
+          arrowNext.style.pointerEvents = "none";
+        } else {
+          arrowNext.style.opacity = 1;
+          arrowNext.style.pointerEvents = "auto";
+        }
+      });
+    </script>
+  </body>
 </html>

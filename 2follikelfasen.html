@@ -15,7 +15,7 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #9b5666;
+      background-color: #c2858c;
       font-family: "Poppins", sans-serif;
       overflow: hidden;
       height: 100vh;
@@ -122,20 +122,51 @@
     }
 
     /* ─────────────── Scene 1: Spejl ─────────────── */
-    .mirror-wrapper {
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 40%;
-      z-index: 5;
-    }
+    
+    .mirror-scene-layout {
+  position: absolute;
+  top: 30%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 80%;
+  z-index: 5;
+}
+
+.mirror-wrapper {
+  max-width: 50%;
+}
+
+.affirmation-text {
+  font-family: 'Super Funky', cursive;
+  font-size: 4rem;
+  color: #f2e07c;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  text-align: left;
+  max-width: 300px;
+}
+
+    
 
     .mirror-wrapper img {
       width: 100%;
       height: auto;
       display: block;
     }
+
+    .affirmation-text {
+  font-family: 'Super Funky', cursive;
+  font-size: 4rem;
+  color: #f2e07c;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  text-align: left;
+  max-width: 300px;
+}
+
 
     .follikel-wrapper {
   position: absolute;
@@ -192,8 +223,35 @@
 
 
 
+#tilbage-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f2e07c;
+  color: #9b5666;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+}
+
+#tilbage-btn:hover {
+  background-color: #e6d86d;
+}
+
+
+
   </style>
 </head>
+
+<button id="tilbage-btn" onclick="goBack()">← Tilbage</button>
+
 
 <body>
 
@@ -222,11 +280,15 @@
       </section>
 
       <!-- Scene 1 -->
-      <section class="scene" id="scene1">
-        <div class="mirror-wrapper">
-          <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl" />
-        </div>
-      </section>
+     <section class="scene" id="scene1">
+  <div class="mirror-scene-layout">
+    <div class="mirror-wrapper">
+      <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl" />
+    </div>
+    <div class="affirmation-text" id="affirmationText">JEG ER DEJLIG</div>
+  </div>
+</section>
+
 
       <!-- Scene 2 -->
       <section class="scene" id="scene2">
@@ -264,6 +326,13 @@
 
   <!-- JavaScript -->
   <script>
+
+function goBack() {
+  window.location.href = "index.html"; // change to your actual home page
+}
+
+
+
     // Inject bølge SVG
     fetch('bolge.html')
       .then(res => res.text())
@@ -282,6 +351,38 @@
   "Scene 5: Afslutning"
 ];
 
+const affirmationTexts = ["JEG ER DEJLIG", "JEG ER SMUK", "JEG ER SELVSIKKER!"];
+const affirmationEl = document.getElementById("affirmationText");
+
+let currentTextIndex = 0;
+let scene1Visible = false;
+
+function cycleAffirmationText() {
+  if (!scene1Visible) return;
+
+  affirmationEl.style.opacity = 0;
+
+  setTimeout(() => {
+    currentTextIndex = (currentTextIndex + 1) % affirmationTexts.length;
+    affirmationEl.textContent = affirmationTexts[currentTextIndex];
+    affirmationEl.style.opacity = 1;
+  }, 1000); // match CSS transition
+}
+
+setInterval(cycleAffirmationText, 3000); // every 3 seconds
+
+// Detect when scene 1 is in view
+scrollWrapper.addEventListener("scroll", () => {
+  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
+  titleOverlay.textContent = sectionTitles[index] || "";
+
+  scene1Visible = index === 1;
+  if (scene1Visible) {
+    affirmationEl.style.opacity = 1;
+  } else {
+    affirmationEl.style.opacity = 0;
+  }
+});
 
 
     // Navigation arrows

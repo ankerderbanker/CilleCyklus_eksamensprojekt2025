@@ -1,5 +1,5 @@
 body{
-    backgroun-color:   var(--color-primar-rod) ;
+    background-color:   var(--color-primar-rod) ;
     overflow-x: hidden;
     height: 100%;
 }
@@ -222,6 +222,21 @@ body{
     top: 500rem;
   
   }
+  .overskrift_1, .overskrift_2{
+    position: absolute;
+    top: 501rem;
+    left: 51%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 35rem;
+  }
+
+    .overskrift_1{
+   display: block; 
+  }
+    .overskrift_2{
+        display: none;
+    }
   .humor-icons {
     position: absolute;
     top: 515rem;
@@ -309,3 +324,20 @@ body{
     justify-content: center;
     width: 100%;
   }
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+

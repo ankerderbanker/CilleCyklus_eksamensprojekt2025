@@ -90,84 +90,42 @@ personer.forEach((person) => {
   
 
 
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const text = "Mens-smerter føles ikke ens for alle.\n\nFor nogen svarer det til en hovedpine. \nFor andre føles det som en nyresten.\n\nDe fleste ligger et sted mellem niveau 5 og 7.\n\n\nTryk dig gennem skalaen og få en fornemmelse af, \nhvor ondt det kan gøre.";
-
-          el.textContent = ''; // sørgerr for den starter tom
-          let i = 0;
-          const interval = setInterval(() => {
-            el.textContent += text.charAt(i);
-            i++;
-            if (i === text.length) clearInterval(interval);
-          }, 40);
-          observer.unobserve(el);
-        }
-      });
-    });
-
-    observer.observe(document.getElementById("typewriter")); 
-  });
-
-
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const niveauer = document.querySelectorAll('.niveau');
-
-  niveauer.forEach(niv=>{
-    niv.querySelector('.cirkel').addEventListener('click', ()=>{
-      // luk alle andre
-      niveauer.forEach(n=> n===niv ? n.classList.toggle('open')
-                                   : n.classList.remove('open'));
-    });
-  });
-});
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-  const icons = document.querySelectorAll('.mood-icon');
-  const iconsContainer = document.querySelector('.humor-icons');
-  const typewriter = document.getElementById('typewriter-humor');
-  const typewriterSection = document.querySelector('.typewriter-section-humor');
-
-  const diagram = document.querySelector('.diagram-container');
-
-  const text = "Dit humør påvirker ikke bare dig –\ndet påvirker hele din cyklus. 💭\n\nLad os kigge lidt nærmere...";
-
-  function showTypewriter(callback) {
-    typewriter.textContent = '';
-    let i = 0;
-    const interval = setInterval(() => {
-      typewriter.textContent += text.charAt(i);
-      i++;
-      if (i === text.length) {
-        clearInterval(interval);
-        callback(); // når teksten er færdig
-      }
-    }, 40);
-  }
-
-  icons.forEach(icon => {
-    icon.addEventListener('click', () => {
-      iconsContainer.style.display = 'none';
-      typewriterSection.style.display = 'flex';
-
-   showTypewriter(() => {
-  typewriterSection.style.display = 'none'; // skjul teksten
-  diagram.style.display = 'flex';
-        setTimeout(() => {
-          // animér søjlerne
-          const bars = document.querySelectorAll('.mood-bar');
-          bars.forEach(bar => {
-            bar.style.transform = 'scaleY(1)';
-          });
-        }, 100);
+document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- typewriter ---------- */
+    const twEl       = document.getElementById('typewriter-humor');
+    const twSection  = document.querySelector('.typewriter-section-humor');
+    const iconsWrap  = document.querySelector('.humor-icons');
+    const icons      = document.querySelectorAll('.mood-icon');
+    const diagram    = document.querySelector('.diagram-container');
+    const overskrift1= document.querySelector('.overskrift_1');
+    const overskrift2= document.querySelector('.overskrift_2');
+  
+    const text = `Dit humør påvirker ikke bare dig –
+  det påvirker hele din cyklus. 💭
+  
+  Lad os kigge lidt nærmere...`;
+  
+    function typewriter(str, cb){
+      twEl.textContent = '';
+      let i = 0;
+      const id = setInterval(()=>{
+        twEl.textContent += str.charAt(i++);
+        if(i === str.length){clearInterval(id); cb();}
+      },40);
+    }
+  
+    icons.forEach(icon=>{
+      icon.addEventListener('click', ()=>{
+        iconsWrap.style.display   = 'none';
+        overskrift1.style.display = 'none';
+        twSection.style.display   = 'flex';
+  
+        typewriter(text, ()=>{
+          twSection.style.display  = 'none';
+          diagram.style.display    = 'flex';
+          overskrift2.style.display= 'block';
+          diagram.classList.add('animate'); // trigg CSS-søjler
+        });
       });
     });
   });
-});

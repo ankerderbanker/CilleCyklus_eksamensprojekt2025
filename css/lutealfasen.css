@@ -3,6 +3,15 @@
 body{
     background-color: var(--color-primar-morkebla);
 }
+
+@font-face {
+  font-family: 'Super Funky';
+  src: url('/fonts/superfunky/superfunky.woff2') format('woff2'),
+       url('/fonts/superfunky/superfunky.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Overskriften */
 h1 {
   font-size: 2.1rem;
@@ -28,6 +37,8 @@ h4{
    color:#FFFCF5;
    margin-top: -3rem;
 }
+
+ 
 
 .info{
     display: flex;
@@ -142,3 +153,91 @@ h4{
   padding: 1rem;
   box-sizing: border-box;
 }
+
+.hormon{
+  display: flex;
+  justify-content: center; /* vandret centreret */
+  align-items: center;     /* lodret centreret */
+}
+
+.hormon img{
+  max-width: 45%;
+  max-height: auto; 
+  margin-top: 60rem;
+  position: absolute;
+}
+
+ hormoncirkel{
+      margin: 0;
+      background-color: #111;
+      font-family: sans-serif;
+      color: #fff;
+    }
+
+    .spacer {
+      height: 20vh;
+    }
+
+    .circle-container {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background-color: #8DA1BD;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 40px;
+      margin: auto;
+      margin-top: 150px;
+      box-sizing: border-box;
+    }
+
+    .bar-container {
+      width: 65%;
+
+    }
+    .bar span {
+      position: relative;
+      font-family: inherit;
+     }
+
+    .bar {
+     position: relative;
+      width: 100%;
+      height: 44px;
+      background-color:var(--color-primar-morkebla);
+      border-radius: 14px;
+      overflow: hidden;
+      font-size: 20px;
+      font-family:"Super Funky", sans-serif;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      justify-content:last baseline;
+       z-index: 0;
+      color:#8DA1BD;
+     
+
+
+    .fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background:#F7F797;
+      border-radius: 12px;
+
+      transition: width 6s ease;
+    }
+
+  
+
+    /* Procent-klasser med mål-width */
+    .fill-70.start { width: 70%; }
+    .fill-40.start { width: 40%; }
+    .fill-90.start { width: 90%; }
+    .fill-60.start { width: 60%; }
+    .fill-30.start { width: 30%; }

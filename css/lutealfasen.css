@@ -13,12 +13,14 @@ body{
 }
 
 /* Overskriften */
-h1 {
-  font-size: 2.1rem;
-  margin-top: 1rem;
-  margin-bottom: -1rem;
+h1{
+    font-size: 5rem;
+    font-family: "Super Funky", sans-serif;
+    color: var(--color-hvid);
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: -1rem;
 }
-
 h2{
    font-size:4rem;
    font-family: "Super Funky", sans-serif;
@@ -37,7 +39,20 @@ h4{
    color:#FFFCF5;
    margin-top: -3rem;
 }
+h5 {
+  font-size: 2.1rem;
+  margin-top: 1rem;
+  margin-bottom: -1rem;
+}
 
+#cille-animation {
+  width: 320px;      /* eller 100% / vw / vh */
+  height: 320px;
+  margin: 5rem auto;
+  display: block;    /* centrerer elementet */
+  position: relative; /* gør det muligt at placere det i forhold til sin egen position */
+  z-index: 10000;    /* sikrer at det er ovenpå andre elementer */
+}
  
 
 .info{

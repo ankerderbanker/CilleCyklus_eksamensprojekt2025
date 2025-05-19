@@ -17,6 +17,12 @@
         <link rel="stylesheet" href="css/lutealfasen.css">
 </head>
 <body>
+<div class="intro">
+  <h1>Lutealfasen</h1>
+  <div id="cille-animation" style="width:300px; height:400px;"></div>
+
+
+</div>
 
 <div class="info">
 <h3>Normale tanker i lutealfasen</h3>
@@ -40,7 +46,7 @@
           <img src="images/lutealfasen/bryst.png" alt="Ømme Bryster">
         </div>
         <div class="flip-card-back">
-          <h1>Ømme Bryster</h1>
+          <h5>Ømme Bryster</h5>
           <p>Brysterne kan føles mere<br>følsomme, hævede eller ømme<br>på grund af hormonelle forandringer.</p>
         </div>
       </div>
@@ -52,7 +58,7 @@
           <img src="images/lutealfasen/humoer.png" alt="Træthed">
         </div>
         <div class="flip-card-back">
-          <h1>Humør</h1>
+          <h5>Humør</h5>
           <p> Svingende hormoner kan føre til pludselige ændringer i humør og følelser</p>
         </div>
       </div>
@@ -64,7 +70,7 @@
           <img src="images/lutealfasen/kost.png" alt="Oppustethed">
         </div>
         <div class="flip-card-back">
-          <h1>Kost</h1>
+          <h5>Kost</h5>
           <p>  Øget sult 
 eller trang til
 bestemte fødevarer
@@ -84,7 +90,7 @@ i denne fase</p>
           <img src="images/lutealfasen/urenhud.png" alt="Humørsvingninger">
         </div>
         <div class="flip-card-back">
-          <h1>Uren Hud</h1>
+          <h5>Uren Hud</h5>
           <p>Hormon-
 ændringer
 kan føre til flere 
@@ -100,7 +106,7 @@ akneudbrud</p>
           <img src="images/lutealfasen/mave.png" alt="Hovedpine">
         </div>
         <div class="flip-card-back">
-          <h1>Oppustethed</h1>
+          <h5>Oppustethed</h5>
           <p> Mange oplever
 en tung eller
 hævet fornemmelse
@@ -117,7 +123,7 @@ væskeophobning</p>
           <img src="images/lutealfasen/udflaad.png" alt="Madtrang">
         </div>
         <div class="flip-card-back">
-          <h1>Udflåd</h1>
+          <h5>Udflåd</h5>
           <p> Konsistens 
 og mængde
 af udflåd kan 
@@ -174,24 +180,9 @@ med hormon-
 
 
   </div>
-
-
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Tilføj klassen 'start' til hver .fill
-          const fills = entry.target.querySelectorAll('.fill');
-          fills.forEach(fill => fill.classList.add('start'));
-
-          // Stop observeren hvis det kun skal ske én gang
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 }); // 50% synlig før den aktiveres
-
-    observer.observe(document.getElementById('progress-circle'));
-  </script>
+<script src="js/lutealfasen.js"></script>
+  <script src="https://unpkg.com/lottie-web"></script>
+ 
 
 </body>
 </html>

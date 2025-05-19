@@ -15,7 +15,7 @@ body {
 .introduktionstekst {
   color: var(--color-primar-rod); 
   text-align: left;
-  padding: 40px 60px;
+  padding: 5px 60px;
   max-width: 750px;
 }
 
@@ -173,8 +173,8 @@ body {
 /* cillelogoet */
 .logo-link {
   position: absolute;
-  top: 80px;
-  right: 80px;
+  top: 70px;
+  right: 70px;
   width: 200px; /* juster størrelse her */
   z-index: 10;
   cursor: pointer;

@@ -131,5 +131,67 @@ med hormon-
 </div>
 </div>
 
+<div class = hormoncirkel></div>
+<div class= "hormon">
+<img src="images/lutealfasen/hormonniveau.png">
+</div>
+
+<div class="spacer"></div> <!-- Gør at man skal scrolle lidt ned -->
+
+
+  <div class="circle-container" id="progress-circle">
+    <div class="bar-container">
+      <div class="bar">
+        <div class="fill fill-70"></div>
+        <span>FSH</span>
+      </div>
+    </div>
+    <div class="bar-container">
+      <div class="bar">
+        <div class="fill fill-40"></div>
+        <span>LH</span>
+      </div>
+    </div>
+    <div class="bar-container">
+      <div class="bar">
+        <div class="fill fill-90"></div>
+        <span>Østrogen</span>
+      </div>
+    </div>
+    <div class="bar-container">
+      <div class="bar">
+        <div class="fill fill-60"></div>
+        <span>PROGESTERON</span>
+      </div>
+    </div>
+    <div class="bar-container">
+      <div class="bar">
+        <div class="fill fill-30"></div>
+        <span>Testosteron</span>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Tilføj klassen 'start' til hver .fill
+          const fills = entry.target.querySelectorAll('.fill');
+          fills.forEach(fill => fill.classList.add('start'));
+
+          // Stop observeren hvis det kun skal ske én gang
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 }); // 50% synlig før den aktiveres
+
+    observer.observe(document.getElementById('progress-circle'));
+  </script>
+
 </body>
 </html>

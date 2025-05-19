@@ -16,18 +16,18 @@ body {
   color: var(--color-primar-rod); 
   text-align: left;
   padding: 40px 60px;
-  max-width: 700px;
+  max-width: 750px;
 }
 
 .introduktionstekst h1 {
   font-family: 'Super Funky', sans-serif;
-  font-size: 48px;
+  font-size: 64px;
   margin-bottom: 20px;
 }
 
 .introduktionstekst p {
   font-family: 'Poppins', sans-serif;
-  font-size: 20px;
+  font-size: 32px;
   line-height: 1.5;
   margin-bottom: 10px;
 }
@@ -162,7 +162,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* Foreløbige placeringer – du kan justere dem selv */
+/* placeringer for inkonerne */
 .icon1 { top: 1100px; left: 300px; }
 .icon2 { top: 500px; left: 1200px; }
 .icon4 { top: 100px; left: 1100px; }

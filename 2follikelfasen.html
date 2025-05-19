@@ -100,12 +100,13 @@
       z-index: 1;
     }
 
-    #journey {
+   #journey {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 400vw; /* 4 scenes */
+  width: 600vw; /* 6 scenes */
 }
+
 
 
     .scene {
@@ -150,6 +151,46 @@
   height: auto;
   display: block;
 }
+
+
+.follikelgrow-wrapper {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40%;
+  z-index: 5;
+}
+
+.follikelgrow-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.final-wrapper {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 70%;
+  z-index: 5;
+}
+
+.final-wrapper h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #f2e07c;
+}
+
+.final-wrapper p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+
+
 
   </style>
 </head>
@@ -199,7 +240,20 @@
   </div>
 </section>
 
-      
+      <!-- Scene 4: Folliklen vokser -->
+<section class="scene" id="scene4">
+  <div class="follikelgrow-wrapper">
+    <img src="images/folikelfase/follikelgrow.svg" alt="Folliklen vokser" />
+  </div>
+</section>
+
+<!-- Scene 5: Final scene -->
+<section class="scene" id="scene5">
+  <div class="final-wrapper">
+    <h2>Tak fordi du tog rejsen 🌸</h2>
+    <p>Din cyklus er kompleks, smuk og værd at forstå.</p>
+  </div>
+</section>
 
       
 
@@ -219,7 +273,15 @@
 
     const scrollWrapper = document.getElementById("scroll-wrapper");
     const titleOverlay = document.getElementById("section-title");
-    const sectionTitles = ["Scene 0: Intro", "Scene 1: Spejl", "Scene 2: Hormoner", "Scene 3: Follikelfasen"];
+    const sectionTitles = [
+  "Scene 0: Intro",
+  "Scene 1: Spejl",
+  "Scene 2: Hormoner",
+  "Scene 3: Follikelfasen",
+  "Scene 4: Folliklen vokser",
+  "Scene 5: Afslutning"
+];
+
 
 
     // Navigation arrows

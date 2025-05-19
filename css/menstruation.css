@@ -237,6 +237,8 @@ body{
     .overskrift_2{
         display: none;
     }
+ 
+
   .humor-icons {
     position: absolute;
     top: 515rem;
@@ -281,9 +283,9 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    transition:transform 1s cubic-bezier(.25,1.5,.5,1);
     transform-origin: bottom;
-    transition: transform 1s ease;
+   
   }
   
   .bar {
@@ -323,15 +325,37 @@ body{
   
   .typewriter-section-humor {
     position: absolute;
-    top: 525rem; /* justér så det passer til din baggrund */
+    top: 510rem; /* justér så det passer til din baggrund */
     left: 50%;
     transform: translateX(-50%);
     z-index: 1100;
-    display: flex;
+
     justify-content: center;
     width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primar-rod);
+    font-family: 'Poppins', sans-serif;
+    white-space: pre-line;
   }
 
+  .next-arrow{
+    position:absolute;
+    top:515rem;               /* justér så den ligger under teksten */
+    left:50%; transform:translateX(-50%);
+    background:none; border:none; cursor:pointer;
+    animation:blink 1s infinite;
+  }
+  
+  /* lille blink / nudge-animation */
+  @keyframes blink{
+    0%,60%{opacity:1; transform:translate(-50%,0)}
+    80%  {opacity:.4; transform:translate(-50%,6px)}
+    100% {opacity:1; transform:translate(-50%,0)}
+  }
+  
+  .next-arrow img{width:60px;height:auto}
   
 
 

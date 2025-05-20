@@ -275,9 +275,9 @@ body {
 
 /* Buet SVG-overskrift */
 #popup8 .overskrift-bue{
-  width: 480px;           /* passer til boksen */
-  display: block;         /* så margin virker korrekt */
-  margin: -30px auto -190px;  /* løft 30 px op – overlap 190 px ned */
+  width: 480px;
+  display: block;
+  margin: -30px auto -300px;   /* <-- ændret fra -190 px til -300 px  */
 }
 
 /* Cirklen med søjlerne */

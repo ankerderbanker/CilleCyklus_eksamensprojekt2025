@@ -2,6 +2,7 @@ body{
     background-color:   var(--color-primar-rod) ;
     overflow-x: hidden;
     height: 100%;
+    margin-top: 5rem;
 }
 
 .intro{
@@ -44,16 +45,29 @@ body{
     position: absolute;
     top: 120rem;
     text-align: center;
-    margin-top: 5rem;}
+    margin-top: 10rem;}
 
     .personer{
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-top: 5rem;}
+    }
 
    
+.year {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-primar-rod);
+  margin: 0.3rem 0 0.6rem 0; /* lidt afstand over og under */
+  text-align:start;
+  letter-spacing: 1px;
+  position: absolute;
+  top:20rem;
+  left: 7rem;
+  font-family: "Super Funky", sans-serif;
+
+}
       
     
       
@@ -61,22 +75,22 @@ body{
         width: 100%;
         height: 100%;
         position: absolute;
-        top:135rem;
-        left: 20rem;
+        top:140rem;
+        left: 25rem;
       }
       #person2 {
         width: 100%;
         height: 100%;
         position: absolute;
-        top:150rem;
-        left: 45rem;
+        top:155rem;
+        left: 48rem;
       }
       #person3 {
         width: 100%;
         height: 100%;
         position: absolute;
-        top:170rem;
-        left: 25rem;
+        top:175rem;
+        left: 28rem;
       }
       .videoContainer{
         width: 100%;
@@ -277,7 +291,7 @@ body{
     align-items: flex-end;
     height: 200px;
     position: absolute;
-    top: 525rem;
+    top: 530rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1100;
@@ -303,9 +317,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background-color:     var(--color-sekundar-gul); /* lys gul søjle */
+    background-color:var(--color-sekundar-gul); /* lys gul søjle */
     border-radius: 1rem;
-    width: 150px;
+    width: 120px;
     padding-top: 0.5rem;
     position: relative;
     overflow: hidden;
@@ -314,22 +328,28 @@ body{
   .bar img {
     width: 60%;
     height: auto;
+ align-self: flex-end;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
   }
   
   /* Søjlehøjder */
   .mood-bar:nth-child(1) .bar {
-    height: 100px;
+    height: 180px;
   }
   .mood-bar:nth-child(2) .bar {
-    height: 280px;
+    height: 350px;
   }
   .mood-bar:nth-child(3) .bar {
-    height: 150px;
+    height: 250px;
   }
   
   .mood-bar p {
     font-family: 'Super Funky', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     color: var(--color-primar-rod);
     margin-top: 0.3rem;
   }

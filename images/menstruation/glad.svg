@@ -33,10 +33,8 @@
     <path d="M152.04,203.85c-.14,2.55-.09,7.87,2.77,13.64,3.68,7.41,9.7,10.91,11.9,12.05" fill="none" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
     <circle cx="105.63" cy="164.67" r=".65" fill="#79142a" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
   </g>
-  <g>
-    <text transform="translate(46.69 370.77) rotate(22.14) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">G</tspan></text>
-    <text transform="translate(82.78 384.71) rotate(9.64) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">L</tspan></text>
-    <text transform="translate(117.41 390.65) rotate(-4.13) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">A</tspan></text>
-    <text transform="translate(163.51 386.05) rotate(-18.28) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">D</tspan></text>
-  </g>
+  <text transform="translate(46.69 370.77) rotate(22.14) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">G</tspan></text>
+  <text transform="translate(82.78 384.71) rotate(9.64) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">L</tspan></text>
+  <text transform="translate(117.41 390.65) rotate(-4.13) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">A</tspan></text>
+  <text transform="translate(163.51 386.05) rotate(-18.28) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">D</tspan></text>
 </svg>

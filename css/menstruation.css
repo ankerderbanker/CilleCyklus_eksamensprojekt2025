@@ -303,9 +303,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background-color: #fdf180; /* lys gul søjle */
+    background-color:     var(--color-sekundar-gul); /* lys gul søjle */
     border-radius: 1rem;
-    width: 80px;
+    width: 150px;
     padding-top: 0.5rem;
     position: relative;
     overflow: hidden;
@@ -321,7 +321,7 @@ body{
     height: 100px;
   }
   .mood-bar:nth-child(2) .bar {
-    height: 180px;
+    height: 280px;
   }
   .mood-bar:nth-child(3) .bar {
     height: 150px;

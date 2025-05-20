@@ -91,19 +91,19 @@ h5 {
 
     .text:nth-child(2) {
       animation-delay: 3s;
-       top:40%;
+       top:38%;
       left: 62%;
       rotate: 70deg;
       font-size: 4.5rem;
     }
 
     .text:nth-child(1) {
-      top:45%;
+      top:40%;
       left: 25%;
     }
 
     .text:nth-child(3) {
-      top:65%;
+      top:66.5%;
       left: 62%;
       rotate: 50deg;
       animation-delay: 2s;
@@ -117,7 +117,7 @@ h5 {
        font-size: 4rem;
     }
       .text:nth-child(5) {
-      top:88%;
+      top:89%;
       left: 53%;
        animation-delay: 6s;
        rotate: 30deg;
@@ -365,9 +365,19 @@ h5 {
     .fill-30.start { width: 50%; }
 
     /* næstefase + pil (svg) */
-.naestefase-pil {
-  position: absolute;
-  right: 20px;
-  top: 4200px;
-  width: 500px; 
-}
+
+ .next-arrow{
+   position: absolute;
+  right: -80px;
+  top: 4230px;
+  width: 300px;        
+    background:none; border:none; cursor:pointer;
+    animation:blink 3s infinite;
+  }
+
+   /* lille blink / nudge-animation */
+  @keyframes blink{
+    0%,60%{opacity:1; transform:translate(-50%,0)}
+    80%  {opacity:.4; transform:translate(-50%,6px)}
+    100% {opacity:1; transform:translate(-50%,0)}
+  }

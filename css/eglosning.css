@@ -279,11 +279,16 @@ body {
   margin-top: -200px;
 }
 
-/* Cirklen med søjlerne */
+/* tabellen selv */
 #popup8 .hormon-wrapper{
   width: 400px;
   height: 400px;
   margin-top: -100px;
   margin-right: 20px;
   margin-bottom: 20px;
+}
+
+#typewriter-eggl{
+  white-space: pre-line;
+  min-height: 4.5em;   /* låser feltets højde → ingenting hopper */
 }

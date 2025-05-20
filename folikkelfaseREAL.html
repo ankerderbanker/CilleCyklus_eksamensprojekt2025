@@ -21,6 +21,78 @@
       height: 100vh;
     }
 
+
+/* ───────── Hormon-niveau overlay ───────── */
+:root{
+  --h-blue:#7a91ab;           /* circle & heading */
+  --h-yellow:#f4f68d;         /* bar fill */
+  --h-white:#fff;
+  --h-font:'Super Funky',cursive;
+}
+
+#hormonOverlay{
+  position:fixed;
+  top:-120%; left:50%;
+  transform:translate(-50%,-50%);
+  width:95vmin; max-width:400px;   /* responsive */
+  transition:top .7s cubic-bezier(.57,1.3,.41,.94);
+  z-index:900; pointer-events:none;/* off until visible */
+}
+
+#hormonOverlay.show{
+  top:50%; pointer-events:auto;
+}
+
+/* heading on an SVG arc */
+#hormonOverlay svg{width:100%;height:auto;overflow:visible;}
+.arcText{fill:var(--h-blue);font:48px var(--h-font);letter-spacing:2px;}
+
+/* blue circle */
+.h-circle{
+  width:100%;aspect-ratio:1/1;
+  background:var(--h-blue);
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  gap:12px;padding:6% 8%;
+  box-sizing:border-box;
+}
+
+.h-heading{
+  position:absolute;
+  
+  width:100%;
+  overflow:visible;          /* let the letters breathe */
+}
+
+
+/* bar layout */
+.h-bar{
+  position:relative;
+  width:70%;height:44px;
+  border-radius:14px;
+  background:var(--h-white);
+  overflow:hidden;
+}
+
+.h-fill{
+  position:absolute;inset:0 100% 0 0;  /* start 0 % width */
+  background:var(--h-yellow);
+  transition:inset .8s ease-out;
+}
+
+.h-label{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  font:24px var(--h-font);
+  color:var(--h-blue);pointer-events:none;
+}
+
+/* trigger bar-fill when overlay gets .show ------------------ */
+#hormonOverlay.show .h-fill{inset:0 0 0 0;}
+
+
+
+
     /* ─────────────── FIXED ELEMENTS ─────────────── */
     #floating-girl {
       position: fixed;
@@ -315,6 +387,39 @@
 <button id="tilbage-btn" onclick="goBack()">← Tilbage</button>
 
 
+
+
+<!-- ▾▾▾ Hormon-niveau overlay ▾▾▾ -->
+<div id="hormonOverlay" aria-hidden="true">
+  <!-- curved heading -->
+<svg class="h-heading" viewBox="0 0 800 330" aria-hidden="true">
+  <defs>
+    <!-- big 300-px-radius arc -->
+    <path id="h-arc"
+          d="M40,300 A360,360 0 0 1 760 300" />
+  </defs>
+  <text class="arcText">
+    <textPath href="#h-arc" startOffset="50%" text-anchor="middle">
+      HORMON-NIVEAU
+    </textPath>
+  </text>
+</svg>
+
+  <!-- blue circle with bars -->
+  <div class="h-circle">
+    <!-- data-pct sets final width -->
+    <div class="h-bar"><div class="h-fill" style="--pct:40"></div><span class="h-label">FSH</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:70"></div><span class="h-label">LH</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:90"></div><span class="h-label">ØSTROGEN</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:30"></div><span class="h-label">PROGESTERON</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:60"></div><span class="h-label">TESTOSTERON</span></div>
+  </div>
+</div>
+<!-- ▴▴▴ /overlay ▴▴▴ -->
+
+
+
+
 <body>
 
 
@@ -362,6 +467,11 @@
   <div class="legs-wrapper" data-parallax data-depth="0.35">
     <div id="legsAnimation"></div>
   </div>
+
+
+
+
+  
 </section>
 
 
@@ -572,6 +682,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/* ── Hormon-niveau overlay logic ─────────────────────────── */
+const overlay   = document.getElementById('hormonOverlay');
+const fills      = [...overlay.querySelectorAll('.h-fill')];
+let overlayShown = false;          // only auto-drop once
+
+/* helper fills bars to their CSS --pct value */
+function setFillWidths(){
+  fills.forEach(el=>{
+    const pct = el.style.getPropertyValue('--pct') || 0;
+    el.style.inset = `0 ${100-pct}% 0 0`;
+  });
+}
+
+/* show / hide ------------------------------------------------*/
+function showOverlay(){
+  overlay.classList.add('show');
+  setFillWidths();
+}
+function hideOverlay(){
+  overlay.classList.remove('show');
+}
+
+/* click anywhere to toggle */
+document.addEventListener('click', () =>{
+  overlay.classList.contains('show') ? hideOverlay() : null;
+});
+
+/* drop down when Scene 2 first comes fully into view */
+scrollWrapper.addEventListener('scroll', ()=>{
+  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
+  if(index===2 && !overlayShown){
+    overlayShown = true;
+    setTimeout(showOverlay, 400);   // 0.4 s delay
+  }
+});
 
 
 

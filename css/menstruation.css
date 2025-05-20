@@ -454,7 +454,30 @@ body{
   
 
 
-
+  .parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Gør så man kan trykke på punkterne under overlay */
+  }
+  
+  .parallax {
+    position: absolute;
+    width: 200px;
+    transform: translate(-50%, -50%);
+    top: 200rem;
+  }
+  
+  /* placeringer for inkonerne */
+  .icon1 { top: 1100px; left: 300px; }
+  .icon2 { top: 500px; left: 1200px; }
+  .icon4 { top: 100px; left: 1100px; }
+  .icon5 { top: 200px; left: 300px; }
+  .icon6 { top: 1200px; left: 1000px; }
+  .icon7 { top: 650px; left: 200px; }
+  
 
 
   

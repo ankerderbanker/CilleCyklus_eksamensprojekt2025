@@ -13,7 +13,7 @@
   .hormon-wrapper {
     width: 400px;
     height: 400px;
-    background: #8DA1BD;
+    background: var(--color-primar-lysebla);
     padding: 20px 20px;
     border-radius: 50%;
     text-align: left;
@@ -26,7 +26,7 @@
   }
   
   .hormon-bar {
-    background: #FFFCF5;
+    background: var(--color-hvid);
     height: 44px;
     width: 65%;
     border-radius: 14px;
@@ -40,7 +40,7 @@
     top: 0;
     height: 100%;
     width: 0%; /* starter altid skjult */
-    background: #F2ED98;
+    background: var(--color-sekundar-gul);
     transition: width 0.5s ease;
     z-index: 1;
   }  
@@ -51,7 +51,7 @@
     z-index: 2;
     line-height: 30px;
     font-family: 'Super Funky', sans-serif;
-    color: #8DA1BD;
+    color: var(--color-primar-lysebla);
     font-weight: bold;
     font-size: 20px;
     margin-left: 10px;

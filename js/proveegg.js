@@ -1,14 +1,10 @@
-let alleErAktive = false;
-
-function toggleAlleNiveauer() {
+window.addEventListener("DOMContentLoaded", () => {
   const niveauer = document.querySelectorAll('.gul-niveau');
 
-  niveauer.forEach(niveau => {
-    const ønsketBredde = niveau.getAttribute('data-niveau') || '60%';
-
-    niveau.style.width = alleErAktive ? '0%' : ønsketBredde;
-  });
-
-  alleErAktive = !alleErAktive;
-}
-
+  setTimeout(() => {
+    niveauer.forEach(niveau => {
+      const ønsketBredde = niveau.getAttribute('data-niveau') || '60%';
+      niveau.style.width = ønsketBredde;
+    });
+  }, 1000); // 1000 millisekunder = 1 sekund
+});

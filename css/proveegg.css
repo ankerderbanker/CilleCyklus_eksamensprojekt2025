@@ -5,16 +5,16 @@
   }
   
   .overskrift-bue {
-    width: 540px;
-    margin-bottom: -470px; /* justér afhængigt af placering */
-    margin-left: 15px;
+    width: 840px;
+    margin-bottom: -730px; /* justér afhængigt af placering */
+    margin-left: 25px;
   }
   
   .hormon-wrapper {
-    width: 280px;
-    height: 250px;
+    width: 400px;
+    height: 400px;
     background: #8DA1BD;
-    padding: 40px 20px;
+    padding: 20px 20px;
     border-radius: 50%;
     text-align: left;
     position: relative;
@@ -27,9 +27,9 @@
   
   .hormon-bar {
     background: #FFFCF5;
-    height: 30px;
-    width: 70%;
-    border-radius: 6px;
+    height: 44px;
+    width: 65%;
+    border-radius: 14px;
     position: relative;
     overflow: hidden;
   }
@@ -39,11 +39,13 @@
     left: 0;
     top: 0;
     height: 100%;
+    width: 0%; /* starter altid skjult */
     background: #F2ED98;
     transition: width 0.5s ease;
     z-index: 1;
   }  
   
+
   .label {
     position: relative;
     z-index: 2;
@@ -51,7 +53,7 @@
     font-family: 'Super Funky', sans-serif;
     color: #8DA1BD;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 20px;
     margin-left: 10px;
   }
   

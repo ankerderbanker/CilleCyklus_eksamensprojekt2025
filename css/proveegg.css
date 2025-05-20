@@ -1,0 +1,57 @@
+.hormon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .overskrift-bue {
+    width: 540px;
+    margin-bottom: -470px; /* justér afhængigt af placering */
+    margin-left: 15px;
+  }
+  
+  .hormon-wrapper {
+    width: 280px;
+    height: 250px;
+    background: #8DA1BD;
+    padding: 40px 20px;
+    border-radius: 50%;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centrerer barerne vertikalt */
+    align-items: center;
+    gap: 12px; /* ens afstand mellem barerne */
+  }
+  
+  .hormon-bar {
+    background: #FFFCF5;
+    height: 30px;
+    width: 70%;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gul-niveau {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #F2ED98;
+    transition: width 0.5s ease;
+    z-index: 1;
+  }  
+  
+  .label {
+    position: relative;
+    z-index: 2;
+    line-height: 30px;
+    font-family: 'Super Funky', sans-serif;
+    color: #8DA1BD;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  

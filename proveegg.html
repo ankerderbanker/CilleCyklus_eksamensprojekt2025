@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ægløsningsfasen</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Super Funky font -->
+  <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
+
+  <!-- CSS filer -->
+  <link rel="stylesheet" href="css/css.css">
+  <link rel="stylesheet" href="css/proveegg.css">
+</head>
+<body>
+
+<div class="hormon-container">
+    <img src="images/baggrund/Fase3/hormon1.svg" alt="Hormon-niveau" class="overskrift-bue">
+
+    <div class="hormon-wrapper" onclick="toggleAlleNiveauer()">
+      
+        <div class="hormon-bar">
+            <div class="gul-niveau" data-niveau="40%"></div>
+            <div class="label">FSH</div>
+          </div>
+          
+          <div class="hormon-bar">
+            <div class="gul-niveau" data-niveau="70%"></div>
+            <div class="label">FH</div>
+          </div>
+          
+          <div class="hormon-bar">
+            <div class="gul-niveau" data-niveau="90%"></div>
+            <div class="label">ØSTROGEN</div>
+          </div>
+          
+          <div class="hormon-bar">
+            <div class="gul-niveau" data-niveau="30%"></div>
+            <div class="label">PROGESTERON</div>
+          </div>
+          
+          <div class="hormon-bar">
+            <div class="gul-niveau" data-niveau="60%"></div>
+            <div class="label">TESTOSTERON</div>
+          </div>
+          
+      </div>
+</div>
+
+
+  <!-- Rigtig sti til JS (uden skråstreg til sidst) -->
+  <script src="js/proveegg.js"></script>
+
+</body>
+</html>

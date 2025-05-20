@@ -240,6 +240,70 @@ body{
   }
 
 
+  .hormon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 400rem; /* justér så det passer til din baggrund */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .overskrift-bue {
+    width: 1050px;
+    margin-bottom: -930px; /* justér afhængigt af placering */
+    margin-left: 25px;
+  }
+  
+  .hormon-wrapper {
+    width: 600px;
+    height: 600px;
+    background: var(--color-primar-rod);
+    padding: 30px 30px;
+    border-radius: 50%;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centrerer barerne vertikalt */
+    align-items: center;
+    gap: 12px; /* ens afstand mellem barerne */
+  }
+  
+  .hormon-bar {
+    background: var(--color-hvid);
+    height: 66px;
+    width: 65%;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gul-niveau {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%; /* starter altid skjult */
+    background: var(--color-sekundar-gul);
+    transition: width 0.5s ease;
+    z-index: 1;
+  }  
+  
+
+  .label {
+    position: relative;
+    z-index: 2;
+    line-height: 50px;
+    font-family: 'Super Funky', sans-serif;
+    color: var(--color-primar-rod);
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 10px;
+  }
+  
+
   .baggrundHumor{
     width: 100%;
     height: 70vh;

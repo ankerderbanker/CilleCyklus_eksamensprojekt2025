@@ -45,50 +45,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // Hent alle person-elementer (dem med billede, video og lyd)
-const personer = document.querySelectorAll('.person');
+  const personer = document.querySelectorAll('.person');
 
-// Gennemgå hver person én for én
-personer.forEach((person) => {
-
-  // Find de relevante elementer inde i denne person
-  const img = person.querySelector('.clickImage');         // Billedet der kan klikkes
-  const videoContainer = person.querySelector('.videoContainer'); // Container med video
-  const video = person.querySelector('.myVideo');          // Selve videoelementet
-  const audio = person.querySelector('.audio');            // Lydfilen der passer til videoen
-
-  let playing = false; // Husk om videoen er i gang
-
-  // Når man klikker på billedet → start video og lyd
-  img.addEventListener('click', () => {
-    img.style.display = 'none';             // Skjul billede
-    videoContainer.style.display = 'block'; // Vis video
-    video.currentTime = 0;                  // Start video fra begyndelsen
-    audio.currentTime = 0;                  // Start lyd fra begyndelsen
-    video.play();
-    audio.play();
-    playing = true;
-  });
-
-  // Når man klikker på videoen → stop og vis billede igen
-  video.addEventListener('click', () => {
-    video.pause();
-    audio.pause();
-    videoContainer.style.display = 'none';
-    img.style.display = 'block';
-    playing = false;
-  });
-
-  // Når videoen slutter af sig selv → vis billedet igen
-  video.addEventListener('ended', () => {
-    videoContainer.style.display = 'none';
-    img.style.display = 'block';
-    playing = false;
-  });
-});
-
+  personer.forEach((person) => {
+    const img = person.querySelector('.clickImage');
+    const videoContainer = person.querySelector('.videoContainer');
+    const video = person.querySelector('.myVideo');
+    const audio = person.querySelector('.audio');
   
-
+    // Start: klik på billede
+    img.addEventListener('click', () => {
+      img.style.display = 'none';
+      videoContainer.style.display = 'block';
+      video.currentTime = 0;
+      audio.currentTime = 0;
+      video.play();
+      audio.play();
+    });
+  
+    // Klik på video = stop begge
+    video.addEventListener('click', () => {
+      video.pause();
+      audio.pause();
+      videoContainer.style.display = 'none';
+      img.style.display = 'block';
+    });
+  
+    // Hvis videoen slutter FØR lyden: loop video
+    video.addEventListener('ended', () => {
+      if (!audio.ended) {
+        // Så længe lyden ikke er færdig, loop video
+        video.currentTime = 0;
+        video.play();
+      } else {
+        // Hvis lyden også er færdig (næsten umuligt, men for en sikkerhedsskyld)
+        videoContainer.style.display = 'none';
+        img.style.display = 'block';
+      }
+    });
+  
+    // Når lyden slutter – SÅ stop video og vis billede
+    audio.addEventListener('ended', () => {
+      video.pause();
+      videoContainer.style.display = 'none';
+      img.style.display = 'block';
+    });
+  });
+  
 
 
 
@@ -128,6 +131,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  const niveauer = document.querySelectorAll('.gul-niveau');
+
+  setTimeout(() => {
+    niveauer.forEach(niveau => {
+      const ønsketBredde = niveau.getAttribute('data-niveau') || '60%';
+      niveau.style.width = ønsketBredde;
+    });
+  }, 1000); // 1000 millisekunder = 1 sekund
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 

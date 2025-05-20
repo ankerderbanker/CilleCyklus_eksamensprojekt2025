@@ -63,3 +63,31 @@ function togglePopup(id){
     }
   }
 }
+
+/* ---------- Typewriter til introduktionstekst ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const typer = document.getElementById('typewriter-eggl');
+
+  const text = `Her kan du udforske kvindekroppen gennem ægløsningsfasen.
+Klik på punkterne for at opdage,
+hvordan hormoner påvirker energi, følelser og fysiske forandringer.`;
+
+  /* 1. mål slut-højden */
+  typer.style.visibility = 'hidden';
+  typer.style.whiteSpace  = 'pre-line';
+  typer.textContent       = text;
+  const finalH = typer.offsetHeight + 'px';
+
+  /* 2. nulstil og lås højden */
+  typer.textContent       = '';
+  typer.style.visibility  = 'visible';
+  typer.style.minHeight   = finalH;
+
+  /* 3. typewriter */
+  let i = 0;
+  const iv = setInterval(() => {
+    typer.textContent += text.charAt(i);
+    if (++i === text.length) clearInterval(iv);
+  }, 40);
+});
+

@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ægløsningfasen-siden</title>
-    <!-- googlefont: Poppins -->
+    <!-- googlefont: Poppins til brødtekst-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-      <!-- superfunky font fra DaFont her -->
-      <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
-        <!-- general css -->
-        <link rel="stylesheet" href="css/css.css">
+    <!-- DaFont: Super funky til overskrfter osv  -->
+    <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
 
+
+        <!-- general css for alle sider (root) -->
+        <link rel="stylesheet" href="css/css.css">
         <!-- specifikt til ægløsningsiden -->
         <link rel="stylesheet" href="css/eglosning.css">
 </head>
 <body>
-
- <a href="index.html">
+<!-- Logo og tilbage-pil (øverst til højre) -->
+<a href="index.html">
   <img src="images/baggrund/fase3/logocillehjem.svg" alt="Gå til forsiden" class="logo-link">
 </a>
 
@@ -26,10 +27,10 @@
   <img src="images/baggrund/fase3/Tilbage.svg" alt="Gå Tilbage" class="tilbage-link">
 </a>
 
-<!-- introduktionsteksten -->
+<!-- introduktionsteksten: overskrift + tekst som bliver skrevet med skrivemaskine-effekt ved hjælp af js-->
 <section class="introduktionstekst">
   <h1>ÆGLØSNINGSFASEN</h1>
-  <!-- én paragraf som typewriteren skriver i -->
+<!-- teksten bliver både skrevet i html og js, hvis nu skript ikke virker, så er siden ikke tom -->
   <p id="typewriter-eggl">
     Her kan du udforske kvindekroppen gennem ægløsningsfasen.
     Klik på punkterne for at opdage,
@@ -37,13 +38,14 @@
   </p>
 </section>
 
-  
+<!-- Cille's krop + punkterne ligger i denne wrapper -->
 <div class="eglosning-wrapper">
 
-<!-- billedet af selve cille -->
+<!-- billedet af cille -->
 <div class="eglosning-cille">
     <img src="images/eglosningfase/eglosningcille.svg" alt="Cille">
-  
+
+<!-- Hver prik består af en <button> + den skjulte popup-boks -->
     <!-- Punkt 1: hjerne -->
     <button class="punkt punkt-hjerne" onclick="togglePopup('popup1')">●</button>
     <div id="popup1" class="popup-ved-prik">
@@ -103,14 +105,15 @@
         og æggestokken gør sig klar til at slippe et æg.</p>
     </div>
 
-<!-- punkt 8 – hormon -->
+<!-- punkt 8: hormoncirklen -->
 <button class="punkt punkt-hormon" onclick="togglePopup('popup8')">●</button>
-
 <div id="popup8" class="popup-ved-prik">
-  <!-- START: præcis den samme struktur som den eksterne side -->
+
+<!-- Buet overskrift-SVG -->
   <div class="hormon-container">
     <img src="images/baggrund/Fase3/hormon1.svg" alt="Hormon-niveau" class="overskrift-bue">
   
+<!-- Selve homon tabellen (bjælkerne starter på 0%, JS animerer til de korekte niveauer nedenfor) -->
     <div class="hormon-wrapper">
       <div class="hormon-bar">
         <div class="gul-niveau" data-niveau="40%"></div>
@@ -138,9 +141,9 @@
 
   </div>
 
-      <!-- ikonerne + deres "fart" -->
+      <!-- ikonerne med paralax + deres "fart" -->
       <div class="parallax-overlay">
-        <img src="images/baggrund/fase3/ægløsning-icon1.svg" class="parallax icon1" data-speed="5">
+        <img src="images/baggrund/fase3/ægløsning-icon1.svg" class="parallax icon1" data-speed="5"> 
         <img src="images/baggrund/fase3/ægløsning-icon2.svg" class="parallax icon2" data-speed="4">
         <img src="images/baggrund/fase3/ægløsning-icon4.svg" class="parallax icon4" data-speed="3">
         <img src="images/baggrund/fase3/ægløsning-icon5.svg" class="parallax icon5" data-speed="3">
@@ -150,12 +153,13 @@
 
 </div>
 
-<a href="d_lutealfasen.html">
+<!-- pil og tekst (svg-fil) til næste fase -->
+<a href="4lutealfasen.html">
   <img src="images/baggrund/fase3/næstefasepil.svg" alt="Gå til lutealfasen" class="naestefase-pil">
 </a>
 
-
-  <script src="js/eglosning.js"></script>
+<!-- link til skript (pop-ups, parallax, skrivemaskine) -->
+<script src="js/eglosning.js"></script>
 
 </body>
 </html>

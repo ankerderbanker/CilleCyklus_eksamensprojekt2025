@@ -13,7 +13,7 @@ body {
 
 /* Introduktionsteksten */
 .introduktionstekst {
-  color: var(--color-primar-rod); 
+  color: var(--color-primar-rod);
   text-align: left;
   padding: 5px 60px;
   max-width: 750px;
@@ -37,7 +37,7 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
-  background:var(--color-sekundar-gul);
+  background: var(--color-sekundar-gul);
   border: 2px solid var(--color-sekundar-orange);
   border-radius: 50%;
   cursor: pointer;
@@ -45,45 +45,14 @@ body {
 }
 
 /* Individuel placering af punkterne */
-.punkt-hjerne {
-  top: 60px;
-  left: 570px;
-}
-
-.punkt-øjne {
-  top: 210px;
-  left: 635px;
-}
-
-.punkt-hjerte {
-  top: 490px;
-  left: 620px;
-}
-
-.punkt-bryst {
-  top: 590px;
-  left: 450px;
-}
-
-.punkt-muskler {
-  top: 660px;
-  left: 770px;
-}
-
-.punkt-mave {
-  top: 810px;
-  left: 480px;
-}
-
-.punkt-æggestokke {
-  top: 920px;
-  left: 580px;
-}
-
-.punkt-hormon {
-  top: 1200px;
-  left: 420px;
-}
+.punkt-hjerne { top: 60px;  left: 570px; }
+.punkt-øjne   { top: 210px; left: 635px; }
+.punkt-hjerte { top: 490px; left: 620px; }
+.punkt-bryst  { top: 590px; left: 450px; }
+.punkt-muskler{ top: 660px; left: 770px; }
+.punkt-mave   { top: 810px; left: 480px; }
+.punkt-æggestokke { top: 920px; left: 580px; }
+.punkt-hormon { top: 1200px; left: 420px; }
 
 /* Popup box ved prikken */
 .popup-ved-prik {
@@ -97,198 +66,123 @@ body {
   font-size: 14px;
   max-width: 400px;
   z-index: 10;
-  box-shadow: 0 2px 6px var(--color-primar-morkebla)
+  box-shadow: 0 2px 6px var(--color-primar-morkebla);
 }
 
-.popup-ved-prik h3 {
-  margin: 0 0 4px 0; 
-}
-
-.popup-ved-prik p {
-  margin: 0;         
-  line-height: 2;
-}
-
-/* Placering af popup ved hvert punkt */
-#popup1 {
-  top: 60px;
-  left: 620px;
-}
-
-#popup2 {
-  top: 210px;
-  left: 685px;
-}
-
-#popup3 {
-  top: 490px;
-  left: 670px;
-}
-
-#popup4 {
-  top: 590px;
-  left: 10px;
-}
-
-#popup5 {
-  top: 660px;
-  left: 820px;
-}
-
-#popup6 {
-  top: 810px;
-  left: 40px;
-}
-
-#popup7 {
-  top: 920px;
-  left: 630px;
-}
-
-#popup8 {
-  top: 920px;
-  left: 470px;
-}
-
- /* tekst i pop-op */
-.popup-ved-prik h3 {
+/* >>> sammenslået blok – margin/line-height + font-family <<< */
+.popup-ved-prik h3{
+  margin: 0 0 4px;
   font-family: 'Super Funky', sans-serif;
 }
-
-.popup-ved-prik p {
+.popup-ved-prik p{
+  margin: 0;
+  line-height: 2;
   font-family: 'Poppins', sans-serif;
 }
 
- /* ikonerne med parralax */
- .eglosning-wrapper {
-  position: relative;
-}
+/* Placering af popup ved hvert punkt */
+#popup1 { top: 60px;  left: 620px; }
+#popup2 { top: 210px; left: 685px; }
+#popup3 { top: 490px; left: 670px; }
+#popup4 { top: 590px; left: 10px; }
+#popup5 { top: 660px; left: 820px; }
+#popup6 { top: 810px; left: 40px; }
+#popup7 { top: 920px; left: 630px; }
+#popup8 { top: 920px; left: 470px; }
 
-.parallax-overlay {
+/* ikonerne med parralax */
+.eglosning-wrapper { position: relative; }
+
+.parallax-overlay{
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Gør så man kan trykke på punkterne under overlay */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; /* kan stadig klikke prikkerne */
 }
 
-.parallax {
+.parallax{
   position: absolute;
   width: 200px;
   transform: translate(-50%, -50%);
 }
 
-/* placeringer for inkonerne */
-.icon1 { top: 1100px; left: 300px; }
-.icon2 { top: 500px; left: 1200px; }
-.icon4 { top: 100px; left: 1100px; }
-.icon5 { top: 200px; left: 300px; }
-.icon6 { top: 1200px; left: 1000px; }
-.icon7 { top: 650px; left: 200px; }
+/* placeringer for ikonerne */
+.icon1{ top:1100px; left:300px; }
+.icon2{ top:500px;  left:1200px; }
+.icon4{ top:100px;  left:1100px; }
+.icon5{ top:200px;  left:300px; }
+.icon6{ top:1200px; left:1000px; }
+.icon7{ top:650px;  left:200px; }
 
-/* cillelogoet */
-.logo-link {
-  position: absolute;
-  top: 70px;
-  right: 70px;
-  width: 200px; /* juster størrelse her */
+/* cille-logoer */
+.logo-link   { position:absolute; top:70px;  right:70px;  width:200px; }
+.tilbage-link{ position:absolute; top:270px; right:70px;  width:200px; }
+
+/* næstefase-pil */
+.naestefase-pil{
+  position:absolute;
+  right:20px; top:2140px;
+  width:500px;
 }
 
-.tilbage-link {
-  position: absolute;
-  top: 270px;
-  right: 70px;
-  width: 200px; /* juster størrelse her */
+/* hormon-tabellen */
+.hormon-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.hormon-wrapper{
+  width:400px; height:400px;
+  background:var(--color-primar-lysebla);
+  padding:20px;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+}
+.hormon-bar{
+  background:var(--color-hvid);
+  height:44px; width:65%;
+  border-radius:14px;
+  position:relative;
+  overflow:hidden;
+}
+.gul-niveau{
+  position:absolute;
+  left:0; top:0;
+  height:100%; width:0%;
+  background:var(--color-sekundar-gul);
+  transition:width .5s ease;
+  z-index:1;
+}
+.label{
+  position:relative;
+  z-index:2;
+  line-height:30px;
+  font-family:'Super Funky',sans-serif;
+  color:var(--color-primar-lysebla);
+  font-weight:bold;
+  font-size:25px;
+  margin-left:10px;
+  margin-top:5px;
 }
 
-/* næstefase + pil (svg) */
-.naestefase-pil {
-  position: absolute;
-  right: 20px;
-  top: 2140px;
-  width: 500px; 
-}
+/* tabellen i popup 8 */
+#popup8.popup-ved-prik{ width:650px; max-width:none; }
 
-/* hormon tabellen styling */
-.hormon-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hormon-wrapper {
-  width: 400px;
-  height: 400px;
-  background: var(--color-primar-lysebla);
-  padding: 20px 20px;
-  border-radius: 50%;
-  text-align: left;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* centrerer barerne vertikalt */
-  align-items: center;
-  gap: 12px; /* ens afstand mellem barerne */
-}
-
-.hormon-bar {
-  background: var(--color-hvid);
-  height: 44px;
-  width: 65%;
-  border-radius: 14px;
-  position: relative;
-  overflow: hidden;
-}
-
-.gul-niveau {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0%; /* starter altid skjult */
-  background: var(--color-sekundar-gul);
-  transition: width 0.5s ease;
-  z-index: 1;
-}  
-
-.label {
-  position: relative;
-  z-index: 2;
-  line-height: 30px;
-  font-family: 'Super Funky', sans-serif;
-  color: var(--color-primar-lysebla);
-  font-weight: bold;
-  font-size: 25px;
-  margin-left: 10px;
-  margin-top: 5px;
-}
-
-/* tabellen i popup position osv */
-
-/* Selve popup-boksen */
-#popup8.popup-ved-prik{
-  width: 650px;
-  max-width: none;
-}
-
-/* Buet SVG-overskrift */
 #popup8 .overskrift-bue{
-  width: 700px;
-  margin-bottom: -510px;
-  margin-top: -200px;
+  width:700px;
+  margin:-200px auto -510px;   /* overlap med cirklen */
 }
-
-/* tabellen selv */
 #popup8 .hormon-wrapper{
-  width: 400px;
-  height: 400px;
-  margin-top: -100px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  width:400px; height:400px;
+  margin: -100px 20px 20px;
 }
 
+/* typewriter-felt */
 #typewriter-eggl{
-  white-space: pre-line;
-  min-height: 4.5em;   /* låser feltets højde → ingenting hopper */
+  white-space:pre-line;
+  min-height:4.5em;   /* låser højde, så siden ikke hopper */
 }

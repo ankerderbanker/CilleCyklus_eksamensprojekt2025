@@ -411,7 +411,7 @@ h5 {
 
     /* næstefase + pil (svg) */
 
- .next-arrow{
+    next-arrow-faelles{
    position: absolute;
   right: -80px;
   top: 4650px;

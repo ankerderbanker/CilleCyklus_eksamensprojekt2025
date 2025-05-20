@@ -1,157 +1,96 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ægløsningfasen-siden</title>
-    <!-- googlefont: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-      <!-- superfunky font fra DaFont her -->
-      <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
-        <!-- general css -->
-        <link rel="stylesheet" href="css/css.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ægløsningsfasen</title>
 
-        <!-- specifikt til ægløsningsiden -->
-        <link rel="stylesheet" href="css/eglosning.css">
+  <!-- skrifter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
+
+  <!-- styles -->
+  <link rel="stylesheet" href="css/css.css">
+  <link rel="stylesheet" href="css/eglosning.css">
 </head>
+
 <body>
 
- <a href="index.html">
-  <img src="images/baggrund/fase3/logocillehjem.svg" alt="Gå til forsiden" class="logo-link">
-</a>
+  <!-- top-links -->
+  <a href="index.html" class="logo-link">
+    <img src="images/baggrund/fase3/logocillehjem.svg" alt="Gå til forsiden">
+  </a>
 
-<a href="index.html">
-  <img src="images/baggrund/fase3/Tilbage.svg" alt="Gå Tilbage" class="tilbage-link">
-</a>
+  <a href="index.html" class="tilbage-link">
+    <img src="images/baggrund/fase3/Tilbage.svg" alt="Gå tilbage">
+  </a>
 
-<!-- introduktionsteksten -->
-<section class="introduktionstekst">
+  <!-- introduktion -->
+  <section class="introduktionstekst">
     <h1>ÆGLØSNINGSFASEN</h1>
-    <p>Her kan du udforske kvindekroppen gennem ægløsningsfasen.</p>
-    <p>Klik på punkterne for at opdage, <br>
-       hvordan hormoner påvirker energi, følelser og fysiske forandringer.</p>
+    <p id="typewriter-eggl"></p><!-- tekst fyldes af JS -->
   </section>
-  
-<div class="eglosning-wrapper">
 
-<!-- billedet af selve cille -->
-<div class="eglosning-cille">
-    <img src="images/eglosningfase/eglosningcille.svg" alt="Cille">
-  
-    <!-- Punkt 1: hjerne -->
-    <button class="punkt punkt-hjerne" onclick="togglePopup('popup1')">●</button>
-    <div id="popup1" class="popup-ved-prik">
-      <h3>Hjernen</h3>
-        <p>Østrogen og testosteron topper i ægløsningsfasen, hvilket øger selvtillid, mental skarphed
-          og lyst til social kontakt. Dette kan gøre dig mere udadvendt og kreativ.</p>
-    </div>
-  
-    <!-- Punkt 2: øjne -->
-    <button class="punkt punkt-øjne" onclick="togglePopup('popup2')">●</button>
-    <div id="popup2" class="popup-ved-prik">
-      <h3>Øjnene</h3>
-        <p>I ægløsningsfasen kan dine øjne se skarpere og farver kan virke klarere.
-          Pupillerne bliver også lidt større, og det kan gøre, at du virker ekstra
-          åben og spændende for andre.</p>
-    </div>
-  
-    <!-- Punkt 3: hjerte -->
-    <button class="punkt punkt-hjerte" onclick="togglePopup('popup3')">●</button>
-    <div id="popup3" class="popup-ved-prik">
-      <h3>Hjertet</h3>
-        <p>I ægløsningsfasen hjælper østrogen dig med at føle dig tættere på andre og mere rolig.
-          Men hvis du er presset eller stresset, kan du også blive lidt mere urolig eller spændt i kroppen.</p>
+  <!-- cille-tegning + prikker -->
+  <div class="eglosning-wrapper">
+    <div class="eglosning-cille">
+      <img src="images/eglosningfase/eglosningcille.svg" alt="Illustration af Cille">
+
+      <!-- 7 “normale” pop-ups -->
+      <button class="punkt punkt-hjerne"        onclick="togglePopup('popup1')">●</button>
+      <button class="punkt punkt-øjne"          onclick="togglePopup('popup2')">●</button>
+      <button class="punkt punkt-hjerte"        onclick="togglePopup('popup3')">●</button>
+      <button class="punkt punkt-bryst"         onclick="togglePopup('popup4')">●</button>
+      <button class="punkt punkt-muskler"       onclick="togglePopup('popup5')">●</button>
+      <button class="punkt punkt-mave"          onclick="togglePopup('popup6')">●</button>
+      <button class="punkt punkt-æggestokke"    onclick="togglePopup('popup7')">●</button>
+
+      <!-- hormon-punkt (popup8) -->
+      <button class="punkt punkt-hormon"        onclick="togglePopup('popup8')">●</button>
     </div>
 
-    <!-- Punkt 4: bryst -->
-    <button class="punkt punkt-bryst" onclick="togglePopup('popup4')">●</button>
-    <div id="popup4" class="popup-ved-prik">
-      <h3>Brystet</h3>
-        <p>Hormonændringer i ægløsningsfasen kan gøre så brysterne kan føles mere spændte eller følsomme,
-        og det kan gøre dig mere opmærksom på din krop.</p>
-    </div>
+    <!-- pop-up-bokse 1-7 -->
+    <div id="popup1" class="popup-ved-prik"><h3>Hjernen</h3><p>Østrogen …</p></div>
+    <div id="popup2" class="popup-ved-prik"><h3>Øjnene</h3><p>I ægløsningsfasen …</p></div>
+    <div id="popup3" class="popup-ved-prik"><h3>Hjertet</h3><p>I ægløsningsfasen …</p></div>
+    <div id="popup4" class="popup-ved-prik"><h3>Brystet</h3><p>Hormonændringer …</p></div>
+    <div id="popup5" class="popup-ved-prik"><h3>Musklerne</h3><p>Kroppen laver lidt mere …</p></div>
+    <div id="popup6" class="popup-ved-prik"><h3>Maven</h3><p>Mange oplever …</p></div>
+    <div id="popup7" class="popup-ved-prik"><h3>Æggestokken</h3><p>Kroppen er fyldt …</p></div>
 
-    <!-- Punkt 5: muskler -->
-    <button class="punkt punkt-muskler" onclick="togglePopup('popup5')">●</button>
-    <div id="popup5" class="popup-ved-prik">
-      <h3>Musklerne</h3>
-        <p>I ægløsningsfasen laver kroppen lidt mere testosteron,
-        og det kan give dig ekstra energi og gøre,
-        at dine muskler føles stærkere end normalt.</p>
-    </div>
-
-    <!-- Punkt 6: mave -->
-    <button class="punkt punkt-mave" onclick="togglePopup('popup6')">●</button>
-    <div id="popup6" class="popup-ved-prik">
-      <h3>Maven</h3>
-        <p>Mange oplever mere stabil fordøjelse og energi i ægløsningsfasen,
-        da østrogen påvirker kroppen og kan give øget velvære og fysisk overskud.</p>
-    </div>
-
-    <!-- Punkt 7: æggestokke -->
-    <button class="punkt punkt-æggestokke" onclick="togglePopup('popup7')">●</button>
-    <div id="popup7" class="popup-ved-prik">
-      <h3>Æggestokken</h3>
-       <p>I ægløsningsfasen er kroppen fyldt med energi og selvtillid,
-        fordi hormonerne østrogen og testosteron er høje,
-        og æggestokken gør sig klar til at slippe et æg.</p>
-    </div>
-
-<!-- punkt 8 – hormon -->
-<button class="punkt punkt-hormon" onclick="togglePopup('popup8')">●</button>
-
-<div id="popup8" class="popup-ved-prik">
-  <!-- START: præcis den samme struktur som den eksterne side -->
-  <div class="hormon-container">
-    <img src="images/baggrund/Fase3/hormon1.svg" alt="Hormon-niveau" class="overskrift-bue">
-  
-    <div class="hormon-wrapper">
-      <div class="hormon-bar">
-        <div class="gul-niveau" data-niveau="40%"></div>
-        <div class="label">FSH</div>
-      </div>
-      <div class="hormon-bar">
-        <div class="gul-niveau" data-niveau="70%"></div>
-        <div class="label">FH</div>
-      </div>
-      <div class="hormon-bar">
-        <div class="gul-niveau" data-niveau="90%"></div>
-        <div class="label">ØSTROGEN</div>
-      </div>
-      <div class="hormon-bar">
-        <div class="gul-niveau" data-niveau="30%"></div>
-        <div class="label">PROGESTERON</div>
-      </div>
-      <div class="hormon-bar">
-        <div class="gul-niveau" data-niveau="60%"></div>
-        <div class="label">TESTOSTERON</div>
+    <!-- pop-up 8: hormon-tabel -->
+    <div id="popup8" class="popup-ved-prik">
+      <div class="hormon-container">
+        <img src="images/baggrund/Fase3/hormon1.svg" alt="Hormon-niveau" class="overskrift-bue"/>
+        <div class="hormon-wrapper">
+          <div class="hormon-bar"><div class="gul-niveau" data-niveau="40%"></div><div class="label">FSH</div></div>
+          <div class="hormon-bar"><div class="gul-niveau" data-niveau="70%"></div><div class="label">FH</div></div>
+          <div class="hormon-bar"><div class="gul-niveau" data-niveau="90%"></div><div class="label">ØSTROGEN</div></div>
+          <div class="hormon-bar"><div class="gul-niveau" data-niveau="30%"></div><div class="label">PROGESTERON</div></div>
+          <div class="hormon-bar"><div class="gul-niveau" data-niveau="60%"></div><div class="label">TESTOSTERON</div></div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-  </div>
+    <!-- parallax-ikoner -->
+    <div class="parallax-overlay">
+      <img src="images/baggrund/fase3/ægløsning-icon1.svg" class="parallax icon1" data-speed="5"  alt="">
+      <img src="images/baggrund/fase3/ægløsning-icon2.svg" class="parallax icon2" data-speed="4"  alt="">
+      <img src="images/baggrund/fase3/ægløsning-icon4.svg" class="parallax icon4" data-speed="3"  alt="">
+      <img src="images/baggrund/fase3/ægløsning-icon5.svg" class="parallax icon5" data-speed="3"  alt="">
+      <img src="images/baggrund/fase3/ægløsning-icon6.svg" class="parallax icon6" data-speed="5"  alt="">
+      <img src="images/baggrund/fase3/ægløsning-icon7.svg" class="parallax icon7" data-speed="4"  alt="">
+    </div>
+  </div><!-- /eglosning-wrapper -->
 
-      <!-- ikonerne + deres "fart" -->
-      <div class="parallax-overlay">
-        <img src="images/baggrund/fase3/ægløsning-icon1.svg" class="parallax icon1" data-speed="5">
-        <img src="images/baggrund/fase3/ægløsning-icon2.svg" class="parallax icon2" data-speed="4">
-        <img src="images/baggrund/fase3/ægløsning-icon4.svg" class="parallax icon4" data-speed="3">
-        <img src="images/baggrund/fase3/ægløsning-icon5.svg" class="parallax icon5" data-speed="3">
-        <img src="images/baggrund/fase3/ægløsning-icon6.svg" class="parallax icon6" data-speed="5">
-        <img src="images/baggrund/fase3/ægløsning-icon7.svg" class="parallax icon7" data-speed="4">
-      </div>
+  <!-- næste fase pil -->
+  <a href="d_lutealfasen.html" class="naestefase-pil">
+    <img src="images/baggrund/fase3/næstefasepil.svg" alt="Gå til lutealfasen">
+  </a>
 
-</div>
-
-<a href="d_lutealfasen.html">
-  <img src="images/baggrund/fase3/næstefasepil.svg" alt="Gå til lutealfasen" class="naestefase-pil">
-</a>
-
-
+  <!-- scripts -->
   <script src="js/eglosning.js"></script>
-
 </body>
 </html>

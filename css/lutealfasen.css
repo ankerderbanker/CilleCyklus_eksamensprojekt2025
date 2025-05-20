@@ -12,9 +12,14 @@ body{
   font-style: normal;
 }
 
+p{
+   font-family: 'Poppins', sans-serif;
+   font-size: 17px;
+   font-weight:300;
+}
 /* Overskriften */
 h1{
-    font-size: 5rem;
+    font-size: 8rem;
     font-family: "Super Funky", sans-serif;
     color: var(--color-hvid);
     text-align: center;
@@ -22,19 +27,19 @@ h1{
     margin-bottom: -1rem;
 }
 h2{
-   font-size:4rem;
+   font-size:5rem;
    font-family: "Super Funky", sans-serif;
    color:#8DA1BD;
 }
 
 h3{
-   font-size:2rem;
+   font-size:3rem;
    font-family: "Super Funky", sans-serif;
    color:#8DA1BD;
 }
 
 h4{
-   font-size:1.5rem;
+   font-size:2rem;
    font-family: "Super Funky", sans-serif;
    color:#FFFCF5;
    margin-top: -3rem;
@@ -43,12 +48,106 @@ h5 {
   font-size: 2.1rem;
   margin-top: 1rem;
   margin-bottom: -1rem;
+  font-family: "Super Funky", sans-serif;
 }
 
+/* cillelogoet */
+.logo-link {
+  position: absolute;
+  top: 90px;
+  right: 70px;
+  width: 125px; /* juster størrelse her */
+}
+
+.tilbage-link {
+  position: absolute;
+  top: 220px;
+  right: 70px;
+  width: 125px; /* juster størrelse her */
+}
+
+
+    /* Baggrundstekst lag */
+    .background-texts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .text {
+      position: absolute;
+      color: #8DA1BD;
+      font-size: 3rem;
+      font-family:"Super Funky", sans-serif;
+      opacity: 0;
+      transform: rotate(-40deg) scale(0.5);
+      animation: popFade 6s infinite;
+      white-space: nowrap;
+    }
+
+    .text:nth-child(2) {
+      animation-delay: 3s;
+       top:40%;
+      left: 60%;
+      rotate: 70deg;
+      font-size: 2rem;
+    }
+
+    .text:nth-child(1) {
+      top:45%;
+      left: 25%;
+    }
+
+    .text:nth-child(3) {
+      top:65%;
+      left: 62%;
+      rotate: 50deg;
+      animation-delay: 2s;
+    }
+
+      .text:nth-child(4) {
+      top:70%;
+      left: 25%;
+       animation-delay: 5s;
+       rotate: 20deg;
+       font-size: 4rem;
+    }
+
+   @keyframes popFade {
+  0%, 100% {
+    opacity: 0;
+    transform: rotate(-40deg) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(-40deg) scale(1);
+  }
+}
+
+    /* Centralt intro lag */
+    .intro {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items:first baseline;
+      margin-left: 3rem;
+      margin-top: 2rem;
+      flex-direction: column;
+      color: white;
+      pointer-events: auto;
+    }
+
 #cille-animation {
-  width: 320px;      /* eller 100% / vw / vh */
-  height: 320px;
-  margin: 5rem auto;
+  width: 100%;      /* eller 100% / vw / vh */
+  height: 500px;
+  margin: 10rem auto;
   display: block;    /* centrerer elementet */
   position: relative; /* gør det muligt at placere det i forhold til sin egen position */
   z-index: 10000;    /* sikrer at det er ovenpå andre elementer */
@@ -68,7 +167,7 @@ h5 {
 }
 
 .infographic img{
-  max-width: 55%;
+  max-width: 80%;
   max-height: auto; 
 }
 
@@ -125,8 +224,7 @@ h5 {
   transform-style: preserve-3d;
 }
 
-/* Flip-effekt på hover */
-.flip-card:hover .flip-card-inner {
+.flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
 
@@ -176,10 +274,10 @@ h5 {
 }
 
 .hormon img{
-  max-width: 45%;
-  max-height: auto; 
-  margin-top: 60rem;
-  position: absolute;
+  max-width: 65%;
+  margin-top: 70rem;
+  position:absolute ;
+
 }
 
  hormoncirkel{
@@ -190,22 +288,24 @@ h5 {
     }
 
     .spacer {
-      height: 20vh;
+      height: 30vh;
+      visibility: hidden;
+    
     }
 
     .circle-container {
-      width: 400px;
-      height: 400px;
+      width: 650px;
+      height: 650px;
       border-radius: 50%;
       background-color: #8DA1BD;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
       padding: 40px;
       margin: auto;
-      margin-top: 150px;
+      margin-top: -50px;
       box-sizing: border-box;
     }
 
@@ -221,11 +321,11 @@ h5 {
     .bar {
      position: relative;
       width: 100%;
-      height: 44px;
+      height: 64px;
       background-color:var(--color-primar-morkebla);
-      border-radius: 14px;
+      border-radius: 22px;
       overflow: hidden;
-      font-size: 20px;
+      font-size: 30px;
       font-family:"Super Funky", sans-serif;
       display: flex;
       align-items: center;
@@ -233,7 +333,9 @@ h5 {
       justify-content:last baseline;
        z-index: 0;
       color:#8DA1BD;
-     
+      
+
+     }
 
 
     .fill {
@@ -244,15 +346,14 @@ h5 {
       width: 0;
       background:#F7F797;
       border-radius: 12px;
-
-      transition: width 6s ease;
+      transition: width 4s ease;
     }
 
   
 
     /* Procent-klasser med mål-width */
-    .fill-70.start { width: 70%; }
-    .fill-40.start { width: 40%; }
-    .fill-90.start { width: 90%; }
-    .fill-60.start { width: 60%; }
-    .fill-30.start { width: 30%; }
+    .fill-70.start { width: 25%; }
+    .fill-40.start { width: 15%; }
+    .fill-90.start { width: 60%; }
+    .fill-60.start { width: 100%; }
+    .fill-30.start { width: 50%; }

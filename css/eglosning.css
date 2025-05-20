@@ -189,8 +189,8 @@ body {
   width:400px; height:400px;
   margin: -100px 20px 20px;
 }
-
-/* typewriter-felt */
+/* typewriter effekten */
+/* sørger for, at \n i JS-teksten vises som rigtige linjeskift */
 #typewriter-eggl{
   white-space:pre-line;
   min-height:4.5em;   /* låser højde, så siden ikke hopper */

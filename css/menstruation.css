@@ -464,20 +464,29 @@ body{
   }
   
   .parallax {
-    position: absolute;
+   position: absolute;
     width: 200px;
     transform: translate(-50%, -50%);
-    top: 200rem;
+    z-index: -100;
+  
   }
   
   /* placeringer for inkonerne */
-  .icon1 { top: 1100px; left: 300px; }
-  .icon2 { top: 500px; left: 1200px; }
-  .icon4 { top: 100px; left: 1100px; }
-  .icon5 { top: 200px; left: 300px; }
-  .icon6 { top: 1200px; left: 1000px; }
-  .icon7 { top: 650px; left: 200px; }
+  .icon1a { top: 130rem; left:  8rem; color: var(--color-primar-lyserod) }
+  .icon2a { top: 180rem; left: 12rem; }
+  .icon4a { top: 230rem; left:  9rem; }
+  .icon5a { top: 280rem; left: 14rem; }
+  .icon6a { top: 300rem; left: 10rem; }
+  .icon7a { top: 380rem; left: 13rem; }
   
+  .icon1b { top: 380rem; left: 86rem; }
+  .icon2b { top: 330rem; left: 82rem; }
+  .icon4b { top: 280rem; left: 85rem; }
+  .icon5b { top: 230rem; left: 80rem; }
+  .icon6b { top: 180rem; left: 88rem; }
+  .icon7b { top: 130rem; left: 84rem; }
+
+
 
 
   

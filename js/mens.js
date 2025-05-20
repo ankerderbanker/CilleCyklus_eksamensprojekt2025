@@ -202,3 +202,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   });
   
+  document.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    document.querySelectorAll('.parallax').forEach(el => {
+      const speed = parseFloat(el.dataset.speed);
+      el.style.transform = `translate(-50%, calc(-50% + ${y * speed * 0.05}px))`;
+    });
+  });
+  

@@ -33,11 +33,9 @@
     <path d="M149.83,202.77c-.15,2.56-.1,7.91,2.79,13.71,3.7,7.45,9.76,10.97,11.96,12.12" fill="none" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
     <circle cx="103.18" cy="163.39" r=".65" fill="#79142a" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
   </g>
-  <g>
-    <text transform="translate(51.22 374.65) rotate(20.6) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">T</tspan></text>
-    <text transform="translate(85.77 387.16) rotate(7.89) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">R</tspan></text>
-    <text transform="translate(122.04 391.24) rotate(-2.03) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">i</tspan></text>
-    <text transform="translate(144.37 390.81) rotate(-12.28) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">s</tspan></text>
-    <text transform="translate(180.19 382.55) rotate(-24.39) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">t</tspan></text>
-  </g>
+  <text transform="translate(51.22 374.65) rotate(20.6) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">T</tspan></text>
+  <text transform="translate(85.77 387.16) rotate(7.89) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">R</tspan></text>
+  <text transform="translate(122.04 391.24) rotate(-2.03) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">i</tspan></text>
+  <text transform="translate(144.37 390.81) rotate(-12.28) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">s</tspan></text>
+  <text transform="translate(180.19 382.55) rotate(-24.39) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">t</tspan></text>
 </svg>

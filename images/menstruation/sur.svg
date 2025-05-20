@@ -13,7 +13,7 @@
     </g>
     <path d="M114.26,132.73c-.19,2.88-.64,7.33-1.81,12.69-1.35,6.17-2.6,8.64-1.34,10.49.91,1.33,3.71,3.21,14.64.39" fill="none" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
     <ellipse cx="88.73" cy="131.35" rx="6.34" ry="8.35" transform="translate(-19.4 15.44) rotate(-8.97)" fill="#79142a" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
-    <path d="M153.86,120.78c.72,4.56-1.5,8.69-4.96,9.24-3.46.55-6.85-2.7-7.57-7.26-.72-4.56,1.5-8.69,4.96-9.24,3.46-.55,6.85,2.7,7.57,7.26Z" fill="#79142a" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
+    <path d="M153.86,120.78c.72,4.56-1.5,8.69-4.96,9.24s-6.85-2.7-7.57-7.26c-.72-4.56,1.5-8.69,4.96-9.24,3.46-.55,6.85,2.7,7.57,7.26Z" fill="#79142a" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
     <path d="M72.56,127.9c2.19-1.72,7.09-5.08,14.2-6.04,5.26-.71,9.57.18,12.08.91" fill="none" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
     <path d="M134.5,117.93c1.22-1.29,5-4.93,11.18-6.04,6.66-1.2,11.79,1.31,13.29,2.11" fill="none" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
     <path d="M69.54,105.54c4.06.01,8.36.17,12.88.53,7.82.62,14.96,1.72,21.33,3.05" fill="none" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
@@ -33,10 +33,8 @@
     <path d="M147.73,205.87c-.14,2.52-.09,7.8,2.75,13.52,3.65,7.35,9.62,10.82,11.8,11.95" fill="none" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
     <circle cx="101.74" cy="167.04" r=".64" fill="#79142a" stroke="#79142a" stroke-miterlimit="10" stroke-width="3"/>
   </g>
-  <g>
-    <text transform="translate(68.21 381.93) rotate(14.12) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">V</tspan></text>
-    <text transform="translate(107.68 391.17) rotate(.43) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">r</tspan></text>
-    <text transform="translate(144.93 390.99) rotate(-11.56) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">e</tspan></text>
-    <text transform="translate(178.75 383.63) rotate(-23.35) scale(1.03 1)" fill="#f2ed98" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">d</tspan></text>
-  </g>
+  <text transform="translate(68.21 381.93) rotate(14.12) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">V</tspan></text>
+  <text transform="translate(107.68 391.17) rotate(.43) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">r</tspan></text>
+  <text transform="translate(144.93 390.99) rotate(-11.56) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">e</tspan></text>
+  <text transform="translate(178.75 383.63) rotate(-23.35) scale(1.03 1)" fill="#f7f797" font-family="SuperFunky, &apos;Super Funky&apos;" font-size="42.98"><tspan x="0" y="0">d</tspan></text>
 </svg>

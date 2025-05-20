@@ -109,7 +109,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* individuel placeringer for ikonerne (x/y) */
+/* individuelle placeringer (x/y) for hvert ikon */
 .icon1{ top:1100px; left:300px; }
 .icon2{ top:500px;  left:1200px; }
 .icon4{ top:100px;  left:1100px; }
@@ -182,7 +182,7 @@ body {
 /* buet overskrift overlapper cirklen, så det ser ud som i prototypen, derfor negativ margin */
 #popup8 .overskrift-bue{
   width:700px;
-  margin:-200px auto -510px;   /* overlap med cirklen */
+  margin:-200px auto -510px; 
   margin-left: -15px;
 }
 #popup8 .hormon-wrapper{
@@ -193,5 +193,5 @@ body {
 /* sørger for, at \n i JS-teksten vises som rigtige linjeskift */
 #typewriter-eggl{
   white-space:pre-line;
-  min-height:4.5em;   /* låser højde, så siden ikke hopper */
+  min-height:4.5em;   /* låser højde, så siden ikke hopper under skrivemaskine-animation */
 }

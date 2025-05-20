@@ -83,27 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // ── Klik på pil → vis diagram eller gå til menstruation.html ─
-    const nextArrow = document.querySelector(".next-arrow");
-    const typeSection = document.querySelector(".type-section");
-    const diagram = document.querySelector(".diagram");
-    const overskrift_2 = document.querySelector(".overskrift-2");
-
-    if (nextArrow) {
-      nextArrow.addEventListener("click", function () {
-        // Hvis du vil vise diagram og skjule elementer
-        if (typeSection && diagram && overskrift_2) {
-          nextArrow.style.display = 'none';
-          typeSection.style.display = 'none';
-          diagram.style.display = 'flex';
-          overskrift_2.style.display = 'block';
-        } else {
-          // Hvis elementerne ikke findes → gå videre til næste side
-          window.location.href = "1menstruationsfasen.html";
-        }
-      });
-    }
-  });
+    // pil til næste side
+    document.addEventListener('DOMContentLoaded', () => {
+      const nextArrow = document.querySelector('.next-arrow-faelles');
+      if (nextArrow) {
+        nextArrow.addEventListener('click', function() {
+          window.location.href = "1menstruationsfasen.html"; 
+        });
+      }
+    });
+    
 
   // ── Intersection Observer for progress-circle ────────
   const observer = new IntersectionObserver(entries => {

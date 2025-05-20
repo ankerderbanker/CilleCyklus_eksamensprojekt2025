@@ -145,7 +145,7 @@
     
     .mirror-scene-layout {
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 60%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -156,7 +156,7 @@
 }
 
 .mirror-wrapper {
-  max-width: 30%;
+  max-width: 45%;
 }
 
 .affirmation-text {
@@ -167,6 +167,7 @@
   transition: opacity 1s ease-in-out;
   text-align: left;
   max-width: 300px;
+ 
 }
 
     
@@ -176,6 +177,64 @@
       height: auto;
       display: block;
     }
+
+
+
+.legs-wrapper{
+  position:absolute;
+  top:25%;
+  left:30%;
+
+  max-width:40%;          /* mirror-sized; tweak as you like */
+  z-index:5;
+}
+
+/* let the SVG scale responsively */
+#legsAnimation svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+
+
+/* centred writer */
+.typewriter-container{
+  position:absolute;
+  top:20%;
+  left:25%;
+  transform:translate(-50%,-50%);
+  max-width:50%;
+  text-align:center;
+  z-index:5;
+}
+
+.typewriter-text{
+  font-size:1rem;
+  line-height:1.4;
+  color: #f2e07c;
+  white-space:pre-wrap;          /* keep line-breaks */
+  letter-spacing:0.02em;
+  font-family: 'Super Funky', cursive;
+}
+
+.cursor{
+  display:inline-block;
+  width:0.12em;
+  background:#f2e07c;
+  animation:blink 0.8s steps(1) infinite;
+}
+
+@keyframes blink{ 50%{opacity:0;} }
+
+/* yellow sparkle SVGs */
+.yellow-svg{
+  position:absolute;
+  width:10vw;                  /* change per sprite or override inline */
+  max-width:120px;
+  pointer-events:none;
+  z-index:4;                   /* under the text, above bg */
+}
 
 
 
@@ -195,20 +254,6 @@
 }
 
 
-.follikelgrow-wrapper {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 40%;
-  z-index: 5;
-}
-
-.follikelgrow-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
 .final-wrapper {
   position: absolute;
@@ -312,21 +357,35 @@
 
 
       <!-- Scene 2 -->
-      <section class="scene" id="scene2">
-        <p>Scene 2 indhold her.</p>
-      </section>
-
-      <!-- Scene 3 -->
-<section class="scene" id="scene3">
-  <div class="follikel-wrapper">
-    <img src="images/folikelfase/follikelgrafik.svg" alt="Follikelfasen illustration" />
+     
+<section class="scene" id="scene2">
+  <div class="legs-wrapper" data-parallax data-depth="0.35">
+    <div id="legsAnimation"></div>
   </div>
+</section>
+
+
+     <!-- Scene 3 -->
+<section class="scene" id="scene3">
+  <!-- ✏️ Type-writer text -->
+  <div class="typewriter-container" data-parallax data-depth="0.35">
+    <span id="typeText" class="typewriter-text"></span>
+    <span id="typeCursor" class="cursor">|</span>
+  </div>
+
+  <!-- ✏️ Yellow SVGs — duplicate / move / resize as you like -->
+  <img class="yellow-svg" data-parallax data-depth="0.15"
+       style="top:22%; left:18%;" src="images/folikelfase/yellow1.svg" alt="">
+  <img class="yellow-svg" data-parallax data-depth="0.25"
+       style="top:68%; left:72%;" src="images/folikelfase/yellow2.svg" alt="">
+  <img class="yellow-svg" data-parallax data-depth="0.20"
+       style="top:40%; left:80%;" src="images/folikelfase/yellow3.svg" alt="">
 </section>
 
       <!-- Scene 4: Folliklen vokser -->
 <section class="scene" id="scene4">
-  <div class="follikelgrow-wrapper">
-    <img src="images/folikelfase/follikelgrow.svg" alt="Folliklen vokser" />
+  <div>
+
   </div>
 </section>
 
@@ -415,11 +474,51 @@ scrollWrapper.addEventListener("scroll", () => {
       scrollWrapper.scrollBy({ left: window.innerWidth, behavior: "smooth" });
     });
 
-    // Update scene title on scroll
-    scrollWrapper.addEventListener("scroll", () => {
-      const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
-      titleOverlay.textContent = sectionTitles[index] || "";
-    });
+
+/* ── Scene 3: type-writer text ────────────────────────────── */
+const scene3Lines = `Du har mere overskud,
+føler dig åben og klar på fællesskab.
+Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
+
+  både med andre og dig selv.`;
+
+let typedScene3 = false;   // prevents retriggering
+
+function startTypewriter(){
+  const el = document.getElementById('typeText');
+  const cursor = document.getElementById('typeCursor');
+  let i = 0;
+
+  (function type(){
+    if(i < scene3Lines.length){
+      el.textContent += scene3Lines.charAt(i++);
+      setTimeout(type, 35);                 // speed (ms / char)
+    }else{
+      cursor.style.display = 'none';        // hide when done
+    }
+  })();
+}
+
+
+
+
+
+
+/* extend your existing scroll listener */
+scrollWrapper.addEventListener("scroll", () => {
+  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
+
+  /* --- existing title & mirror logic here --- */
+
+  if(index === 3 && !typedScene3){          // Scene 3 in view
+    typedScene3 = true;
+    startTypewriter();
+  }
+});
+
+
+
+
 
 /* ── Parallax set-up ────────────────────────────────────────────── */
 const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
@@ -461,6 +560,27 @@ updateParallax();
 window.addEventListener('resize', updateParallax);
 
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  lottie.loadAnimation({
+    container : document.getElementById('legsAnimation'),
+    renderer  : 'svg',
+    loop      : true,
+    autoplay  : true,
+    path      : 'folikelben.json'   // ← relative to this HTML file
+  });
+});
+
+
+
+
+
+
   </script>
 </body>
+
+
+<script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+
+
 </html>

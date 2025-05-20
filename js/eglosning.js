@@ -1,6 +1,5 @@
-/* -------------------------------------------------
-   Egløsning – interaktive pop-ups, parallax & intro
--------------------------------------------------- */
+/* ----------   javaskript for egløsningsiden   ---------- */
+
 
 /* ----------   POP-UPS + hormon-animation   ---------- */
 function resetHormonBarer() {

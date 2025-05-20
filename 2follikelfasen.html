@@ -11,6 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet" />
 
+<!-- preload træ bagrund PNG-->
+<link rel="preload" href="images/folikelfase/tree.png" as="image">
+
+
+
   <style>
     body {
       margin: 0;
@@ -21,10 +26,102 @@
       height: 100vh;
     }
 
+
+/* ───────── Hormon-niveau overlay ───────── */
+:root{
+  --h-blue:#7a91ab;           /* circle & heading */
+  --h-yellow:#f4f68d;         /* bar fill */
+  --h-white:#fff;
+  --h-font:'Super Funky',cursive;
+}
+
+
+/* ── Scene-0 intro styling ───────────────────────── */
+#scene0 .intro-text{
+  position:absolute;
+  top:35%; left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Super Funky',cursive;
+  font-size:3rem;          /* tweak up or down as you like */
+  color:#f2e07c;           /* your yellow */
+  text-align:center;
+  line-height:1.2;
+  margin:0;
+  user-select:none;
+}
+
+/* hide the ← / → buttons everywhere */
+.nav-btn{ display:none !important; }
+
+
+
+#hormonOverlay{
+  position:fixed;
+  top:-120%; left:50%;
+  transform:translate(-50%,-50%);
+  width:95vmin; max-width:400px;   /* responsive */
+  transition:top .7s cubic-bezier(.57,1.3,.41,.94);
+  z-index:900; pointer-events:none;/* off until visible */
+}
+
+#hormonOverlay.show{
+  top:50%; pointer-events:auto;
+}
+
+/* heading on an SVG arc */
+#hormonOverlay svg{width:100%;height:auto;overflow:visible;}
+.arcText{fill:#f2e07c;font:48px var(--h-font);letter-spacing:2px;}
+
+/* blue circle */
+.h-circle{
+  width:100%;aspect-ratio:1/1;
+  background:#9b5666;
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  gap:12px;padding:6% 8%;
+  box-sizing:border-box;
+}
+
+.h-heading{
+  position:absolute;
+  
+  width:100%;
+  overflow:visible;          /* let the letters breathe */
+}
+
+
+/* bar layout */
+.h-bar{
+  position:relative;
+  width:70%;height:44px;
+  border-radius:14px;
+  background:var(--h-white);
+  overflow:hidden;
+}
+
+.h-fill{
+  position:absolute;inset:0 100% 0 0;  /* start 0 % width */
+  background:var(--h-yellow);
+  transition: inset 2.6s ease-out;   /* 2× slower; pick the timing you like */
+}
+
+.h-label{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  font:24px var(--h-font);
+  color:#9b5666;pointer-events:none;
+}
+
+/* trigger bar-fill when overlay gets .show ------------------ */
+#hormonOverlay.show .h-fill{inset:0 0 0 0;}
+
+
+
+
     /* ─────────────── FIXED ELEMENTS ─────────────── */
     #floating-girl {
       position: fixed;
-      bottom: -170px;
+      bottom: -100px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
@@ -32,14 +129,14 @@
     }
 
     #floating-girl img {
-      width: 800px;
+      width: 600px;
       height: auto;
       transform: rotate(270deg); /* Rotate 90 degrees clockwise */
     }
 
     #bølge-container {
       position: fixed;
-      bottom: -180px;
+      bottom: -100px;
       left: 0;
       width: 100%;
       height: auto;
@@ -74,15 +171,7 @@
 
     /* ─────────────── OVERLAY TITLE ─────────────── */
     #section-title {
-      position: fixed;
-      top: 20px;
-      left: 30px;
-      font-family: "Super Funky", cursive;
-      font-size: 2.5rem;
-      color: #f2e07c;
-      z-index: 60;
-      pointer-events: none;
-      user-select: none;
+      visibility: hidden;
     }
 
     /* ─────────────── HORIZONTAL SCROLL ─────────────── */
@@ -104,9 +193,8 @@
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 600vw; /* 6 scenes */
+  width: 500vw; /* 5 scenes */
 }
-
 
 
     .scene {
@@ -121,12 +209,53 @@
       color: white;
     }
 
+    /* ───────────────  SCENE BACKGROUNDS  ─────────────── */
+
+.scene::before {       /* universal “background layer” */
+  content: "";
+  position: absolute;
+  inset: 0;            /* full viewport */
+  background-repeat: no-repeat;
+  background-size: contain;   /* or 'cover' if you prefer a full bleed */
+  background-position: center center;
+  z-index: 1;          /* ► below mirrors / girl / text (z-index ≥5)      */
+  pointer-events: none;/* ► ignore clicks / touches                       */
+}
+
+/* per-scene artwork */
+#scene1::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg1.svg"); }
+#scene2::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg2.svg"); }
+#scene3::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg3.svg"); }
+/* 2a. Stop Scene 4 from drawing a ::before background */
+#scene4::before{ background-image:none !important; }
+
+/* Scene-4 tree – centred & responsive */
+#scene4 .tree-img{
+  position:absolute;
+  top:45%;                /* anchor point */
+  left:50%;
+  transform:translate(-50%,-50%);   /* shift back by half its own size */
+  
+  width:80vw;             /* fills most of the viewport */
+  max-width:900px;        /* never exceed this */
+  height:auto;
+
+  pointer-events:none;
+  user-select:none;
+  /* if you want gentle parallax, keep will-change & add data-parallax */
+  /* will-change:transform; */
+}
+
+
+
+
+
     /* ─────────────── Scene 1: Spejl ─────────────── */
     
     .mirror-scene-layout {
   position: absolute;
-  top: 30%;
-  left: 55%;
+  top: 40%;
+  left: 60%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
@@ -136,17 +265,18 @@
 }
 
 .mirror-wrapper {
-  max-width: 50%;
+  max-width: 45%;
 }
 
 .affirmation-text {
   font-family: 'Super Funky', cursive;
-  font-size: 4rem;
+  font-size: 2rem;
   color: #f2e07c;
   opacity: 0;
   transition: opacity 1s ease-in-out;
   text-align: left;
   max-width: 300px;
+ 
 }
 
     
@@ -157,47 +287,115 @@
       display: block;
     }
 
-    .affirmation-text {
-  font-family: 'Super Funky', cursive;
-  font-size: 4rem;
+
+
+.legs-wrapper{
+  position:absolute;
+  top:25%;
+  left:20%;
+
+  max-width:60%;          /* mirror-sized; tweak as you like */
+  z-index:5;
+}
+
+/* let the SVG scale responsively */
+#legsAnimation svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+
+
+/* centred writer */
+.typewriter-container{
+  position:absolute;
+  top:20%;
+  left:25%;
+  transform:translate(-50%,-50%);
+  max-width:50%;
+  text-align:center;
+  z-index:5;
+}
+
+.typewriter-text{
+  font-size:1rem;
+  line-height:1.4;
   color: #f2e07c;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  text-align: left;
-  max-width: 300px;
+  white-space:pre-wrap;          /* keep line-breaks */
+  letter-spacing:0.02em;
+  font-family: 'Super Funky', cursive;
+}
+
+.cursor{
+  display:inline-block;
+  width:0.12em;
+  background:#f2e07c;
+  animation:blink 0.8s steps(1) infinite;
+}
+
+@keyframes blink{ 50%{opacity:0;} }
+
+/* yellow sparkle SVGs */
+.yellow-svg{
+  position:absolute;
+  width:10vw;                  /* change per sprite or override inline */
+  max-width:120px;
+  pointer-events:none;
+  z-index:4;                   /* under the text, above bg */
 }
 
 
-    .follikel-wrapper {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 40%;
-  z-index: 5;
+
+/* ─────────────── Scene 4: Follikkel ─────────────── */
+.follicle-wrapper{
+  position:absolute;
+  top:38%;          /* tweak until it sits over the RIGHT “seed-pouch” */
+  left:10%;
+  transform:translate(50%,-50%);
+  text-align:center;
+  z-index:5;
 }
 
-.follikel-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
+#follicle{
+  width:40px;      /* start-size */
+  height:auto;
+  transform-origin:center center;
+  transition:transform .25s ease-out;
+  cursor:pointer;
+}
+
+#growPrompt{
+  margin-top:.5rem;
+  font-size:1rem;
+  color:#f2e07c;
+}
+
+#ovulationPrompt{
+  position:absolute;
+  inset:0;                       /* fills the SVG once it’s big */
+  display:none;                  /* revealed in JS */
+  place-content:center;
+  font-family:'Super Funky',cursive;
+  font-size:1.2rem;
+  color:#fff;
+  text-align:center;
+  pointer-events:none;           /* ignore clicks except arrow */
+}
+
+#ovulationArrow{
+  display:inline-block;       /* needed for anchors */
+  border:none;
+  background:none;
+  font-size:3.5rem;           /* big & bold */
+  color:#f2e07c;
+  text-decoration:none;
+  cursor:pointer;
+  pointer-events:auto;
 }
 
 
-.follikelgrow-wrapper {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 40%;
-  z-index: 5;
-}
 
-.follikelgrow-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
 .final-wrapper {
   position: absolute;
@@ -245,12 +443,51 @@
   background-color: #e6d86d;
 }
 
-
+/* ───── Parallax layer ───── */
+[data-parallax]{
+  will-change: transform;
+  transition: transform 0.15s linear;      /* small easing, optional  */
+  z-index: 5;                              /* keep it above red bg    */
+  position: relative;                      /* (already true on yours) */
+}
 
   </style>
 </head>
 
 <button id="tilbage-btn" onclick="goBack()">← Tilbage</button>
+
+
+
+
+<!-- ▾▾▾ Hormon-niveau overlay ▾▾▾ -->
+<div id="hormonOverlay" aria-hidden="true">
+  <!-- curved heading -->
+<svg class="h-heading" viewBox="0 0 800 330" aria-hidden="true">
+  <defs>
+    <!-- big 300-px-radius arc -->
+    <path id="h-arc"
+          d="M40,300 A360,360 0 0 1 760 300" />
+  </defs>
+  <text class="arcText">
+    <textPath href="#h-arc" startOffset="50%" text-anchor="middle">
+      HORMON-NIVEAU
+    </textPath>
+  </text>
+</svg>
+
+  <!-- blue circle with bars -->
+  <div class="h-circle">
+    <!-- data-pct sets final width -->
+    <div class="h-bar"><div class="h-fill" style="--pct:40"></div><span class="h-label">FSH</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:70"></div><span class="h-label">LH</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:90"></div><span class="h-label">ØSTROGEN</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:30"></div><span class="h-label">PROGESTERON</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:60"></div><span class="h-label">TESTOSTERON</span></div>
+  </div>
+</div>
+<!-- ▴▴▴ /overlay ▴▴▴ -->
+
+
 
 
 <body>
@@ -273,56 +510,88 @@
   <!-- Navigation arrows -->
   <button class="nav-btn" id="left-btn">←</button>
   <button class="nav-btn" id="right-btn">→</button>
+  
 
   <!-- Horizontal scroll area -->
   <div id="scroll-wrapper">
     <div id="journey">
       
       <!-- Scene 0 -->
-      <section class="scene" id="scene0">
-        <p>Velkommen til rejsen. Scroll til højre for at begynde.</p>
-      </section>
+     <!-- Scene 0 -->
+<section class="scene" id="scene0">
 
+<p class="intro-text">Velkommen til rejsen.<br>Scroll til højre for at begynde.</p>
+</section>
       <!-- Scene 1 -->
      <section class="scene" id="scene1">
   <div class="mirror-scene-layout">
-    <div class="mirror-wrapper">
-      <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl" />
-    </div>
+    <div class="mirror-wrapper" data-parallax data-depth="0.35">
+  <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl">
+</div>
     <div class="affirmation-text" id="affirmationText">JEG ER DEJLIG</div>
   </div>
 </section>
 
 
       <!-- Scene 2 -->
-      <section class="scene" id="scene2">
-        <p>Scene 2 indhold her.</p>
-         <div id="folikelben-animation" class="lottie-container"></div>
-      </section>
+     
+<section class="scene" id="scene2">
+  <div class="legs-wrapper" data-parallax data-depth="0.35">
+    <div id="legsAnimation"></div>
+  </div>
 
 
 
-      <!-- Scene 3 -->
+
+  
+</section>
+
+
+     <!-- Scene 3 -->
 <section class="scene" id="scene3">
-  <div class="follikel-wrapper">
-    <img src="images/folikelfase/follikelgrafik.svg" alt="Follikelfasen illustration" />
+  <!-- ✏️ Type-writer text -->
+  <div class="typewriter-container" data-parallax data-depth="0.35">
+    <span id="typeText" class="typewriter-text"></span>
+    <span id="typeCursor" class="cursor">|</span>
   </div>
+
+  <!-- ✏️ Yellow SVGs — duplicate / move / resize as you like -->
+  <img class="yellow-svg" data-parallax data-depth="0.15"
+       style="top:22%; left:18%;" src="images/folikelfase/yellow1.svg" alt="">
+  <img class="yellow-svg" data-parallax data-depth="0.25"
+       style="top:68%; left:72%;" src="images/folikelfase/yellow2.svg" alt="">
+  <img class="yellow-svg" data-parallax data-depth="0.20"
+       style="top:40%; left:80%;" src="images/folikelfase/yellow3.svg" alt="">
 </section>
 
-      <!-- Scene 4: Folliklen vokser -->
+
+
+
+ <!-- Scene 4: Folliklen vokser -->
 <section class="scene" id="scene4">
-  <div class="follikelgrow-wrapper">
-    <img src="images/folikelfase/follikelgrow.svg" alt="Folliklen vokser" />
+
+ <!-- NEW: actual tree artwork you can position with CSS -->
+  <img class="tree-img" src="images/folikelfase/tree.png" alt="Træ">
+
+
+  <!-- selve folliklen -->
+  <div class="follicle-wrapper" data-parallax data-depth="0.35">
+    <img id="follicle" src="images/folikelfase/follikkeltryk.svg" alt="Follikkel" />
+    <p id="growPrompt">tryk for at se folliklen vokse</p>
+
+   <!-- dukker først op efter 6 klik -->
+<div id="ovulationPrompt">
+  <span>Gå til næste fase:<br>Ægløsningsfasen</span>
+  <br />
+  <!-- link directly to the next HTML file -->
+  <a id="ovulationArrow"
+     href="3egglosningsfasen.html"
+     aria-label="Gå videre">→</a>
+</div>
+
   </div>
 </section>
 
-<!-- Scene 5: Final scene -->
-<section class="scene" id="scene5">
-  <div class="final-wrapper">
-    <h2>Tak fordi du tog rejsen 🌸</h2>
-    <p>Din cyklus er kompleks, smuk og værd at forstå.</p>
-  </div>
-</section>
 
       
 
@@ -355,7 +624,6 @@ function goBack() {
   "Scene 2: Hormoner",
   "Scene 3: Follikelfasen",
   "Scene 4: Folliklen vokser",
-  "Scene 5: Afslutning"
 ];
 
 const affirmationTexts = ["JEG ER DEJLIG", "JEG ER SMUK", "JEG ER SELVSIKKER!"];
@@ -401,11 +669,189 @@ scrollWrapper.addEventListener("scroll", () => {
       scrollWrapper.scrollBy({ left: window.innerWidth, behavior: "smooth" });
     });
 
-    // Update scene title on scroll
-    scrollWrapper.addEventListener("scroll", () => {
-      const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
-      titleOverlay.textContent = sectionTitles[index] || "";
+
+/* ── Scene 3: type-writer text ────────────────────────────── */
+const scene3Lines = `Du har mere overskud,
+føler dig åben og klar på fællesskab.
+Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
+
+  både med andre og dig selv.`;
+
+let typedScene3 = false;   // prevents retriggering
+
+function startTypewriter(){
+  const el = document.getElementById('typeText');
+  const cursor = document.getElementById('typeCursor');
+  let i = 0;
+
+  (function type(){
+    if(i < scene3Lines.length){
+      el.textContent += scene3Lines.charAt(i++);
+      setTimeout(type, 35);                 // speed (ms / char)
+    }else{
+      cursor.style.display = 'none';        // hide when done
+    }
+  })();
+}
+
+
+
+
+
+
+/* extend your existing scroll listener */
+scrollWrapper.addEventListener("scroll", () => {
+  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
+
+  /* --- existing title & mirror logic here --- */
+
+  if(index === 3 && !typedScene3){          // Scene 3 in view
+    typedScene3 = true;
+    startTypewriter();
+  }
+});
+
+
+
+
+
+/* ── Parallax set-up ────────────────────────────────────────────── */
+const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+const sceneWidth   = window.innerWidth;     //  = 100 vw
+const maxDepth     = 1;                     //  1  = normal scroll rate
+
+function updateParallax(){
+  const scrollX = scrollWrapper.scrollLeft;
+
+  parallaxEls.forEach(el => {
+    const depth = parseFloat(el.dataset.depth) || 0.2;  // fallback speed
+    /* element’s parent scene starts at … */
+    const sceneIndex = Math.round(el.closest('.scene').offsetLeft / sceneWidth);
+    const sceneStart = sceneIndex * sceneWidth;
+
+    /* distance scrolled *inside* that scene                     */
+    const insideSceneX = scrollX - sceneStart;
+
+    /* move it leftward by a fraction of the scene scroll        */
+    const offset = -insideSceneX * (1 - depth); // 0.35 → 65 % slower
+    el.style.transform = `translateX(${offset}px)`;
+  });
+}
+
+/* throttle with requestAnimationFrame for 60 fps-ish smoothness */
+let ticking = false;
+scrollWrapper.addEventListener('scroll', () => {
+  if (!ticking){
+    requestAnimationFrame(() => {
+      updateParallax();
+      ticking = false;
     });
+    ticking = true;
+  }
+});
+
+/* run once on load & when viewport resizes                       */
+updateParallax();
+window.addEventListener('resize', updateParallax);
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  lottie.loadAnimation({
+    container : document.getElementById('legsAnimation'),
+    renderer  : 'svg',
+    loop      : true,
+    autoplay  : true,
+    path      : 'folikelben.json'   // ← relative to this HTML file
+  });
+});
+
+
+/* ── Hormon-niveau overlay logic ─────────────────────────── */
+const overlay   = document.getElementById('hormonOverlay');
+const fills     = [...overlay.querySelectorAll('.h-fill')];
+
+/* fill-bar helper */
+function setFillWidths(){
+  fills.forEach(el=>{
+    const pct = el.style.getPropertyValue('--pct') || 0;
+    el.style.inset = `0 ${100-pct}% 0 0`;
+  });
+}
+
+/* show / hide helpers */
+function showOverlay(){
+  overlay.classList.add('show');
+  setFillWidths();
+}
+function hideOverlay(){
+  overlay.classList.remove('show');
+}
+
+/* 1. SCROLL behaviour  — drop only in Scene 2, hide elsewhere */
+scrollWrapper.addEventListener('scroll', ()=>{
+  const idx = Math.round(scrollWrapper.scrollLeft / innerWidth);
+
+  if(idx === 2){
+    /* scene 2 in view → make sure it’s down */
+    if(!overlay.classList.contains('show')) showOverlay();
+  }else{
+    /* any other scene → make sure it’s up  */
+    if(overlay.classList.contains('show'))  hideOverlay();
+  }
+}, {passive:true});
+
+/* 2. CLICK behaviour — toggle while you’re *in* Scene 2       */
+document.addEventListener('click', ()=>{
+  const idx = Math.round(scrollWrapper.scrollLeft / innerWidth);
+  if(idx !== 2) return;                 // ignore clicks outside Scene 2
+  overlay.classList.contains('show') ? hideOverlay() : showOverlay();
+});
+
+
+/* drop down when Scene 2 first comes fully into view */
+scrollWrapper.addEventListener('scroll', ()=>{
+  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
+  if(index===2 && !overlayShown){
+    overlayShown = true;
+    setTimeout(showOverlay, 400);   // 0.4 s delay
+  }
+});
+
+/* ── Scene 4: “growing” follikkel ─────────────────── */
+const follicle        = document.getElementById('follicle');
+const growPrompt      = document.getElementById('growPrompt');
+const ovulationPrompt = document.getElementById('ovulationPrompt');
+const ovulationArrow  = document.getElementById('ovulationArrow');
+
+let clicks = 0;                         // 0-to-6
+
+follicle.addEventListener('click', e=>{
+  e.stopPropagation();                  // keep overlay clicks local
+  if(clicks >= 6) return;               // already at max size
+
+  clicks++;
+  const scale = 1 + clicks * 3;      // ends at 2.5×
+  follicle.style.transform = `scale(${scale})`;
+
+  if(clicks === 6){
+    growPrompt.style.display = 'none';
+    ovulationPrompt.style.display = 'grid';   // centred via CSS
+  }
+});
+
+/* arrow scrolls one scene to the right */
+ovulationArrow.addEventListener('click', e=>{
+  e.stopPropagation();
+  scrollWrapper.scrollBy({left:window.innerWidth, behavior:'smooth'});
+});
+
+
   </script>
 </body>
+
+
+<script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+
+
 </html>

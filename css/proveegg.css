@@ -1,0 +1,65 @@
+.hormon-wrapper {
+    width: 300px;
+    background: #7f1524;
+    padding: 20px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-family: 'Super Funky', sans-serif;
+    position: relative;
+  }
+  
+  .titel {
+    color: #f7f797;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .hormon-bar {
+    position: relative;
+    background: #c2858c;
+    margin: 10px 0;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .gul-niveau {
+    position: absolute;
+    background: #f7f797;
+    height: 100%;
+    width: 0;
+    left: 0;
+    top: 0;
+    transition: width 0.5s ease;
+    z-index: 1;
+  }
+  
+  .label {
+    position: relative;
+    z-index: 2;
+    line-height: 40px;
+    font-family: 'Poppins', sans-serif;
+    color: #7f1524;
+    font-weight: bold;
+  }
+  
+  .bue-overskrift {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 300px;
+    margin: 0 auto 30px;
+    transform: translateY(10px);
+    font-family: 'Super Funky', sans-serif;
+  }
+  
+  .bue-overskrift span {
+    display: inline-block;
+    font-size: 22px;
+    color: #f7f797;
+    transform: rotate(calc(var(--i) * 7deg - 40deg));
+    transform-origin: bottom center;
+  }
+  

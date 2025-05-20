@@ -25,6 +25,46 @@
   window.addEventListener('DOMContentLoaded', checkScroll); // tjek ved load
   
   
+/* ----------   TYPEWRITER – LUTEALFASE   ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const typer = document.getElementById('typewriter-lutealfase');
+  const text = `Alle disse tanker og følelser skyldes de hormoner, som Cilles krop er påvirket af i denne fase. Hendes livmoder forbereder sig nemlig på, at ægget fra ægløsningen enten kan blive befrugtet og gøre hende gravid – eller at cyklussen starter forfra, og hun får menstruation.`;
+
+  // Forbered tekstfeltet
+  typer.style.visibility = 'hidden';
+  typer.style.whiteSpace = 'pre-line';
+  typer.textContent = text;
+
+  const finalH = typer.offsetHeight + 'px';
+  typer.textContent = '';
+  typer.style.minHeight = finalH;
+  typer.style.visibility = 'visible';
+
+  // Typewriter-funktion
+  function startTypewriter() {
+    let i = 0;
+    const iv = setInterval(() => {
+      typer.textContent += text.charAt(i);
+      if (++i === text.length) clearInterval(iv);
+    }, 50);
+  }
+
+  // Intersection Observer
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startTypewriter();
+        observer.unobserve(entry.target); // Kun én gang
+      }
+    });
+  }, {
+    threshold: 0.5 // Start når 50% af elementet er synligt
+  });
+
+  observer.observe(typer);
+});
+
+
   document.addEventListener('DOMContentLoaded', function () {
     // ── Lottie animation ─────────────────────────
     lottie.loadAnimation({

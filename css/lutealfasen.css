@@ -14,8 +14,6 @@ body{
 
 p{
    font-family: 'Poppins', sans-serif;
-   font-size: 17px;
-   font-weight:300;
 }
 /* Overskriften */
 h1{
@@ -203,6 +201,26 @@ h5 {
 .infographic img{
   max-width: 80%;
   max-height: auto; 
+}
+
+.typewriter-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;               /* fylder hele skærmhøjden */
+  text-align: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  color: #F7F797;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight:200;
+  line-height: 1.5;
+}
+
+#typewriter-lutealfase {
+  max-width: 800px;
+  white-space: pre-line;
 }
 
 .coins{
@@ -396,7 +414,7 @@ h5 {
  .next-arrow{
    position: absolute;
   right: -80px;
-  top: 4230px;
+  top: 4650px;
   width: 300px;        
   background:none; border:none; cursor:pointer;
   animation:blink 3s infinite;

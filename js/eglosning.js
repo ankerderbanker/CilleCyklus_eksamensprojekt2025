@@ -23,3 +23,43 @@ function togglePopup(id) {
     });
   });
   
+
+
+
+// nulstill alle hormon-barers bredde
+function resetHormonBarer(){
+  document.querySelectorAll('#popup8 .gul-niveau')
+          .forEach(n => n.style.width = '0%');
+}
+
+// 1-sekunds animation hver gang popup 8 åbner
+function animateHormonBarer(){
+  const niveauer = document.querySelectorAll('#popup8 .gul-niveau');
+  setTimeout(() => {
+    niveauer.forEach(n => {
+      n.style.width = n.getAttribute('data-niveau') || '60%';
+    });
+  }, 1000);
+}
+
+/* opdateret togglePopup – kun linjer markeret med *** er ændret */
+function togglePopup(id){
+  const popup = document.getElementById(id);
+  const varSynlig = popup.style.display === 'block';
+
+  document.querySelectorAll('.popup-ved-prik').forEach(p=>{
+    p.style.display = 'none';
+  });
+
+  /* *** hvis vi lukker popup 8 skal barer nulstilles */
+  if(id !== 'popup8'){ resetHormonBarer(); }
+
+  if(!varSynlig){
+    popup.style.display = 'block';
+
+    if(id === 'popup8'){
+      resetHormonBarer();   // start altid fra 0
+      animateHormonBarer(); // og kør animationen
+    }
+  }
+}

@@ -80,6 +80,11 @@ body {
   left: 580px;
 }
 
+.punkt-hormon {
+  top: 1200px;
+  left: 420px;
+}
+
 /* Popup box ved prikken */
 .popup-ved-prik {
   display: none;
@@ -140,6 +145,12 @@ body {
   left: 630px;
 }
 
+#popup8 {
+  top: 920px;
+  left: 470px;
+}
+
+ /* tekst i pop-op */
 .popup-ved-prik h3 {
   font-family: 'Super Funky', sans-serif;
 }
@@ -197,4 +208,81 @@ body {
   right: 20px;
   top: 2140px;
   width: 500px; 
+}
+
+/* hormon tabellen styling */
+.hormon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hormon-wrapper {
+  width: 400px;
+  height: 400px;
+  background: var(--color-primar-lysebla);
+  padding: 20px 20px;
+  border-radius: 50%;
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centrerer barerne vertikalt */
+  align-items: center;
+  gap: 12px; /* ens afstand mellem barerne */
+}
+
+.hormon-bar {
+  background: var(--color-hvid);
+  height: 44px;
+  width: 65%;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gul-niveau {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%; /* starter altid skjult */
+  background: var(--color-sekundar-gul);
+  transition: width 0.5s ease;
+  z-index: 1;
+}  
+
+.label {
+  position: relative;
+  z-index: 2;
+  line-height: 30px;
+  font-family: 'Super Funky', sans-serif;
+  color: var(--color-primar-lysebla);
+  font-weight: bold;
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+/* ---------- Hormon-popup (punkt 8) ---------- */
+
+/* Selve popup-boksen */
+#popup8.popup-ved-prik{
+  width: 520px;
+  padding: 0 20px 24px;   /* 0 px top-padding = ingen “hvid hat” */
+  max-width: none;
+}
+
+/* Buet SVG-overskrift */
+#popup8 .overskrift-bue{
+  width: 480px;           /* passer til boksen */
+  display: block;         /* så margin virker korrekt */
+  margin: -30px auto -190px;  /* løft 30 px op – overlap 190 px ned */
+}
+
+/* Cirklen med søjlerne */
+#popup8 .hormon-wrapper{
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;         /* centreret, ingen negativ margin-top */
 }

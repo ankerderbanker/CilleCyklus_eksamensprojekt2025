@@ -175,6 +175,7 @@ body {
 #popup8 .overskrift-bue{
   width:700px;
   margin:-200px auto -510px;   /* overlap med cirklen */
+  margin-left: -15px;
 }
 #popup8 .hormon-wrapper{
   width:400px; height:400px;

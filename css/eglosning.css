@@ -140,6 +140,14 @@ body {
   left: 630px;
 }
 
+.popup-ved-prik h3 {
+  font-family: 'Super Funky', sans-serif;
+}
+
+.popup-ved-prik p {
+  font-family: 'Poppins', sans-serif;
+}
+
  /* ikonerne med parralax */
  .eglosning-wrapper {
   position: relative;

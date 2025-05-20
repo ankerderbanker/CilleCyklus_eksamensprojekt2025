@@ -1,4 +1,30 @@
 
+   // Funktion til at tjekke om element er i viewport
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
+
+  const underlineEl = document.querySelector('.underline-word');
+
+ function checkScroll() {
+  if (isInViewport(underlineEl)) {
+    // Vent 3 sekunder før vi tilføjer klassen
+    setTimeout(() => {
+      underlineEl.classList.add('in-view');
+    }, 3000);
+
+    window.removeEventListener('scroll', checkScroll); // kun én gang
+  }
+}
+
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('DOMContentLoaded', checkScroll); // tjek ved load
+  
+  
   document.addEventListener('DOMContentLoaded', function () {
     // ── Lottie animation ─────────────────────────
     lottie.loadAnimation({
@@ -33,7 +59,7 @@
           overskrift_2.style.display = 'block';
         } else {
           // Hvis elementerne ikke findes → gå videre til næste side
-          window.location.href = "menstruation.html";
+          window.location.href = "1menstruationsfasen.html";
         }
       });
     }

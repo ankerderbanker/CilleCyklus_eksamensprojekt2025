@@ -4,26 +4,6 @@ body{
     background-color: var(--color-primar-morkebla);
 }
 
-:root {
-    /* Sort og hvidtoner */
-    --color-hvid: #FFFCF5;
-    --color-sort: #1D1D1B;
-  
-    /* Primære farver */
-    --color-primar-rod: #7F1524;
-    --color-primar-lyserod: #C2858C;
-    --color-primar-rosa: #AE635B; 
-    --color-primar-lysebla: #8DA1BD;
-    --color-primar-morkebla: #6F8095;
-  
-    /* Sekundære farver */
-    --color-sekundar-rod: #7D302D;
-    --color-sekundar-lyserod: #A36A73;
-    --color-sekundar-rosa: #AA8386;
-    --color-sekundar-orange: #EF966F;
-    --color-sekundar-gul: #F7F797;
-  }
-
 p{
    font-family: 'Poppins', sans-serif;
    color: #F7F797;
@@ -63,7 +43,7 @@ h5 {
   font-family: "Super Funky", sans-serif;
 }
 
-/* cillelogoet */
+/* cillelogoet linker tilbage til forside*/
 .logo-link {
   position: absolute;
   z-index: 100;
@@ -71,8 +51,6 @@ h5 {
   right: 60px;
   width: 125px; /* juster størrelse her */
 }
-
-
 
     /* Baggrundstekst lag */
     .background-texts {
@@ -85,6 +63,7 @@ h5 {
       pointer-events: none;
     }
 
+    /* Baggrundstekst der er animeret til at fade ind */
     .text {
       position: absolute;
       color:#8DA1BD;
@@ -96,17 +75,19 @@ h5 {
       white-space: nowrap;
     }
 
+    /* Child 1-5 som er del af samme class med stylet og placeret forskelligt*/
+
+    .text:nth-child(1) {
+      top:40%;
+      left: 25%;
+    }
+
     .text:nth-child(2) {
       animation-delay: 3s;
        top:38%;
       left: 62%;
       rotate: 70deg;
       font-size: 4.5rem;
-    }
-
-    .text:nth-child(1) {
-      top:40%;
-      left: 25%;
     }
 
     .text:nth-child(3) {
@@ -131,6 +112,7 @@ h5 {
        font-size: 2rem;
     }
 
+     /* Animationen af texten med keyframes for 0% og 50%*/
    @keyframes popFade {
   0%, 100% {
     opacity: 0;
@@ -142,7 +124,8 @@ h5 {
   }
 }
 
-    /* Centralt intro lag */
+ 
+    /* Overskriften */
     .intro {
       position: relative;
       z-index: 1;
@@ -157,6 +140,7 @@ h5 {
       pointer-events: auto;
     }
 
+   /* Placering af cille der er animeret i centrum*/
 #cille-animation {
   width: 100%;      /* eller 100% / vw / vh */
   height: 500px;
@@ -167,7 +151,7 @@ h5 {
   z-index: 10000;    /* sikrer at det er ovenpå andre elementer */
 }
  
-
+ /* Underline effekt som understreger "Normal" når brugeren scroller ned til det på skærmen. */
 .underline-word {
   position: relative;
   display: inline-block;
@@ -185,7 +169,7 @@ h5 {
   background:#F7F797;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 1s ease-out;
+  transition: transform 1s ease-out;  /* Styling af animationen */
 }
 
 /* Når .in-view tilføjes, starter animationen */
@@ -194,6 +178,7 @@ h5 {
 }
 
 
+ /* placering af infographicen */
 .info{
     display: flex;
    justify-content: center;
@@ -207,15 +192,16 @@ h5 {
 }
 
 .infographic img{
-  max-width: 80%;
+  max-width: 80%;  /* Scaleringen af størrelse sat i % */
   max-height: auto; 
 }
 
+ /* Typewriter efftekt som animere tekst og styler sectionen*/
 .typewriter-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30rem;               /* fylder hele skærmhøjden */
+  height: 30rem;          
   text-align: center;
   padding: 1rem;
   box-sizing: border-box;
@@ -231,6 +217,7 @@ h5 {
   white-space: pre-line;
 }
 
+ /* Styling af coins*/
 .coins{
   display: flex;
    flex-direction: column;
@@ -240,7 +227,7 @@ h5 {
 }
 
 
-/* Container for begge rækker */
+/* Container for begge rækker til coins */
 .flip-card-container {
   display: flex;
   flex-direction: column;
@@ -256,13 +243,6 @@ h5 {
   justify-content: center;
 }
 
-/* Gør det responsivt på mindre skærme */
-@media (max-width: 900px) {
-  .flip-card-row {
-    flex-direction: column;
-    align-items: center;
-  }
-}
 
 /* Flip card container */
 .flip-card {
@@ -306,7 +286,7 @@ h5 {
   justify-content: center;
 }
 
-/* Runde billeder */
+/* Gør cotainer rund */
 .flip-card-front img {
   width: 300px;
   height: 300px;
@@ -327,6 +307,8 @@ h5 {
   box-sizing: border-box;
 }
 
+
+ /* Placering af overskrift*/
 .hormon{
   display: flex;
   justify-content: center; /* vandret centreret */
@@ -337,7 +319,6 @@ h5 {
   max-width: 65%;
   margin-top: 70rem;
   position:absolute ;
-
 }
 
  hormoncirkel{
@@ -345,12 +326,13 @@ h5 {
       font-family: sans-serif;
     }
 
+     /* Spacer sat for at forsinke animation og skabe et mellemrum*/
     .spacer {
       height: 30vh;
       visibility: hidden;
     
     }
-
+     /* contanier til hormon-niveau */
     .circle-container {
       width: 650px;
       height: 650px;
@@ -367,15 +349,19 @@ h5 {
       box-sizing: border-box;
     }
 
+     /* bredden af niveau-barene i containeren */
     .bar-container {
       width: 65%;
 
     }
+
+     /* Font-familiy sat til inherit for at være den samme */
     .bar span {
       position: relative;
       font-family: inherit;
      }
 
+      /* Styling af barene */
     .bar {
      position: relative;
       width: 100%;
@@ -394,7 +380,7 @@ h5 {
 
      }
 
-
+      /* Styling af fill som animeres */
     .fill {
       position: absolute;
       top: 0;
@@ -407,7 +393,7 @@ h5 {
     }
 
 
-    /* Procent-klasser med mål-width */
+    /* Procent-klasser med mål-width tilpasser mængden af hormoner */
     .fill-70.start { width: 25%; }
     .fill-40.start { width: 15%; }
     .fill-90.start { width: 60%; }
@@ -416,6 +402,8 @@ h5 {
 
     /* næstefase + pil (svg) */
 
+
+ /* næste side pil som er animeret til at bevæge sig lidt */
 .next-arrow-faelles{
    position: absolute;
   right: -80px;

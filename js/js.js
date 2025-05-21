@@ -8,7 +8,7 @@ lottie.loadAnimation({
 });
 
 
-/* ---------- PHASE → ICON FILE MAP ---------- */
+/* ---------- FASER → ICON FILE MAP ---------- */
 const phaseIconBases = [
   {folder:'Fase1', base:'menstruation-icon'},
   {folder:'Fase2', base:'follikelfase-icon'},
@@ -25,7 +25,7 @@ const iconLayout = [
   {x:'74vw', y:'70vh', dir:'right'}
 ];
 
-/* ---------- BUILD ICON ELEMENTS ---------- */
+/* ---------- BUILD IKON ELEMENTER ---------- */
 const bgIconsEl = document.getElementById('bgIcons');
 const phaseImgs = phaseIconBases.map((p,idx)=>{
   return iconLayout.map((pos,i)=>{
@@ -125,7 +125,7 @@ function onHandleClick(){
 }
 
 
-/* ---------- VISUAL LOGIK ---------- */
+/* ---------- VISUEL LOGIK ---------- */
 function placeHandleAtAngle(angle,forceSmall=false){
   const rad=(angle-90)*Math.PI/180;
   handleGroup.setAttribute('transform',

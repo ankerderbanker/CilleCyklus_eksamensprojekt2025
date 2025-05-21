@@ -4,14 +4,6 @@ body{
     background-color: var(--color-primar-morkebla);
 }
 
-@font-face {
-  font-family: 'Super Funky';
-  src: url('/fonts/superfunky/superfunky.woff2') format('woff2'),
-       url('/fonts/superfunky/superfunky.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 :root {
     /* Sort og hvidtoner */
     --color-hvid: #FFFCF5;

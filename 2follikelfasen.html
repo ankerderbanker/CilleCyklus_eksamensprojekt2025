@@ -18,6 +18,7 @@
   <link rel="preload" href="images/folikelfase/tree.png" as="image" />
    <!-- Preload overgangsvideo for denne fase -->
    <link rel="preload" as="video" href="mp4/overgang-til-forllikel.mp4">
+
   <style>
     /* ─────────────  SCENE‑BAGGRUNDE  ───────────── */
 
@@ -46,7 +47,7 @@
     /* Scene 4 – træ, PNG istedet for SVG */
     #scene4 .tree-img {
       position: absolute;
-      top: 48%; /* Ankerpunkt */
+      top: 48%; 
       left: 50%;
       transform: translate(-50%, -50%); 
 
@@ -71,15 +72,12 @@
          style="width:100vw;height:100vh;object-fit:cover;" 
          preload="auto" autoplay playsinline></video>
 </div>
-
   <!-- Logo og tilbage-pil (øverst til højre) -->
         <a href="index.html">
   <img src="images/baggrund/fase3/logocillehjem.svg" alt="Gå til forsiden" class="logo-link">
 </a>
 
-<a href="index.html">
-  <img src="images/baggrund/fase3/Tilbage.svg" alt="Gå Tilbage" class="tilbage-link">
-</a>
+
 
   <!--  Hormon‑niveau overlay  -->
   <div id="hormonOverlay" aria-hidden="true">
@@ -157,7 +155,7 @@
           <span id="typeCursor" class="cursor">|</span>
         </div>
 
-        <!--  Gule SVG’er — dupliker / flyt / størrelsesjuster som du vil -->
+        <!--  Gule SVG’er -->
         <img class="yellow-svg" data-parallax data-depth="0.15" style="top:22%; left:18%;" src="images/folikelfase/yellow1.svg" alt="" />
         <img class="yellow-svg" data-parallax data-depth="0.25" style="top:68%; left:72%;" src="images/folikelfase/yellow2.svg" alt="" />
         <img class="yellow-svg" data-parallax data-depth="0.20" style="top:40%; left:80%;" src="images/folikelfase/yellow3.svg" alt="" />
@@ -165,10 +163,10 @@
 
       <!-- Scene 4: Folliklen vokser -->
       <section class="scene" id="scene4">
-        <!-- Faktisk træ‑grafik (positioneres med CSS) -->
+        <!-- træ‑grafik BAGGRUND -->
         <img class="tree-img" src="images/folikelfase/tree.png" alt="Træ" />
 
-        <!-- Selve folliklen -->
+        <!-- folliklen -->
         <div class="follicle-wrapper" data-parallax data-depth="0.35">
           <img id="follicle" src="images/folikelfase/follikkeltryk.svg" alt="Follikkel" />
           <p id="growPrompt">Tryk <br>se folliklen vokse</p>
@@ -176,7 +174,7 @@
           <!-- Vises først efter 6 klik -->
           <div id="ovulationPrompt">
             <span>Gå til næste fase:<br />Ægløsningsfasen</span><br />
-            <!-- Link direkte til næste HTML‑fil -->
+            <!-- Link til ægløsningsfasen HTML -->
             <a id="ovulationArrow" href="3egglosningsfasen.html" aria-label="Gå videre">→</a>
           </div>
         </div>
@@ -185,7 +183,7 @@
     </div> <!-- /journey -->
   </div> <!-- /scroll-wrapper -->
 
-  <!-- Eksterne scripts -->
+  <!-- Lottie og JS scripts -->
   <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
   <script src="js/follikelfasen.js"></script>
 </body>

@@ -411,10 +411,10 @@ h5 {
 
     /* næstefase + pil (svg) */
 
-    next-arrow-faelles{
+.next-arrow-faelles{
    position: absolute;
   right: -80px;
-  top: 4650px;
+  top: 4850px;
   width: 300px;        
   background:none; border:none; cursor:pointer;
   animation:blink 3s infinite;
@@ -426,3 +426,5 @@ h5 {
     80%  {opacity:.4; transform:translate(-50%,6px)}
     100% {opacity:1; transform:translate(-50%,0)}
   }
+
+  

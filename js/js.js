@@ -118,7 +118,7 @@ function onHandleClick(){
     const targetPages = [
       '1menstruationsfasen.html',
       '2follikelfasen.html',
-      '3eeglosningsfasen.html',
+      '3egglosningsfasen.html',
       '4lutealfasen.html'
     ];
     window.location.href = targetPages[currentPhaseIdx];

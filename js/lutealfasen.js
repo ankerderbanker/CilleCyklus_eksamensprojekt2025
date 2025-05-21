@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       autoplay: true,
       path: 'cillelutealvektoranimation.json'
     });
+  });
 
     // ── Flip cards on click ─────────────────────
     const cards = document.querySelectorAll(".flip-card");

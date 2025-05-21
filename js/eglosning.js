@@ -79,7 +79,7 @@ hvordan hormoner påvirker energi, følelser og fysiske forandringer.`;
 });
 
 /* Næste-side pil */
-/* Klik på knappen → næste side */
+/* Klik på knappen så kommer man til næste side */
 const nextArrow = document.querySelector('.naestefase-pil');
 if (nextArrow) {
   nextArrow.addEventListener('click', () => {

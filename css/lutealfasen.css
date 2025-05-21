@@ -105,7 +105,7 @@ h5 {
        font-size: 4rem;
     }
       .text:nth-child(5) {
-      top:89%;
+      top:100%;
       left: 53%;
        animation-delay: 6s;
        rotate: 30deg;

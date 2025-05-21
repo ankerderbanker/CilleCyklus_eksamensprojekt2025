@@ -10,206 +10,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet" />
+<link rel="stylesheet" href="css/folikkel.css">
+<link rel="stylesheet" href="css/css.css">
 
 <!-- preload træ bagrund PNG-->
 <link rel="preload" href="images/folikelfase/tree.png" as="image">
 
-
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #c2858c;
-      font-family: "Poppins", sans-serif;
-      overflow: hidden;
-      height: 100vh;
-    }
-
-
-/* ───────── Hormon-niveau overlay ───────── */
-:root{
-  --h-blue:#7a91ab;           /* circle & heading */
-  --h-yellow:#f4f68d;         /* bar fill */
-  --h-white:#fff;
-  --h-font:'Super Funky',cursive;
-}
-
-
-/* ── Scene-0 intro styling ───────────────────────── */
-#scene0 .intro-text{
-  position:absolute;
-  top:35%; left:50%;
-  transform:translate(-50%,-50%);
-  font-family:'Super Funky',cursive;
-  font-size:3rem;          /* tweak up or down as you like */
-  color:#f2e07c;           /* your yellow */
-  text-align:center;
-  line-height:1.2;
-  margin:0;
-  user-select:none;
-}
-
-/* hide the ← / → buttons everywhere */
-.nav-btn{ display:none !important; }
-
-
-
-#hormonOverlay{
-  position:fixed;
-  top:-120%; left:50%;
-  transform:translate(-50%,-50%);
-  width:95vmin; max-width:400px;   /* responsive */
-  transition:top .7s cubic-bezier(.57,1.3,.41,.94);
-  z-index:900; pointer-events:none;/* off until visible */
-}
-
-#hormonOverlay.show{
-  top:50%; pointer-events:auto;
-}
-
-/* heading on an SVG arc */
-#hormonOverlay svg{width:100%;height:auto;overflow:visible;}
-.arcText{fill:#f2e07c;font:48px var(--h-font);letter-spacing:2px;}
-
-/* blue circle */
-.h-circle{
-  width:100%;aspect-ratio:1/1;
-  background:#9b5666;
-  border-radius:50%;
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  gap:12px;padding:6% 8%;
-  box-sizing:border-box;
-}
-
-.h-heading{
-  position:absolute;
-  
-  width:100%;
-  overflow:visible;          /* let the letters breathe */
-}
-
-
-/* bar layout */
-.h-bar{
-  position:relative;
-  width:70%;height:44px;
-  border-radius:14px;
-  background:var(--h-white);
-  overflow:hidden;
-}
-
-.h-fill{
-  position:absolute;inset:0 100% 0 0;  /* start 0 % width */
-  background:var(--h-yellow);
-  transition: inset 2.6s ease-out;   /* 2× slower; pick the timing you like */
-}
-
-.h-label{
-  position:absolute;left:10px;top:50%;transform:translateY(-50%);
-  font:24px var(--h-font);
-  color:#9b5666;pointer-events:none;
-}
-
-/* trigger bar-fill when overlay gets .show ------------------ */
-#hormonOverlay.show .h-fill{inset:0 0 0 0;}
-
-
-
-
-    /* ─────────────── FIXED ELEMENTS ─────────────── */
-    #floating-girl {
-      position: fixed;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    #floating-girl img {
-      width: 600px;
-      height: auto;
-      transform: rotate(270deg); /* Rotate 90 degrees clockwise */
-    }
-
-    #bølge-container {
-      position: fixed;
-      bottom: -100px;
-      left: 0;
-      width: 100%;
-      height: auto;
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    .nav-btn {
-      position: fixed;
-      bottom: 50%;
-      transform: translateY(50%);
-      width: 50px;
-      height: 50px;
-      background-color: #f2e07c;
-      color: #9b5666;
-      border: none;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 50;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    }
-
-    #left-btn {
-      left: 20px;
-    }
-
-    #right-btn {
-      right: 20px;
-    }
-
-    /* ─────────────── OVERLAY TITLE ─────────────── */
-    #section-title {
-      visibility: hidden;
-    }
-
-    /* ─────────────── HORIZONTAL SCROLL ─────────────── */
-    #scroll-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      z-index: 1;
-    }
-
-   #journey {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  width: 500vw; /* 5 scenes */
-}
-
-
-    .scene {
-      width: 100vw;
-      height: 100vh;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      background-color: transparent;
-      padding: 2rem;
-      box-sizing: border-box;
-      position: relative;
-      color: white;
-    }
-
-    /* ───────────────  SCENE BACKGROUNDS  ─────────────── */
+<style>
+  /* ───────────────  SCENE BACKGROUNDS  ─────────────── */
 
 .scene::before {       /* universal “background layer” */
   content: "";
@@ -232,12 +40,12 @@
 /* Scene-4 tree – centred & responsive */
 #scene4 .tree-img{
   position:absolute;
-  top:45%;                /* anchor point */
+  top:48%;                /* anchor point */
   left:50%;
   transform:translate(-50%,-50%);   /* shift back by half its own size */
   
-  width:80vw;             /* fills most of the viewport */
-  max-width:900px;        /* never exceed this */
+  width:100vw;             /* fills most of the viewport */
+  max-width:950px;        /* never exceed this */
   height:auto;
 
   pointer-events:none;
@@ -245,213 +53,8 @@
   /* if you want gentle parallax, keep will-change & add data-parallax */
   /* will-change:transform; */
 }
-
-
-
-
-
-    /* ─────────────── Scene 1: Spejl ─────────────── */
-    
-    .mirror-scene-layout {
-  position: absolute;
-  top: 40%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  max-width: 80%;
-  z-index: 5;
-}
-
-.mirror-wrapper {
-  max-width: 45%;
-}
-
-.affirmation-text {
-  font-family: 'Super Funky', cursive;
-  font-size: 2rem;
-  color: #f2e07c;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  text-align: left;
-  max-width: 300px;
- 
-}
-
-    
-
-    .mirror-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-
-
-.legs-wrapper{
-  position:absolute;
-  top:25%;
-  left:20%;
-
-  max-width:60%;          /* mirror-sized; tweak as you like */
-  z-index:5;
-}
-
-/* let the SVG scale responsively */
-#legsAnimation svg{
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-
-
-/* centred writer */
-.typewriter-container{
-  position:absolute;
-  top:20%;
-  left:25%;
-  transform:translate(-50%,-50%);
-  max-width:50%;
-  text-align:center;
-  z-index:5;
-}
-
-.typewriter-text{
-  font-size:1rem;
-  line-height:1.4;
-  color: #f2e07c;
-  white-space:pre-wrap;          /* keep line-breaks */
-  letter-spacing:0.02em;
-  font-family: 'Super Funky', cursive;
-}
-
-.cursor{
-  display:inline-block;
-  width:0.12em;
-  background:#f2e07c;
-  animation:blink 0.8s steps(1) infinite;
-}
-
-@keyframes blink{ 50%{opacity:0;} }
-
-/* yellow sparkle SVGs */
-.yellow-svg{
-  position:absolute;
-  width:10vw;                  /* change per sprite or override inline */
-  max-width:120px;
-  pointer-events:none;
-  z-index:4;                   /* under the text, above bg */
-}
-
-
-
-/* ─────────────── Scene 4: Follikkel ─────────────── */
-.follicle-wrapper{
-  position:absolute;
-  top:38%;          /* tweak until it sits over the RIGHT “seed-pouch” */
-  left:10%;
-  transform:translate(50%,-50%);
-  text-align:center;
-  z-index:5;
-}
-
-#follicle{
-  width:40px;      /* start-size */
-  height:auto;
-  transform-origin:center center;
-  transition:transform .25s ease-out;
-  cursor:pointer;
-}
-
-#growPrompt{
-  margin-top:.5rem;
-  font-size:1rem;
-  color:#f2e07c;
-}
-
-#ovulationPrompt{
-  position:absolute;
-  inset:0;                       /* fills the SVG once it’s big */
-  display:none;                  /* revealed in JS */
-  place-content:center;
-  font-family:'Super Funky',cursive;
-  font-size:1.2rem;
-  color:#fff;
-  text-align:center;
-  pointer-events:none;           /* ignore clicks except arrow */
-}
-
-#ovulationArrow{
-  display:inline-block;       /* needed for anchors */
-  border:none;
-  background:none;
-  font-size:3.5rem;           /* big & bold */
-  color:#f2e07c;
-  text-decoration:none;
-  cursor:pointer;
-  pointer-events:auto;
-}
-
-
-
-
-.final-wrapper {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  max-width: 70%;
-  z-index: 5;
-}
-
-.final-wrapper h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #f2e07c;
-}
-
-.final-wrapper p {
-  font-size: 1.2rem;
-  color: white;
-}
-
-
-
-
-#tilbage-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #f2e07c;
-  color: #9b5666;
-  border: none;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  z-index: 100;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: background-color 0.3s;
-}
-
-#tilbage-btn:hover {
-  background-color: #e6d86d;
-}
-
-/* ───── Parallax layer ───── */
-[data-parallax]{
-  will-change: transform;
-  transition: transform 0.15s linear;      /* small easing, optional  */
-  z-index: 5;                              /* keep it above red bg    */
-  position: relative;                      /* (already true on yours) */
-}
-
-  </style>
+</style>
+  
 </head>
 
 <button id="tilbage-btn" onclick="goBack()">← Tilbage</button>
@@ -478,11 +81,11 @@
   <!-- blue circle with bars -->
   <div class="h-circle">
     <!-- data-pct sets final width -->
-    <div class="h-bar"><div class="h-fill" style="--pct:40"></div><span class="h-label">FSH</span></div>
-    <div class="h-bar"><div class="h-fill" style="--pct:70"></div><span class="h-label">LH</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:85"></div><span class="h-label">FSH</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:35"></div><span class="h-label">LH</span></div>
     <div class="h-bar"><div class="h-fill" style="--pct:90"></div><span class="h-label">ØSTROGEN</span></div>
-    <div class="h-bar"><div class="h-fill" style="--pct:30"></div><span class="h-label">PROGESTERON</span></div>
-    <div class="h-bar"><div class="h-fill" style="--pct:60"></div><span class="h-label">TESTOSTERON</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:15"></div><span class="h-label">PROGESTERON</span></div>
+    <div class="h-bar"><div class="h-fill" style="--pct:25"></div><span class="h-label">TESTOSTERON</span></div>
   </div>
 </div>
 <!-- ▴▴▴ /overlay ▴▴▴ -->

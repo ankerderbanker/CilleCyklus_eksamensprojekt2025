@@ -16,10 +16,13 @@
         <link rel="stylesheet" href="css/css.css">
         <!-- specifikt til ægløsningsiden -->
         <link rel="stylesheet" href="css/eglosning.css">
-           <!-- Preload overgangsvideo for denne fase -->
+
+<!-- Preload overgangsvideo for ægløsningfasen -->
   <link rel="preload" as="video" href="mp4/overgang-til-egglosning.mp4">
 </head>
+
 <body>
+<!-- overgangsvideo for ægløsningfasen, samme kode i de andre fase, bare andre videoer -->
   <div id="phaseVideoOverlay" style="
   position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;
   background:black;display:flex;justify-content:center;align-items:center;">
@@ -27,6 +30,7 @@
          style="width:100vw;height:100vh;object-fit:cover;" 
          preload="auto" autoplay playsinline></video>
 </div>
+
 <!-- Logo og tilbage-pil (øverst til højre) -->
 <a href="index.html">
   <img src="images/baggrund/fase3/logocillehjem.svg" alt="Gå til forsiden" class="logo-link">

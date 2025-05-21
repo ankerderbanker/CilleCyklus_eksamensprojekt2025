@@ -2,7 +2,6 @@
 
 
 /* hormon-animation & popup */
-
 /* Nulstil alle gule bjælker (bruges når man lukker/hopper væk) */
 function resetHormonBarer() {
   document.querySelectorAll('#popup8 .gul-niveau')
@@ -78,3 +77,12 @@ hvordan hormoner påvirker energi, følelser og fysiske forandringer.`;
     if (++i === text.length) clearInterval(iv);
   }, 40);   // 40 ms pr. tegn ≈ 25 tegn/sek.
 });
+
+/* Næste-side pil */
+/* Klik på knappen → næste side */
+const nextArrow = document.querySelector('.naestefase-pil');
+if (nextArrow) {
+  nextArrow.addEventListener('click', () => {
+    window.location.href = "4lutealfasen.html"; // linker videre til næste fase
+  });
+}

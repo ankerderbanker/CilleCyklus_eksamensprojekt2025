@@ -122,10 +122,27 @@ body {
 .tilbage-link{ position:absolute; top:270px; right:70px;  width:200px; }
 
 /* næstefase-pil */
-.naestefase-pil{
-  position:absolute;
-  right:20px; top:2140px;
-  width:500px;
+.naestefase-pil {
+  position: absolute;
+  right: 20px;
+  top: 2110px;
+  width: 500px;
+  background: none;
+  border: none;
+  animation: blink 2s infinite; /* hastigheden den bevæger sig */
+}
+
+/* Billedet fylder hele knappen, men skaleres proportionalt */
+.naestefase-pil img {
+  width: 100%;
+  height: auto;
+}
+
+/* Blink-effekt: lille hop & gennemsigtighed på “næste-fase pilen”/knappen */
+@keyframes blink {
+  0%, 60%  { opacity: 1; transform: translateY(0);   }
+  80%      { opacity: .4; transform: translateY(6px); }
+  100%     { opacity: 1; transform: translateY(0);   }
 }
 
 /* hormon-tabellen i pop-up 8 */

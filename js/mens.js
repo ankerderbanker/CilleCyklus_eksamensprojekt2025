@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const overlay = document.getElementById('phaseVideoOverlay');
+  const video = document.getElementById('phaseVideo');
+  video.onended = function() {
+    overlay.style.display = 'none';
+  };
   /* ---------- BOBLE-ANIMATION (LIVMORHALS) ---------- */
   // Formål: Skabe "organisk" baggrund med ikke-overlappende bobler omkring livmoderen.
 

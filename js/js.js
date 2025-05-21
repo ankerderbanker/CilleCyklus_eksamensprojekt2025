@@ -1,4 +1,3 @@
-
 /* ---------- LOTTIE ---------- */
 lottie.loadAnimation({
   container : document.getElementById('lottie'),
@@ -7,6 +6,8 @@ lottie.loadAnimation({
   autoplay  : true,
   path      : 'data.json'
 });
+
+
 
 /* ---------- PHASE → ICON FILE MAP ---------- */
 const phaseIconBases = [
@@ -111,36 +112,21 @@ function pointerUp(e){
   Math.abs(dist-OUTER_R)<STROKE ? snapToPhase(currentPhaseIdx) : resetToTop();
 }
 
+let oplevLock = false;
 function onHandleClick(){
+  if(oplevLock) return;
   if(!dragMoved && handleText.style.display !== "none" && currentPhaseIdx !== null){
-    const videoFiles = [
-      'mp4/overgang-til-mens.mp4',
-      'videos/follikelfase.mp4',
-      'videos/aeglosning.mp4',
-      'mp4/videos/lutealfase.mp4'
-    ];
+    oplevLock = true;
     const targetPages = [
       '1menstruationsfasen.html',
       '2follikelfasen.html',
-      '3eeglosningsfasen.html',
+      '3egglosningsfasen.html',
       '4lutealfasen.html'
     ];
-
-    const videoSrc = videoFiles[currentPhaseIdx];
-    const targetURL = targetPages[currentPhaseIdx];
-
-    const videoOverlay = document.getElementById('videoOverlay');
-    const video = document.getElementById('transitionVideo');
-
-    video.src = videoSrc;
-    videoOverlay.style.display = 'flex';
-
-    video.play();
-    video.onended = () => {
-      window.location.href = targetURL;
-    };
+    window.location.href = targetPages[currentPhaseIdx];
   }
 }
+
 
 /* ---------- VISUAL LOGIC ---------- */
 function placeHandleAtAngle(angle,forceSmall=false){

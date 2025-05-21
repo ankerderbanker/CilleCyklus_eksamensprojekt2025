@@ -121,6 +121,7 @@ function onHandleClick(){
       '3eeglosningsfasen.html',
       '4lutealfasen.html'
     ];
+    window.location.href = targetPages[currentPhaseIdx];
   }
 }
 

@@ -1,15 +1,15 @@
 
-/* ---------- PAGE LAYOUT ---------- */
+/* ---------- SIDE LAYOUT ---------- */
 html,body{margin:0;height:100%}
 body{
   display:flex;align-items:center;justify-content:center;
   background:#f9d9e5;
   transition:background .4s ease;
   font-family:"Rubik",system-ui,sans-serif;
-  overflow:hidden;                     /* keep off-screen icons hidden */
+  overflow:hidden;                     
 }
 
-/* ---------- BACKGROUND ICONS ---------- */
+/* ---------- BAGGRUNDSIKONER ---------- */
 #bgIcons{position:fixed;inset:0;pointer-events:none;z-index:0}
 .bgIcon{
   position:absolute;width:120px;
@@ -17,7 +17,7 @@ body{
   transition:opacity .75s ease, transform .75s ease;
 }
 
-/* ---------- CYCLE + LOTTIE ---------- */
+/* ---------- CYKLUS + LOTTIE ---------- */
 #cycle-wrapper{position:relative;width:650px;height:650px}
 #lottie{
   position:absolute;width:300px;height:300px;
@@ -25,11 +25,11 @@ body{
   pointer-events:none;z-index:1;
 }
 
-/* ---------- RING / QUADRANTS ---------- */
+/* ---------- RING / KVADRANTER ---------- */
 .phase{stroke:transparent;stroke-width:40;fill:none;stroke-linecap:butt}
 .phaseImg{opacity:.45;transition:opacity .25s,filter .25s}
 .phaseImg.active{opacity:1;filter:brightness(.8)}
 
-/* ---------- HANDLE ---------- */
+/* ---------- CIRKEL HÅNDTAG ---------- */
 #handleCircle{fill:#7f1524;cursor:pointer;touch-action:none;transition:transform .2s ease}
 #handleText{fill:#fff;font-weight:600;font-size:11px;user-select:none;pointer-events:none;display:none}

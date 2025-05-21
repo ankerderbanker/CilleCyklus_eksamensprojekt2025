@@ -62,30 +62,35 @@ document.addEventListener('scroll', () => {
 /* TYPEWRITER-INTRO */
 /* Skriver teksten tegn-for-tegn som en typewriter.
    Fallback-teksten står allerede i HTML, så siden er aldrig er helt tom */
-document.addEventListener('DOMContentLoaded', () => {
-  const typer = document.getElementById('typewriter-eggl');
-  const text = `Her kan du udforske kvindekroppen gennem ægløsningsfasen.
-Klik på punkterne for at opdage,
-hvordan hormoner påvirker energi, følelser og fysiske forandringer.`;
+   document.addEventListener('DOMContentLoaded', () => {
+    const typer = document.getElementById('typewriter-eggl');
+    const text = `Her kan du udforske kvindekroppen gennem ægløsningsfasen.
+  Klik på punkterne for at opdage,
+  hvordan hormoner påvirker energi, følelser og fysiske forandringer.`;
+  
+/* Låser højden, ellers hopper alt nedenunder mens typewriteren skriver */
+    typer.style.visibility = 'hidden';
+    typer.style.whiteSpace  = 'pre-line';
+    typer.textContent       = text;
+    const finalH = typer.offsetHeight + 'px';
+  
+    typer.textContent = '';
+    typer.style.minHeight = finalH;
+    typer.style.visibility = 'visible';
 
-  /* Låser højden, ellers hopper alt nedenunder mens typewriteren skriver */
-  typer.style.visibility = 'hidden';
-  typer.style.whiteSpace  = 'pre-line';
-  typer.textContent       = text;
-  const finalH = typer.offsetHeight + 'px';
 
-  typer.textContent = '';
-  typer.style.minHeight = finalH;
-  typer.style.visibility = 'visible';
-
-  /* skrivemaskine-effekt */
-  let i = 0;
-  const iv = setInterval(() => {
-    typer.textContent += text.charAt(i);
-    if (++i === text.length) clearInterval(iv);
-  }, 40);   // 40 ms pr. tegn ≈ 25 tegn/sek.
-});
-
+/* delay på typewriteren, i introvideoens længde */ 
+   const delayBeforeStart = 12000; // delay 
+  
+   setTimeout(() => {
+      /* skrivemaskine-effekt */ 
+    let i = 0;
+     const iv = setInterval(() => {
+       typer.textContent += text.charAt(i);
+       if (++i === text.length) clearInterval(iv);
+     }, 40);
+   }, delayBeforeStart);
+  });
 /* Næste-side pil */
 /* Klik på knappen så kommer man til næste side */
 const nextArrow = document.querySelector('.naestefase-pil');

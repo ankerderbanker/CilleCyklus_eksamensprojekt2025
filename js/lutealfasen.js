@@ -1,4 +1,13 @@
-
+// OVERGANGS VIDEOER
+document.addEventListener('DOMContentLoaded', function() => {
+  // JS der skjuler overlayet når videoen er færdig 
+  const overlay = document.getElementById('phaseVideoOverlay');
+  const video = document.getElementById('phaseVideo');
+  video.onended = function() {
+    overlay.style.display = 'none';
+  };
+});
+   
    // Funktion til at tjekke om element er i viewport
   function isInViewport(el) {
     const rect = el.getBoundingClientRect();

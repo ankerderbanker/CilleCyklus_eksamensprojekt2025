@@ -1,5 +1,13 @@
-/* javascript for egløsningsiden */
 
+// OVERGANGS VIDEOER
+document.addEventListener('DOMContentLoaded', function() => {
+  // JS der skjuler overlayet når videoen er færdig 
+  const overlay = document.getElementById('phaseVideoOverlay');
+  const video = document.getElementById('phaseVideo');
+  video.onended = function() {
+    overlay.style.display = 'none';
+  };
+});
 
 /* hormon-animation & popup */
 /* Nulstil alle gule bjælker (bruges når man lukker/hopper væk) */

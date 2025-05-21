@@ -1,5 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
 
+// OVERGANGS VIDEOER
+document.addEventListener('DOMContentLoaded', () => {
+  // JS der skjuler overlayet når videoen er færdig 
   const overlay = document.getElementById('phaseVideoOverlay');
   const video = document.getElementById('phaseVideo');
   video.onended = function() {

@@ -112,18 +112,15 @@ function pointerUp(e){
   Math.abs(dist-OUTER_R)<STROKE ? snapToPhase(currentPhaseIdx) : resetToTop();
 }
 
-let oplevLock = false;
+
 function onHandleClick(){
-  if(oplevLock) return;
   if(!dragMoved && handleText.style.display !== "none" && currentPhaseIdx !== null){
-    oplevLock = true;
     const targetPages = [
       '1menstruationsfasen.html',
       '2follikelfasen.html',
-      '3egglosningsfasen.html',
+      '3eeglosningsfasen.html',
       '4lutealfasen.html'
     ];
-    window.location.href = targetPages[currentPhaseIdx];
   }
 }
 

@@ -240,10 +240,10 @@ body {
 }
 /* Baggrund til enkelt hormon-bar */
 .hormon-bar {
-  background: var(--color-hvid);
+  background: var(--color-primar-lyserod);
   height: 66px;
   width: 65%;
-  border-radius: 14px;
+  border-radius: 22px;
   position: relative;
   overflow: hidden;
 }
@@ -262,7 +262,7 @@ body {
   font-family: 'Super Funky', sans-serif;
   color: var(--color-primar-rod);
   font-weight: bold;
-  font-size: 30px;
+  font-size: 35px;
   margin-left: 10px;
 }
 

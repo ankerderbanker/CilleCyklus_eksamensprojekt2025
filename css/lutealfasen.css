@@ -12,14 +12,35 @@ body{
   font-style: normal;
 }
 
+:root {
+    /* Sort og hvidtoner */
+    --color-hvid: #FFFCF5;
+    --color-sort: #1D1D1B;
+  
+    /* Primære farver */
+    --color-primar-rod: #7F1524;
+    --color-primar-lyserod: #C2858C;
+    --color-primar-rosa: #AE635B; 
+    --color-primar-lysebla: #8DA1BD;
+    --color-primar-morkebla: #6F8095;
+  
+    /* Sekundære farver */
+    --color-sekundar-rod: #7D302D;
+    --color-sekundar-lyserod: #A36A73;
+    --color-sekundar-rosa: #AA8386;
+    --color-sekundar-orange: #EF966F;
+    --color-sekundar-gul: #F7F797;
+  }
+
 p{
    font-family: 'Poppins', sans-serif;
+   color: #F7F797;
 }
 /* Overskriften */
 h1{
     font-size: 8rem;
     font-family: "Super Funky", sans-serif;
-    color: var(--color-hvid);
+    color: #FFFCF5;
     text-align: center;
     margin-top: 2rem;
     margin-bottom: -1rem;
@@ -28,7 +49,7 @@ h1{
 h2{
    font-size:5rem;
    font-family: "Super Funky", sans-serif;
-   color:#8DA1BD;
+  color:#8DA1BD;
 }
 
 h3{
@@ -40,7 +61,7 @@ h3{
 h4{
    font-size:2rem;
    font-family: "Super Funky", sans-serif;
-   color:#FFFCF5;
+  color:#FFFCF5;
    margin-top: -3rem;
 }
 h5 {
@@ -53,17 +74,12 @@ h5 {
 /* cillelogoet */
 .logo-link {
   position: absolute;
+  z-index: 100;
   top: 90px;
   right: 60px;
   width: 125px; /* juster størrelse her */
 }
 
-.tilbage-link {
-  position: absolute;
-  top: 220px;
-  right: 60px;
-  width: 125px; /* juster størrelse her */
-}
 
 
     /* Baggrundstekst lag */
@@ -79,7 +95,7 @@ h5 {
 
     .text {
       position: absolute;
-      color: #8DA1BD;
+      color:#8DA1BD;
       font-size: 3rem;
       font-family:"Super Funky", sans-serif;
       opacity: 0;
@@ -145,7 +161,7 @@ h5 {
       align-items:first baseline;
       margin-top: 2rem;
       flex-direction: column;
-      color: white;
+      color: #FFFCF5;
       pointer-events: auto;
     }
 
@@ -308,7 +324,7 @@ h5 {
 
 /* Bagside med tekst */
 .flip-card-back {
-  background-color: #8DA1BD;
+  background-color:#8DA1BD;
   color: #FFFCF5;
   transform: rotateY(180deg);
   display: flex;
@@ -334,9 +350,7 @@ h5 {
 
  hormoncirkel{
       margin: 0;
-      background-color: #111;
       font-family: sans-serif;
-      color: #fff;
     }
 
     .spacer {
@@ -349,7 +363,7 @@ h5 {
       width: 650px;
       height: 650px;
       border-radius: 50%;
-      background-color: #8DA1BD;
+      background-color:#8DA1BD;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -374,7 +388,7 @@ h5 {
      position: relative;
       width: 100%;
       height: 64px;
-      background-color:var(--color-primar-morkebla);
+      background-color: #6F8095;
       border-radius: 22px;
       overflow: hidden;
       font-size: 30px;
@@ -384,8 +398,7 @@ h5 {
       padding-left: 10px;
       justify-content:last baseline;
        z-index: 0;
-      color:#8DA1BD;
-      
+      color: #8DA1BD;
 
      }
 
@@ -414,7 +427,7 @@ h5 {
 .next-arrow-faelles{
    position: absolute;
   right: -80px;
-  top: 4850px;
+  top: 4700px;
   width: 300px;        
   background:none; border:none; cursor:pointer;
   animation:blink 3s infinite;

@@ -11,9 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet" />
 
-  <!-- Eksterne stylesheets -->
+  <!-- stylesheets -->
   <link rel="stylesheet" href="css/folikkel.css" />
-
 
   <!-- Forudindlæs træ‑baggrund (PNG) -->
   <link rel="preload" href="images/folikelfase/tree.png" as="image" />
@@ -22,18 +21,18 @@
     /* ─────────────  SCENE‑BAGGRUNDE  ───────────── */
 
     .scene::before {
-      /* Universelt baggrundslag */
+      /* Universel baggrund styling */
       content: "";
       position: absolute;
-      inset: 0; /* Fuld visningsport */
+      inset: 0; 
       background-repeat: no-repeat;
-      background-size: contain; /* Brug evt. 'cover' for fuld dækning */
+      background-size: contain; 
       background-position: center center;
-      z-index: 1; /* ► under spejle / pige / tekst (z-index ≥5) */
-      pointer-events: none; /* ► ignorer klik / berøring */
+      z-index: 1; /* under spejle / pige / tekst (z-index ≥5) */
+      pointer-events: none; 
     }
 
-    /* Scene‑specifik grafik */
+    /* baggrundsgrafik til alle scener */
     #scene1::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg1.svg"); }
     #scene2::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg2.svg"); }
     #scene3::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg3.svg"); 
@@ -43,21 +42,20 @@
     /* 2a. Scene 4 skal ikke tegne et ::before‑lag */
     #scene4::before { background-image: none !important; }
 
-    /* Scene 4 – træ, centreret & responsiv */
+    /* Scene 4 – træ, PNG istedet for SVG */
     #scene4 .tree-img {
       position: absolute;
       top: 48%; /* Ankerpunkt */
       left: 50%;
-      transform: translate(-50%, -50%); /* Flyt tilbage med halvdelen af egen størrelse */
+      transform: translate(-50%, -50%); 
 
-      width: 100vw; /* Fylder det meste af visningsporten */
-      max-width: 950px; /* Overskrid aldrig dette */
+      width: 100vw;
+      max-width: 950px; 
       height: auto;
 
       pointer-events: none;
       user-select: none;
-      /* Hvis du vil have let parallakse, behold will-change & tilføj data-parallax */
-      /* will-change: transform; */
+     
     }
 
    
@@ -75,7 +73,7 @@
   <img src="images/baggrund/fase3/Tilbage.svg" alt="Gå Tilbage" class="tilbage-link">
 </a>
 
-  <!-- ▾▾▾ Hormon‑niveau overlay ▾▾▾ -->
+  <!--  Hormon‑niveau overlay  -->
   <div id="hormonOverlay" aria-hidden="true">
     <!-- Buet overskrift -->
     <svg class="h-heading" viewBox="0 0 800 330" aria-hidden="true">
@@ -90,7 +88,7 @@
       </text>
     </svg>
 
-    <!-- Blå cirkel med søjler -->
+    <!--  cirkel med søjler -->
     <div class="h-circle">
       <!-- data-pct angiver slutbredde -->
       <div class="h-bar"><div class="h-fill" style="--pct:85"></div><span class="h-label">FSH</span></div>
@@ -100,7 +98,7 @@
       <div class="h-bar"><div class="h-fill" style="--pct:25"></div><span class="h-label">TESTOSTERON</span></div>
     </div>
   </div>
-  <!-- ▴▴▴ /overlay ▴▴▴ -->
+  <!-- ▴▴▴ /overlay slut ▴▴▴ -->
 
   <!-- Flydende pige‑billede -->
   <div id="floating-girl">
@@ -165,7 +163,7 @@
         <!-- Selve folliklen -->
         <div class="follicle-wrapper" data-parallax data-depth="0.35">
           <img id="follicle" src="images/folikelfase/follikkeltryk.svg" alt="Follikkel" />
-          <p id="growPrompt">Tryk for at se folliklen vokse</p>
+          <p id="growPrompt">Tryk <br>se folliklen vokse</p>
 
           <!-- Vises først efter 6 klik -->
           <div id="ovulationPrompt">

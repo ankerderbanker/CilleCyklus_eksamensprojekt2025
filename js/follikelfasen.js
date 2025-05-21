@@ -1,7 +1,3 @@
-/* -----------------------------------------------------------------------------
-   Menstruationsrejsen – JavaScript
-   Kommentarer og struktur er nu på dansk
------------------------------------------------------------------------------ */
 // OVERGANGS VIDEOER
 document.addEventListener('DOMContentLoaded', () => {
   // JS der skjuler overlayet når videoen er færdig 

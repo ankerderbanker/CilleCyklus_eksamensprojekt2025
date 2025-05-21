@@ -58,7 +58,7 @@ function togglePhaseIcons(activeIdx){
   });
 }
 
-/* ---------- PHASE DATA ---------- */
+/* ---------- FASE DATA OG FARVER ---------- */
 const phases = [
   {name:'Menstruation',  color:'#925048'},
   {name:'Follikelfasen', color:'#c2858c'},
@@ -66,7 +66,7 @@ const phases = [
   {name:'Lutealfasen',   color:'#6F8095'}
 ];
 
-/* ---------- SVG INTERACTION ---------- */
+/* ---------- SVG INTERAKTION ---------- */
 const svg          = document.getElementById('scene');
 const handleGroup  = document.getElementById('handle');
 const handleCircle = document.getElementById('handleCircle');
@@ -126,7 +126,7 @@ function onHandleClick(){
 }
 
 
-/* ---------- VISUAL LOGIC ---------- */
+/* ---------- VISUAL LOGIK ---------- */
 function placeHandleAtAngle(angle,forceSmall=false){
   const rad=(angle-90)*Math.PI/180;
   handleGroup.setAttribute('transform',
@@ -153,7 +153,7 @@ function resetToTop(){
   updateBackground(null);
 }
 
-/* ---------- BACKGROUND COLOUR ---------- */
+/* ---------- BAGGRUNDSFARVE funktion her ændres også startfarven ---------- */
 function updateBackground(idx){
   document.body.style.background = idx===null ? '#a36a73' : phases[idx].color;
 }

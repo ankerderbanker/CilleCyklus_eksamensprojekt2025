@@ -8,7 +8,6 @@ lottie.loadAnimation({
 });
 
 
-
 /* ---------- PHASE → ICON FILE MAP ---------- */
 const phaseIconBases = [
   {folder:'Fase1', base:'menstruation-icon'},

@@ -25,14 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrollWrapper = document.getElementById("scroll-wrapper");
   const titleOverlay  = document.getElementById("section-title");
 
-  /* Scenetitler (rækkefølge skal matche .scene‑sektioner) */
-  const sectionTitles = [
-    "Scene 0: Intro",
-    "Scene 1: Spejl",
-    "Scene 2: Hormoner",
-    "Scene 3: Follikelfasen",
-    "Scene 4: Folliklen vokser",
-  ];
+ 
 
   /* ───────────────────────── 4. Scene 1: Spejl - Affirmationer ───────────────────── */
   const affirmationTexts = ["JEG ER DEJLIG", "JEG ER SMUK", "JEG ER SELVSIKKER!"];
@@ -153,8 +146,7 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
   scrollWrapper.addEventListener("scroll", () => {
     const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
 
-    // Opdater titel. Section titles er "hidden", Men kan gøres "visible" i CSS. Slettes ikke pga funktionalitet med spejl SVG.
-    titleOverlay.textContent = sectionTitles[index] || "";
+   
 
     // Scene 1 i fokus? (affirmationer)
     scene1Visible = index === 1;
@@ -184,14 +176,7 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
     overlay.classList.contains("show") ? hideOverlay() : showOverlay();
   });
 
-  /* ───────────────────────── 10. Navigationspile (hidden i CSS) ─────────────────────────── */
-  document.getElementById("left-btn").addEventListener("click", () => {
-    scrollWrapper.scrollBy({ left: -window.innerWidth, behavior: "smooth" });
-  });
-  document.getElementById("right-btn").addEventListener("click", () => {
-    scrollWrapper.scrollBy({ left: window.innerWidth, behavior: "smooth" });
-  });
-
+  
   /* ───────────────────────── 11. Lottie‑animation (ben) ──────────────────── */
   document.addEventListener("DOMContentLoaded", () => {
     lottie.loadAnimation({

@@ -1,8 +1,6 @@
 /* -----------------------------------------------------------------------------
    Globale farver & typografi
 ----------------------------------------------------------------------------- */
-
-
 :root {
   /* Sort og hvidtoner */
   --color-hvid: #FFFCF5;
@@ -28,9 +26,6 @@
   --h-white: var(--color-hvid);
   --h-font:  'Super Funky', cursive;
 }
-
-
-
 
 
 /* -----------------------------------------------------------------------------
@@ -172,7 +167,7 @@ body {
 ----------------------------------------------------------------------------- */
 #floating-girl {
   position: fixed;
-  bottom: -100px;
+  bottom: -150px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -180,7 +175,7 @@ body {
 }
 
 #floating-girl img {
-  width: 600px;
+  width: 800px;
   height: auto;
   transform: rotate(270deg); /* 90° med uret */
 }
@@ -263,12 +258,13 @@ body {
 .mirror-scene-layout {
   position: absolute;
   top: 40%;
-  left: 60%;
+  left: 85%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   gap: 4rem;
-  max-width: 80%;
+  max-width: 100%;
+  min-width: 100%;
   z-index: 5;
 }
 
@@ -276,12 +272,12 @@ body {
 
 .affirmation-text {
   font-family: 'Super Funky', cursive;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--color-sekundar-gul);
   opacity: 0;
   transition: opacity 1s ease-in-out;
   text-align: left;
-  max-width: 300px;
+  max-width: 1600px;
 }
 
 .mirror-wrapper img {
@@ -368,8 +364,10 @@ body {
 
 #growPrompt {
   margin-top: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.6rem;
   color: var(--color-sekundar-gul);
+  font-family: var(--h-font);
+ 
 }
 
 #ovulationPrompt {

@@ -201,6 +201,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
   });
+
+      // pil til næste side
+      document.addEventListener('DOMContentLoaded', () => {
+        const nextArrow = document.querySelector('.next-arrow-faelles');
+        if (nextArrow) {
+          nextArrow.addEventListener('click', function() {
+            window.location.href = "2follicularfasen.html"; 
+          });
+        }
+      });
   
   document.addEventListener('scroll', () => {
     const y = window.scrollY;

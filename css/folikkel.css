@@ -380,18 +380,19 @@ body {
   color: var(--color-sekundar-gul);
   text-align: center;
   pointer-events: none;
-  left: 50px;
+  left: 70px;
   top: 50px;
 }
 
 #ovulationArrow {
   display: inline-block;
   background: none;
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   color: var(--color-sekundar-gul);
   text-decoration: none;
   cursor: pointer;
   pointer-events: auto;
+ 
 }
 
 /* -----------------------------------------------------------------------------

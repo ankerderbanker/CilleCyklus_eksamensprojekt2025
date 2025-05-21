@@ -1,200 +1,266 @@
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--color-primar-lyserod);
-      font-family: "Poppins", sans-serif;
-      overflow: hidden;
-      height: 100vh;
-    }
+/* -----------------------------------------------------------------------------
+   Globale farver & typografi
+----------------------------------------------------------------------------- */
 
 
-/* ───────── Hormon-niveau overlay ───────── */
-:root{
-  --h-blue:#7a91ab;           /* circle & heading */
-  --h-yellow:#f7f797;         /* bar fill */
-  --h-white:#fffcf5;
-  --h-font:'Super Funky',cursive;
+:root {
+  /* Sort og hvidtoner */
+  --color-hvid: #FFFCF5;
+  --color-sort: #1D1D1B;
 
+  /* Primære farver */
+  --color-primar-rod:      #7F1524;
+  --color-primar-lyserod:  #C2858C;
+  --color-primar-rosa:     #AE635B;
+  --color-primar-lysebla:  #8DA1BD;
+  --color-primar-morkebla: #6F8095;
+
+  /* Sekundære farver */
+  --color-sekundar-rod:      #7D302D;
+  --color-sekundar-lyserod:  #A36A73;
+  --color-sekundar-rosa:     #AA8386;
+  --color-sekundar-orange:   #EF966F;
+  --color-sekundar-gul:      #F7F797;
+
+  /* Overlay-specifikke aliaser – linker direkte til ovenstående */
+  --h-blue:  var(--color-primar-lysebla);   /* cirkel & overskrift */
+  --h-yellow:var(--color-sekundar-gul);     /* fyld-bjælker */
+  --h-white: var(--color-hvid);
+  --h-font:  'Super Funky', cursive;
 }
 
 
-/* ── Scene-0 intro styling ───────────────────────── */
-#scene0 .intro-text{
-  position:absolute;
-  top:35%; left:50%;
-  transform:translate(-50%,-50%);
-  font-family:'Super Funky',cursive;
-  font-size:3rem;          /* tweak up or down as you like */
-  color:#f7f797;           /* your yellow */
-  text-align:center;
-  line-height:1.2;
-  margin:0;
-  user-select:none;
+
+
+
+/* -----------------------------------------------------------------------------
+   Grundlayout
+----------------------------------------------------------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-primar-lyserod);
+  overflow: hidden;
+  height: 100vh;
 }
 
-/* hide the ← / → buttons everywhere */
-.nav-btn{ display:none !important; }
+/* ---------- LOGO OG TILBAGE-PIL ---------- */
+/* Logo og tilbage-pil placeret i øverste hjørne */
+.logo-link, .tilbage-link {
+  position: absolute;
+  right: 30px;
+  width: 100px;
+  z-index: 10000;
+}
+.logo-link { top: 30px; }
+.tilbage-link { top: 140px; }
 
 
-#hormonOverlay{
-  position:fixed;
-  top:-120%; left:50%;
-  transform:translate(-50%,-50%);
-  width:95vmin; max-width:600px;   /* responsive */
-  transition:top .7s cubic-bezier(.57,1.3,.41,.94);
-  z-index:900; pointer-events:none;/* off until visible */
+/* -----------------------------------------------------------------------------
+   Hormon‑niveau overlay
+----------------------------------------------------------------------------- */
+#hormonOverlay {
+  position: fixed;
+  top: -120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95vmin;
+  max-width: 600px;
+  transition: top 0.7s cubic-bezier(.57, 1.3, .41, .94);
+  z-index: 900;
+  pointer-events: none; /* deaktiv indtil synlig */
 }
 
-#hormonOverlay.show{
-  top:50%; pointer-events:auto;
+#hormonOverlay.show {
+  top: 50%;
+  pointer-events: auto;
 }
 
-/* heading on an SVG arc */
-#hormonOverlay svg{width:100%;height:auto;overflow:visible;}
-.arcText{fill:#f7f797;font:68px var(--h-font);letter-spacing:2px;}
-
-/* blue circle */
-.h-circle{
-  width:100%;aspect-ratio:1/1;
-  background:#7f1524;
-  border-radius:50%;
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  gap:12px;padding:6% 8%;
-  box-sizing:border-box;
+/* Overskrift på buen */
+#hormonOverlay svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
 }
 
-.h-heading{
-  position:absolute;
-  
-  width:100%;
-  overflow:visible;          /* let the letters breathe */
+.arcText {
+  font-family: var(--h-font);
+  font-size: 6rem;
+  fill: var(--h-yellow);
+             
+
 }
 
-
-/* bar layout */
-.h-bar{
-  position:relative;
-  width:70%;height:44px;
-  border-radius:14px;
-  background:var(--h-white);
-  overflow:hidden;
+/* Blå cirkel */
+.h-circle {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-primar-rod);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 6% 8%;
+  box-sizing: border-box;
 }
 
-.h-fill{
-  position:absolute;inset:0 100% 0 0;  /* start 0 % width */
-  background:var(--h-yellow);
-  transition: inset 2.6s ease-out;   /* 2× slower; pick the timing you like */
+.h-heading {
+  position: absolute;
+  width: 100%;
+  overflow: visible; /* lad bogstaverne "ånde" */
+  top: -20%;
 }
 
-.h-label{
-  position:absolute;left:10px;top:50%;transform:translateY(-50%);
-  font:24px var(--h-font);
-  color:#3a262b;pointer-events:none;
+/* Bjælkelayout */
+.h-bar {
+  position: relative;
+  width: 80%;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--h-white);
+  overflow: hidden;
 }
 
-/* trigger bar-fill when overlay gets .show ------------------ */
-#hormonOverlay.show .h-fill{inset:0 0 0 0;}
+.h-fill {
+  position: absolute;
+  inset: 0 100% 0 0; /* start 0 % bredde */
+  background: var(--h-yellow);
+  transition: inset 2.6s ease-out; /* vælg den timing du ønsker */
+}
 
+.h-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font: 24px var(--h-font);
+  color: var(--color-sekundar-rod);
+  pointer-events: none;
+}
 
+/* Fyld‑bjælker falder, når overlay får .show */
+#hormonOverlay.show .h-fill {
+  inset: 0 0 0 0;
+}
 
+/* -----------------------------------------------------------------------------
+   Scene 0: Intro
+----------------------------------------------------------------------------- */
+#scene0 .intro-text {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Super Funky', cursive;
+  font-size: 3rem;
+  color: var(--color-sekundar-gul);
+  text-align: center;
+  line-height: 1.2;
+  margin: 0;
+  user-select: none;
+}
 
-    /* ─────────────── FIXED ELEMENTS ─────────────── */
-    #floating-girl {
-      position: fixed;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 20;
-      pointer-events: none;
-    }
+/* Skjul pile globalt – de styres i JS */
+.nav-btn {
+  display: none !important;
+}
 
-    #floating-girl img {
-      width: 600px;
-      height: auto;
-      transform: rotate(270deg); /* Rotate 90 degrees clockwise */
-    }
+/* -----------------------------------------------------------------------------
+   Faste elementer
+----------------------------------------------------------------------------- */
+#floating-girl {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: none;
+}
 
-    #bølge-container {
-      position: fixed;
-      bottom: -80px;
-      left: 0;
-      width: 100%;
-      height: auto;
-      z-index: 10;
-      pointer-events: none;
-    }
+#floating-girl img {
+  width: 600px;
+  height: auto;
+  transform: rotate(270deg); /* 90° med uret */
+}
 
-    .nav-btn {
-      position: fixed;
-      bottom: 50%;
-      transform: translateY(50%);
-      width: 50px;
-      height: 50px;
-      background-color: #f7f797;
-      color: #9b5666;
-      border: none;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 50;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    }
+#bølge-container {
+  position: fixed;
+  bottom: -80px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+}
 
-    #left-btn {
-      left: 20px;
-    }
+.nav-btn {
+  position: fixed;
+  bottom: 50%;
+  transform: translateY(50%);
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-sekundar-gul);
+  color: var(--color-sekundar-lyserod);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 50;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
 
-    #right-btn {
-      right: 20px;
-    }
+/* Ekstra placering */
+#left-btn  { left: 20px; }
+#right-btn { right: 20px; }
 
-    /* ─────────────── OVERLAY TITLE ─────────────── */
-    #section-title {
-      visibility: hidden;
-    }
+/* -----------------------------------------------------------------------------
+   Overlay‑titel (skjules af JS)
+----------------------------------------------------------------------------- */
+#section-title { visibility: hidden; }
 
-    /* ─────────────── HORIZONTAL SCROLL ─────────────── */
-    #scroll-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      z-index: 1;
-    }
+/* -----------------------------------------------------------------------------
+   Horisontal scroll‑opsætning
+----------------------------------------------------------------------------- */
+#scroll-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  z-index: 1;
+}
 
-   #journey {
+#journey {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 500vw; /* 5 scenes */
+  width: 500vw; /* 5 scener */
 }
 
+.scene {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  background-color: transparent;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  color: var(--color-hvid);
+}
 
-    .scene {
-      width: 100vw;
-      height: 100vh;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      background-color: transparent;
-      padding: 2rem;
-      box-sizing: border-box;
-      position: relative;
-      color: white;
-    }
-
-
-    /* ─────────────── Scene 1: Spejl ─────────────── */
-    
-    .mirror-scene-layout {
+/* -----------------------------------------------------------------------------
+   Scene 1: Spejl
+----------------------------------------------------------------------------- */
+.mirror-scene-layout {
   position: absolute;
   top: 40%;
   left: 60%;
@@ -206,139 +272,133 @@
   z-index: 5;
 }
 
-.mirror-wrapper {
-  max-width: 45%;
-}
+.mirror-wrapper { max-width: 45%; }
 
 .affirmation-text {
   font-family: 'Super Funky', cursive;
   font-size: 2.5rem;
-  color: #f7f797;
+  color: var(--color-sekundar-gul);
   opacity: 0;
   transition: opacity 1s ease-in-out;
   text-align: left;
   max-width: 300px;
- 
 }
 
-    
-
-    .mirror-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-
-
-.legs-wrapper{
-  position:absolute;
-  top:25%;
-  left:20%;
-
-  max-width:60%;          /* mirror-sized; tweak as you like */
-  z-index:5;
+.mirror-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* let the SVG scale responsively */
-#legsAnimation svg{
-  width:100%;
-  height:auto;
-  display:block;
+/* -----------------------------------------------------------------------------
+   Scene 2: Ben‑animation
+----------------------------------------------------------------------------- */
+.legs-wrapper {
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  max-width: 60%;
+  z-index: 5;
 }
 
-
-
-/* centred writer */
-.typewriter-container{
-  position:absolute;
-  top:20%;
-  left:25%;
-  transform:translate(-50%,-50%);
-  max-width:50%;
-  text-align:center;
-  z-index:5;
+#legsAnimation svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.typewriter-text{
-  font-size:2rem;
-  line-height:1.4;
-  color: #f7f797;
-  white-space:pre-wrap;          /* keep line-breaks */
-  letter-spacing:0.02em;
+/* -----------------------------------------------------------------------------
+   Scene 3: Skrivemaskine‑tekst
+----------------------------------------------------------------------------- */
+.typewriter-container {
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+  text-align: center;
+  z-index: 5;
+}
+
+.typewriter-text {
+  font-size: 2rem;
+  line-height: 1.4;
+  color: var(--color-sekundar-gul);
+  white-space: pre-wrap; /* behold linjeskift */
+  letter-spacing: 0.02em;
   font-family: 'Super Funky', cursive;
 }
 
-.cursor{
-  display:inline-block;
-  width:0.12em;
-  background:#f7f797;
-  animation:blink 0.8s steps(1) infinite;
+.cursor {
+  display: inline-block;
+  width: 0.12em;
+  background: var(--color-sekundar-gul);
+  animation: blink 0.8s steps(1) infinite;
 }
 
-@keyframes blink{ 50%{opacity:0;} }
+@keyframes blink { 50% { opacity: 0; } }
 
-/* yellow sparkle SVGs */
-.yellow-svg{
-  position:absolute;
-  width:10vw;                  /* change per sprite or override inline */
-  max-width:120px;
-  pointer-events:none;
-  z-index:4;                   /* under the text, above bg */
+.yellow-svg {
+  position: absolute;
+  width: 10vw;
+  max-width: 120px;
+  pointer-events: none;
+  z-index: 4; /* under tekst, over baggrund */
 }
 
-
-
-/* ─────────────── Scene 4: Follikkel ─────────────── */
-.follicle-wrapper{
-  position:absolute;
-  top:43%;          /* tweak until it sits over the RIGHT “seed-pouch” */
-  left:9%;
-  transform:translate(50%,-50%);
-  text-align:center;
-  z-index:5;
+/* -----------------------------------------------------------------------------
+   Scene 4: Follikkel
+----------------------------------------------------------------------------- */
+.follicle-wrapper {
+  position: absolute;
+  top: 43%;
+  left: 9%;
+  transform: translate(50%, -50%);
+  text-align: center;
+  z-index: 5;
 }
 
-#follicle{
-  width:40px;      /* start-size */
-  height:auto;
-  transform-origin:center center;
-  transition:transform .25s ease-out;
-  cursor:pointer;
+#follicle {
+  width: 40px;
+  height: auto;
+  transform-origin: center center;
+  transition: transform 0.25s ease-out;
+  cursor: pointer;
 }
 
-#growPrompt{
-  margin-top:.5rem;
-  font-size:1rem;
-  color:#f7f797;
+#growPrompt {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-sekundar-gul);
 }
 
-#ovulationPrompt{
-  position:absolute;
-  inset:0;                       /* fills the SVG once it’s big */
-  display:none;                  /* revealed in JS */
-  place-content:center;
-  font-family:'Super Funky',cursive;
-  font-size:1.2rem;
-  color:#fff;
-  text-align:center;
-  pointer-events:none;           /* ignore clicks except arrow */
+#ovulationPrompt {
+  position: absolute;
+  inset: 0;
+  display: none; /* vises i JS */
+  place-content: center;
+  font-family: 'Super Funky', cursive;
+  font-size: 1.5rem;
+  color: var(--color-sekundar-gul);
+  text-align: center;
+  pointer-events: none;
+  left: 50px;
+  top: 50px;
 }
 
-#ovulationArrow{
-  display:inline-block;       /* needed for anchors */
-  border:none;
-  background:none;
-  font-size:3.5rem;           /* big & bold */
-  color:#f2e07c;
-  text-decoration:none;
-  cursor:pointer;
-  pointer-events:auto;
+#ovulationArrow {
+  display: inline-block;
+  background: none;
+  font-size: 4.5rem;
+  color: var(--color-sekundar-gul);
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
-
-
-
+/* -----------------------------------------------------------------------------
+   Afslutningsscene / fælles elementer
+----------------------------------------------------------------------------- */
 .final-wrapper {
   position: absolute;
   top: 35%;
@@ -352,44 +412,44 @@
 .final-wrapper h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #f7f797;
+  color: var(--color-sekundar-gul);
 }
 
 .final-wrapper p {
   font-size: 1.2rem;
-  color: white;
+  color: var(--color-hvid);
 }
 
-
-
-
+/* -----------------------------------------------------------------------------
+   Tilbage‑knap
+----------------------------------------------------------------------------- */
 #tilbage-btn {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #f7f797;
-  color: #9b5666;
+  background-color: var(--color-sekundar-gul);
+  color: var(--color-sekundar-lyserod);
   border: none;
   border-radius: 20px;
   padding: 0.5rem 1rem;
-  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   z-index: 100;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;
 }
 
 #tilbage-btn:hover {
-  background-color: #e6d86d;
+  background-color: var(--color-sekundar-gul);
 }
 
-/* ───── Parallax layer ───── */
-[data-parallax]{
+/* -----------------------------------------------------------------------------
+   Parallax lag
+----------------------------------------------------------------------------- */
+[data-parallax] {
   will-change: transform;
-  transition: transform 0.15s linear;      /* small easing, optional  */
-  z-index: 5;                              /* keep it above red bg    */
-  position: relative;                      /* (already true on yours) */
+  transition: transform 0.15s linear;
+  z-index: 5;
+  position: relative;
 }
-

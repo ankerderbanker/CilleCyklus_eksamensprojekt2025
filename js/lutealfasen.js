@@ -1,4 +1,6 @@
 // OVERGANGS VIDEOER
+
+// JS der skjuler overlayet når videoen er færdig 
 document.addEventListener('DOMContentLoaded', () => {
   // JS der skjuler overlayet når videoen er færdig 
   const overlay = document.getElementById('phaseVideoOverlay');
@@ -7,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.display = 'none';
   };
 });
+
    
    // Funktion til at tjekke om element er i viewport
   function isInViewport(el) {
@@ -17,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
+  // Tilføjer klassen 'in-view' til elementet efter 3 sek., når det bliver synligt første gang
   const underlineEl = document.querySelector('.underline-word');
 
  function checkScroll() {
@@ -33,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', checkScroll);
   window.addEventListener('DOMContentLoaded', checkScroll); // tjek ved load
   
-  
+
+
 /* ----------   TYPEWRITER – LUTEALFASE   ---------- */
+ // Formål: Vis øjenfaldende og informerende sektion med "skrivende" tekst, der først vises når sektionen er synlig på skærmen.
 document.addEventListener('DOMContentLoaded', () => {
   const typer = document.getElementById('typewriter-lutealfase');
   const text = `Alle disse tanker og følelser skyldes de hormoner, som Cilles krop er påvirket af i denne fase. Hendes livmoder forbereder sig nemlig på, at ægget fra ægløsningen enten kan blive befrugtet og gøre hende gravid – eller at cyklussen starter forfra, og hun får menstruation.`;
@@ -73,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   observer.observe(typer);
 });
 
-
+// LOTTIE-animation: Indlæser og afspiller en SVG-animation i loop når siden er klar
   document.addEventListener('DOMContentLoaded', function () {
     // ── Lottie animation ─────────────────────────
     lottie.loadAnimation({
@@ -85,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-    // ── Flip cards on click ─────────────────────
+    // Flip card-effekt: Når man klikker på kortet, vendes det (for-/bagside skifter)
     const cards = document.querySelectorAll(".flip-card");
     cards.forEach(card => {
       card.addEventListener("click", () => {
@@ -93,18 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // pil til næste side
-    document.addEventListener('DOMContentLoaded', () => {
-      const nextArrow = document.querySelector('.next-arrow-faelles');
-      if (nextArrow) {
-        nextArrow.addEventListener('click', function() {
-          window.location.href = "1menstruationsfasen.html"; 
-        });
-      }
-    });
-    
-
-  // ── Intersection Observer for progress-circle ────────
+ // Progress-circle: Når cirklen er synlig, start animation ved at tilføje klassen 'start'
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -119,5 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (progressCircle) {
     observer.observe(progressCircle);
   }
+
+   // Klik på pil: Navigér til næste side i cyklus ("1menstruationsfasen.html")
+    document.addEventListener('DOMContentLoaded', () => {
+      const nextArrow = document.querySelector('.next-arrow-faelles');
+      if (nextArrow) {
+        nextArrow.addEventListener('click', function() {
+          window.location.href = "1menstruationsfasen.html"; 
+        });
+      }
+    });
+    
 
 

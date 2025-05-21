@@ -80,7 +80,7 @@ document.addEventListener('scroll', () => {
 
 
 /* delay på typewriteren, i introvideoens længde */ 
-   const delayBeforeStart = 12000; // delay 
+   const delayBeforeStart = 11000; // delay 
   
    setTimeout(() => {
       /* skrivemaskine-effekt */ 

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Scene 4: Folliklen vokser",
   ];
 
-  /* ───────────────────────── 4. Scene 1: Affirmationer ───────────────────── */
+  /* ───────────────────────── 4. Scene 1: Spejl - Affirmationer ───────────────────── */
   const affirmationTexts = ["JEG ER DEJLIG", "JEG ER SMUK", "JEG ER SELVSIKKER!"];
   const affirmationEl    = document.getElementById("affirmationText");
   let currentAffirmation = 0;
@@ -68,7 +68,7 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
     (function type() {
       if (i < scene3Lines.length) {
         txt.textContent += scene3Lines.charAt(i++);
-        setTimeout(type, 35); // hastighed (ms/tegn)
+        setTimeout(type, 35); // hastighed af skrivemaskinen (ms/tegn)
       } else {
         cur.style.display = "none"; // skjul når færdig
       }
@@ -80,11 +80,11 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
   const growPrompt      = document.getElementById("growPrompt");
   const ovulationPrompt = document.getElementById("ovulationPrompt");
   const ovulationArrow  = document.getElementById("ovulationArrow");
-  let clicks            = 0; // 0–6
+  let clicks            = 0; // 0–6 klik
 
   follicle.addEventListener("click", e => {
     e.stopPropagation();
-    if (clicks >= 6) return; // allerede maks
+    if (clicks >= 6) return; // 6 maks klik
 
     clicks++;
     const scale = 1 + clicks * 2.8; // slutter ved ca. 2,8×
@@ -92,7 +92,7 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
 
     if (clicks === 6) {
       growPrompt.style.display      = "none";
-      ovulationPrompt.style.display = "grid"; // centreret via CSS
+      ovulationPrompt.style.display = "grid"; // tekst der dukker op er centreret via CSS
     }
   });
 
@@ -153,20 +153,20 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
   scrollWrapper.addEventListener("scroll", () => {
     const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
 
-    // Opdater fast titel
+    // Opdater titel. Section titles er "hidden", Men kan gøres "visible" i CSS. Slettes ikke pga funktionalitet med spejl SVG.
     titleOverlay.textContent = sectionTitles[index] || "";
 
     // Scene 1 i fokus? (affirmationer)
     scene1Visible = index === 1;
     affirmationEl.style.opacity = scene1Visible ? 1 : 0;
 
-    // Scene 3 → start skrivemaskine én gang
+    // Scene 3 start skrivemaskine én gang
     if (index === 3 && !typedScene3) {
       typedScene3 = true;
       startTypewriter();
     }
 
-    // Scene 2 → vis hormon‑overlay, ellers skjul
+    // Scene 2 vis hormon‑overlay ved scene 2, ellers skjul
     if (index === 2) {
       if (!overlayShown) {
         overlayShown = true;
@@ -180,11 +180,11 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
   /* Klik‑toggle af overlay mens man er i Scene 2 */
   document.addEventListener("click", () => {
     const idx = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
-    if (idx !== 2) return; // ignorér uden for Scene 2
+    if (idx !== 2) return; // ignorér klik event uden for Scene 2
     overlay.classList.contains("show") ? hideOverlay() : showOverlay();
   });
 
-  /* ───────────────────────── 10. Navigationspile ─────────────────────────── */
+  /* ───────────────────────── 10. Navigationspile (hidden i CSS) ─────────────────────────── */
   document.getElementById("left-btn").addEventListener("click", () => {
     scrollWrapper.scrollBy({ left: -window.innerWidth, behavior: "smooth" });
   });
@@ -199,7 +199,7 @@ Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
       renderer  : "svg",
       loop      : true,
       autoplay  : true,
-      path      : "folikelben.json", // relativ sti
+      path      : "folikelben.json", // sti til JSON animationen
     });
   });
 })();

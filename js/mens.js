@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextArrowF = document.querySelector('.next-arrow-faelles');
   if (nextArrowF) {
     nextArrowF.addEventListener('click', function() {
-      window.location.href = "2follicularfasen.html"; 
+      window.location.href = "2follikelfasen.html"; 
     });
   }
 

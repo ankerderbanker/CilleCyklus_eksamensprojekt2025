@@ -5,853 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menstruationsrejsen</title>
 
-  <!-- Fonts -->
+  <!-- Skrifttyper -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet" />
 
-<!-- preload træ bagrund PNG-->
-<link rel="preload" href="images/folikelfase/tree.png" as="image">
+  <!-- Eksterne stylesheets -->
+  <link rel="stylesheet" href="css/folikkel.css" />
 
 
+  <!-- Forudindlæs træ‑baggrund (PNG) -->
+  <link rel="preload" href="images/folikelfase/tree.png" as="image" />
 
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #c2858c;
-      font-family: "Poppins", sans-serif;
-      overflow: hidden;
-      height: 100vh;
-    }
+    /* ─────────────  SCENE‑BAGGRUNDE  ───────────── */
 
-
-/* ───────── Hormon-niveau overlay ───────── */
-:root{
-  --h-blue:#7a91ab;           /* circle & heading */
-  --h-yellow:#f4f68d;         /* bar fill */
-  --h-white:#fff;
-  --h-font:'Super Funky',cursive;
-}
-
-
-/* ── Scene-0 intro styling ───────────────────────── */
-#scene0 .intro-text{
-  position:absolute;
-  top:35%; left:50%;
-  transform:translate(-50%,-50%);
-  font-family:'Super Funky',cursive;
-  font-size:3rem;          /* tweak up or down as you like */
-  color:#f2e07c;           /* your yellow */
-  text-align:center;
-  line-height:1.2;
-  margin:0;
-  user-select:none;
-}
-
-/* hide the ← / → buttons everywhere */
-.nav-btn{ display:none !important; }
-
-
-
-#hormonOverlay{
-  position:fixed;
-  top:-120%; left:50%;
-  transform:translate(-50%,-50%);
-  width:95vmin; max-width:400px;   /* responsive */
-  transition:top .7s cubic-bezier(.57,1.3,.41,.94);
-  z-index:900; pointer-events:none;/* off until visible */
-}
-
-#hormonOverlay.show{
-  top:50%; pointer-events:auto;
-}
-
-/* heading on an SVG arc */
-#hormonOverlay svg{width:100%;height:auto;overflow:visible;}
-.arcText{fill:#f2e07c;font:48px var(--h-font);letter-spacing:2px;}
-
-/* blue circle */
-.h-circle{
-  width:100%;aspect-ratio:1/1;
-  background:#9b5666;
-  border-radius:50%;
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  gap:12px;padding:6% 8%;
-  box-sizing:border-box;
-}
-
-.h-heading{
-  position:absolute;
-  
-  width:100%;
-  overflow:visible;          /* let the letters breathe */
-}
-
-
-/* bar layout */
-.h-bar{
-  position:relative;
-  width:70%;height:44px;
-  border-radius:14px;
-  background:var(--h-white);
-  overflow:hidden;
-}
-
-.h-fill{
-  position:absolute;inset:0 100% 0 0;  /* start 0 % width */
-  background:var(--h-yellow);
-  transition: inset 2.6s ease-out;   /* 2× slower; pick the timing you like */
-}
-
-.h-label{
-  position:absolute;left:10px;top:50%;transform:translateY(-50%);
-  font:24px var(--h-font);
-  color:#9b5666;pointer-events:none;
-}
-
-/* trigger bar-fill when overlay gets .show ------------------ */
-#hormonOverlay.show .h-fill{inset:0 0 0 0;}
-
-
-
-
-    /* ─────────────── FIXED ELEMENTS ─────────────── */
-    #floating-girl {
-      position: fixed;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    #floating-girl img {
-      width: 600px;
-      height: auto;
-      transform: rotate(270deg); /* Rotate 90 degrees clockwise */
-    }
-
-    #bølge-container {
-      position: fixed;
-      bottom: -100px;
-      left: 0;
-      width: 100%;
-      height: auto;
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    .nav-btn {
-      position: fixed;
-      bottom: 50%;
-      transform: translateY(50%);
-      width: 50px;
-      height: 50px;
-      background-color: #f2e07c;
-      color: #9b5666;
-      border: none;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 50;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    }
-
-    #left-btn {
-      left: 20px;
-    }
-
-    #right-btn {
-      right: 20px;
-    }
-
-    /* ─────────────── OVERLAY TITLE ─────────────── */
-    #section-title {
-      visibility: hidden;
-    }
-
-    /* ─────────────── HORIZONTAL SCROLL ─────────────── */
-    #scroll-wrapper {
+    .scene::before {
+      /* Universelt baggrundslag */
+      content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      z-index: 1;
+      inset: 0; /* Fuld visningsport */
+      background-repeat: no-repeat;
+      background-size: contain; /* Brug evt. 'cover' for fuld dækning */
+      background-position: center center;
+      z-index: 1; /* ► under spejle / pige / tekst (z-index ≥5) */
+      pointer-events: none; /* ► ignorer klik / berøring */
     }
 
-   #journey {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  width: 500vw; /* 5 scenes */
-}
-
-
-    .scene {
-      width: 100vw;
-      height: 100vh;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      background-color: transparent;
-      padding: 2rem;
-      box-sizing: border-box;
-      position: relative;
-      color: white;
-    }
-
-    /* ───────────────  SCENE BACKGROUNDS  ─────────────── */
-
-.scene::before {       /* universal “background layer” */
-  content: "";
-  position: absolute;
-  inset: 0;            /* full viewport */
-  background-repeat: no-repeat;
-  background-size: contain;   /* or 'cover' if you prefer a full bleed */
-  background-position: center center;
-  z-index: 1;          /* ► below mirrors / girl / text (z-index ≥5)      */
-  pointer-events: none;/* ► ignore clicks / touches                       */
-}
-
-/* per-scene artwork */
-#scene1::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg1.svg"); }
-#scene2::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg2.svg"); }
-#scene3::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg3.svg"); }
-/* 2a. Stop Scene 4 from drawing a ::before background */
-#scene4::before{ background-image:none !important; }
-
-/* Scene-4 tree – centred & responsive */
-#scene4 .tree-img{
-  position:absolute;
-  top:45%;                /* anchor point */
-  left:50%;
-  transform:translate(-50%,-50%);   /* shift back by half its own size */
+    /* Scene‑specifik grafik */
+    #scene1::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg1.svg"); }
+    #scene2::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg2.svg"); }
+    #scene3::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg3.svg"); 
+   top: 8%;
   
-  width:80vw;             /* fills most of the viewport */
-  max-width:900px;        /* never exceed this */
-  height:auto;
+  }
+    /* 2a. Scene 4 skal ikke tegne et ::before‑lag */
+    #scene4::before { background-image: none !important; }
 
-  pointer-events:none;
-  user-select:none;
-  /* if you want gentle parallax, keep will-change & add data-parallax */
-  /* will-change:transform; */
-}
+    /* Scene 4 – træ, centreret & responsiv */
+    #scene4 .tree-img {
+      position: absolute;
+      top: 48%; /* Ankerpunkt */
+      left: 50%;
+      transform: translate(-50%, -50%); /* Flyt tilbage med halvdelen af egen størrelse */
 
-
-
-
-
-    /* ─────────────── Scene 1: Spejl ─────────────── */
-    
-    .mirror-scene-layout {
-  position: absolute;
-  top: 40%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  max-width: 80%;
-  z-index: 5;
-}
-
-.mirror-wrapper {
-  max-width: 45%;
-}
-
-.affirmation-text {
-  font-family: 'Super Funky', cursive;
-  font-size: 2rem;
-  color: #f2e07c;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  text-align: left;
-  max-width: 300px;
- 
-}
-
-    
-
-    .mirror-wrapper img {
-      width: 100%;
+      width: 100vw; /* Fylder det meste af visningsporten */
+      max-width: 950px; /* Overskrid aldrig dette */
       height: auto;
-      display: block;
+
+      pointer-events: none;
+      user-select: none;
+      /* Hvis du vil have let parallakse, behold will-change & tilføj data-parallax */
+      /* will-change: transform; */
     }
 
-
-
-.legs-wrapper{
-  position:absolute;
-  top:25%;
-  left:20%;
-
-  max-width:60%;          /* mirror-sized; tweak as you like */
-  z-index:5;
-}
-
-/* let the SVG scale responsively */
-#legsAnimation svg{
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-
-
-/* centred writer */
-.typewriter-container{
-  position:absolute;
-  top:20%;
-  left:25%;
-  transform:translate(-50%,-50%);
-  max-width:50%;
-  text-align:center;
-  z-index:5;
-}
-
-.typewriter-text{
-  font-size:1rem;
-  line-height:1.4;
-  color: #f2e07c;
-  white-space:pre-wrap;          /* keep line-breaks */
-  letter-spacing:0.02em;
-  font-family: 'Super Funky', cursive;
-}
-
-.cursor{
-  display:inline-block;
-  width:0.12em;
-  background:#f2e07c;
-  animation:blink 0.8s steps(1) infinite;
-}
-
-@keyframes blink{ 50%{opacity:0;} }
-
-/* yellow sparkle SVGs */
-.yellow-svg{
-  position:absolute;
-  width:10vw;                  /* change per sprite or override inline */
-  max-width:120px;
-  pointer-events:none;
-  z-index:4;                   /* under the text, above bg */
-}
-
-
-
-/* ─────────────── Scene 4: Follikkel ─────────────── */
-.follicle-wrapper{
-  position:absolute;
-  top:38%;          /* tweak until it sits over the RIGHT “seed-pouch” */
-  left:10%;
-  transform:translate(50%,-50%);
-  text-align:center;
-  z-index:5;
-}
-
-#follicle{
-  width:40px;      /* start-size */
-  height:auto;
-  transform-origin:center center;
-  transition:transform .25s ease-out;
-  cursor:pointer;
-}
-
-#growPrompt{
-  margin-top:.5rem;
-  font-size:1rem;
-  color:#f2e07c;
-}
-
-#ovulationPrompt{
-  position:absolute;
-  inset:0;                       /* fills the SVG once it’s big */
-  display:none;                  /* revealed in JS */
-  place-content:center;
-  font-family:'Super Funky',cursive;
-  font-size:1.2rem;
-  color:#fff;
-  text-align:center;
-  pointer-events:none;           /* ignore clicks except arrow */
-}
-
-#ovulationArrow{
-  display:inline-block;       /* needed for anchors */
-  border:none;
-  background:none;
-  font-size:3.5rem;           /* big & bold */
-  color:#f2e07c;
-  text-decoration:none;
-  cursor:pointer;
-  pointer-events:auto;
-}
-
-
-
-
-.final-wrapper {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  max-width: 70%;
-  z-index: 5;
-}
-
-.final-wrapper h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #f2e07c;
-}
-
-.final-wrapper p {
-  font-size: 1.2rem;
-  color: white;
-}
-
-
-
-
-#tilbage-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #f2e07c;
-  color: #9b5666;
-  border: none;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  z-index: 100;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: background-color 0.3s;
-}
-
-#tilbage-btn:hover {
-  background-color: #e6d86d;
-}
-
-/* ───── Parallax layer ───── */
-[data-parallax]{
-  will-change: transform;
-  transition: transform 0.15s linear;      /* small easing, optional  */
-  z-index: 5;                              /* keep it above red bg    */
-  position: relative;                      /* (already true on yours) */
-}
-
+   
   </style>
 </head>
 
-<button id="tilbage-btn" onclick="goBack()">← Tilbage</button>
-
-
-
-
-<!-- ▾▾▾ Hormon-niveau overlay ▾▾▾ -->
-<div id="hormonOverlay" aria-hidden="true">
-  <!-- curved heading -->
-<svg class="h-heading" viewBox="0 0 800 330" aria-hidden="true">
-  <defs>
-    <!-- big 300-px-radius arc -->
-    <path id="h-arc"
-          d="M40,300 A360,360 0 0 1 760 300" />
-  </defs>
-  <text class="arcText">
-    <textPath href="#h-arc" startOffset="50%" text-anchor="middle">
-      HORMON-NIVEAU
-    </textPath>
-  </text>
-</svg>
-
-  <!-- blue circle with bars -->
-  <div class="h-circle">
-    <!-- data-pct sets final width -->
-    <div class="h-bar"><div class="h-fill" style="--pct:40"></div><span class="h-label">FSH</span></div>
-    <div class="h-bar"><div class="h-fill" style="--pct:70"></div><span class="h-label">LH</span></div>
-    <div class="h-bar"><div class="h-fill" style="--pct:90"></div><span class="h-label">ØSTROGEN</span></div>
-    <div class="h-bar"><div class="h-fill" style="--pct:30"></div><span class="h-label">PROGESTERON</span></div>
-    <div class="h-bar"><div class="h-fill" style="--pct:60"></div><span class="h-label">TESTOSTERON</span></div>
-  </div>
-</div>
-<!-- ▴▴▴ /overlay ▴▴▴ -->
-
-
-
-
 <body>
 
+  <!-- Logo og tilbage-pil (øverst til højre) -->
+        <a href="index.html">
+  <img src="images/baggrund/fase3/logocillehjem.svg" alt="Gå til forsiden" class="logo-link">
+</a>
 
+<a href="index.html">
+  <img src="images/baggrund/fase3/Tilbage.svg" alt="Gå Tilbage" class="tilbage-link">
+</a>
 
-  
+  <!-- ▾▾▾ Hormon‑niveau overlay ▾▾▾ -->
+  <div id="hormonOverlay" aria-hidden="true">
+    <!-- Buet overskrift -->
+    <svg class="h-heading" viewBox="0 0 800 330" aria-hidden="true">
+      <defs>
+        <!-- Stor bue med 300 px radius -->
+        <path id="h-arc" d="M40,300 A400,360 0 0 1 760 300" />
+      </defs>
+      <text class="arcText">
+        <textPath href="#h-arc" startOffset="50%" text-anchor="middle">
+          HORMON-NIVEAU
+        </textPath>
+      </text>
+    </svg>
 
-  <!-- Floating girl image -->
+    <!-- Blå cirkel med søjler -->
+    <div class="h-circle">
+      <!-- data-pct angiver slutbredde -->
+      <div class="h-bar"><div class="h-fill" style="--pct:85"></div><span class="h-label">FSH</span></div>
+      <div class="h-bar"><div class="h-fill" style="--pct:35"></div><span class="h-label">LH</span></div>
+      <div class="h-bar"><div class="h-fill" style="--pct:90"></div><span class="h-label">ØSTROGEN</span></div>
+      <div class="h-bar"><div class="h-fill" style="--pct:15"></div><span class="h-label">PROGESTERON</span></div>
+      <div class="h-bar"><div class="h-fill" style="--pct:25"></div><span class="h-label">TESTOSTERON</span></div>
+    </div>
+  </div>
+  <!-- ▴▴▴ /overlay ▴▴▴ -->
+
+  <!-- Flydende pige‑billede -->
   <div id="floating-girl">
     <img src="Data/billeder/girlonbind.png" alt="Flydende pige" />
   </div>
 
-  <!-- Animated wave -->
+  <!-- Animeret bølge -->
   <div id="bølge-container"></div>
 
-  <!-- Fixed scene title -->
+  <!-- Fast scenetitel -->
   <div id="section-title">Scene 0: Intro</div>
 
-  <!-- Navigation arrows -->
+  <!-- Navigationspile -->
   <button class="nav-btn" id="left-btn">←</button>
   <button class="nav-btn" id="right-btn">→</button>
-  
 
-  <!-- Horizontal scroll area -->
+  <!-- Horisontal scroll‑område -->
   <div id="scroll-wrapper">
     <div id="journey">
-      
+
       <!-- Scene 0 -->
-     <!-- Scene 0 -->
-<section class="scene" id="scene0">
+      <section class="scene" id="scene0">
+        <p class="intro-text">Velkommen til rejsen igennem follikelfasen.<br/> <br>Scroll til højre for at begynde.</p>
+      </section>
 
-<p class="intro-text">Velkommen til rejsen.<br>Scroll til højre for at begynde.</p>
-</section>
       <!-- Scene 1 -->
-     <section class="scene" id="scene1">
-  <div class="mirror-scene-layout">
-    <div class="mirror-wrapper" data-parallax data-depth="0.35">
-  <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl">
-</div>
-    <div class="affirmation-text" id="affirmationText">JEG ER DEJLIG</div>
-  </div>
-</section>
-
+      <section class="scene" id="scene1">
+        <div class="mirror-scene-layout">
+          <div class="mirror-wrapper" data-parallax data-depth="0.35">
+            <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl" />
+          </div>
+          <div class="affirmation-text" id="affirmationText">JEG ER DEJLIG</div>
+        </div>
+      </section>
 
       <!-- Scene 2 -->
-     
-<section class="scene" id="scene2">
-  <div class="legs-wrapper" data-parallax data-depth="0.35">
-    <div id="legsAnimation"></div>
-  </div>
-
-
-
-
-  
-</section>
-
-
-     <!-- Scene 3 -->
-<section class="scene" id="scene3">
-  <!-- ✏️ Type-writer text -->
-  <div class="typewriter-container" data-parallax data-depth="0.35">
-    <span id="typeText" class="typewriter-text"></span>
-    <span id="typeCursor" class="cursor">|</span>
-  </div>
-
-  <!-- ✏️ Yellow SVGs — duplicate / move / resize as you like -->
-  <img class="yellow-svg" data-parallax data-depth="0.15"
-       style="top:22%; left:18%;" src="images/folikelfase/yellow1.svg" alt="">
-  <img class="yellow-svg" data-parallax data-depth="0.25"
-       style="top:68%; left:72%;" src="images/folikelfase/yellow2.svg" alt="">
-  <img class="yellow-svg" data-parallax data-depth="0.20"
-       style="top:40%; left:80%;" src="images/folikelfase/yellow3.svg" alt="">
-</section>
-
-
-
-
- <!-- Scene 4: Folliklen vokser -->
-<section class="scene" id="scene4">
-
- <!-- NEW: actual tree artwork you can position with CSS -->
-  <img class="tree-img" src="images/folikelfase/tree.png" alt="Træ">
-
-
-  <!-- selve folliklen -->
-  <div class="follicle-wrapper" data-parallax data-depth="0.35">
-    <img id="follicle" src="images/folikelfase/follikkeltryk.svg" alt="Follikkel" />
-    <p id="growPrompt">tryk for at se folliklen vokse</p>
-
-   <!-- dukker først op efter 6 klik -->
-<div id="ovulationPrompt">
-  <span>Gå til næste fase:<br>Ægløsningsfasen</span>
-  <br />
-  <!-- link directly to the next HTML file -->
-  <a id="ovulationArrow"
-     href="3egglosningsfasen.html"
-     aria-label="Gå videre">→</a>
-</div>
-
-  </div>
-</section>
-
-
-      
-
-      
-
-    </div>
-  </div>
-
-  <!-- JavaScript -->
-  <script>
-
-function goBack() {
-  window.location.href = "index.html"; // change to your actual home page
-}
-
-
-
-    // Inject bølge SVG
-    fetch('bolge.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('bølge-container').innerHTML = html;
-      });
-
-    const scrollWrapper = document.getElementById("scroll-wrapper");
-    const titleOverlay = document.getElementById("section-title");
-    const sectionTitles = [
-  "Scene 0: Intro",
-  "Scene 1: Spejl",
-  "Scene 2: Hormoner",
-  "Scene 3: Follikelfasen",
-  "Scene 4: Folliklen vokser",
-];
-
-const affirmationTexts = ["JEG ER DEJLIG", "JEG ER SMUK", "JEG ER SELVSIKKER!"];
-const affirmationEl = document.getElementById("affirmationText");
-
-let currentTextIndex = 0;
-let scene1Visible = false;
-
-function cycleAffirmationText() {
-  if (!scene1Visible) return;
-
-  affirmationEl.style.opacity = 0;
-
-  setTimeout(() => {
-    currentTextIndex = (currentTextIndex + 1) % affirmationTexts.length;
-    affirmationEl.textContent = affirmationTexts[currentTextIndex];
-    affirmationEl.style.opacity = 1;
-  }, 1000); // match CSS transition
-}
-
-setInterval(cycleAffirmationText, 3000); // every 3 seconds
-
-// Detect when scene 1 is in view
-scrollWrapper.addEventListener("scroll", () => {
-  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
-  titleOverlay.textContent = sectionTitles[index] || "";
-
-  scene1Visible = index === 1;
-  if (scene1Visible) {
-    affirmationEl.style.opacity = 1;
-  } else {
-    affirmationEl.style.opacity = 0;
-  }
-});
-
-
-    // Navigation arrows
-    document.getElementById("left-btn").addEventListener("click", () => {
-      scrollWrapper.scrollBy({ left: -window.innerWidth, behavior: "smooth" });
-    });
-
-    document.getElementById("right-btn").addEventListener("click", () => {
-      scrollWrapper.scrollBy({ left: window.innerWidth, behavior: "smooth" });
-    });
-
-
-/* ── Scene 3: type-writer text ────────────────────────────── */
-const scene3Lines = `Du har mere overskud,
-føler dig åben og klar på fællesskab.
-Det er en fase, hvor du har lyst til at være nærværende og dele kærlighed.
-
-  både med andre og dig selv.`;
-
-let typedScene3 = false;   // prevents retriggering
-
-function startTypewriter(){
-  const el = document.getElementById('typeText');
-  const cursor = document.getElementById('typeCursor');
-  let i = 0;
-
-  (function type(){
-    if(i < scene3Lines.length){
-      el.textContent += scene3Lines.charAt(i++);
-      setTimeout(type, 35);                 // speed (ms / char)
-    }else{
-      cursor.style.display = 'none';        // hide when done
-    }
-  })();
-}
-
-
-
-
-
-
-/* extend your existing scroll listener */
-scrollWrapper.addEventListener("scroll", () => {
-  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
-
-  /* --- existing title & mirror logic here --- */
-
-  if(index === 3 && !typedScene3){          // Scene 3 in view
-    typedScene3 = true;
-    startTypewriter();
-  }
-});
-
-
-
-
-
-/* ── Parallax set-up ────────────────────────────────────────────── */
-const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
-const sceneWidth   = window.innerWidth;     //  = 100 vw
-const maxDepth     = 1;                     //  1  = normal scroll rate
-
-function updateParallax(){
-  const scrollX = scrollWrapper.scrollLeft;
-
-  parallaxEls.forEach(el => {
-    const depth = parseFloat(el.dataset.depth) || 0.2;  // fallback speed
-    /* element’s parent scene starts at … */
-    const sceneIndex = Math.round(el.closest('.scene').offsetLeft / sceneWidth);
-    const sceneStart = sceneIndex * sceneWidth;
-
-    /* distance scrolled *inside* that scene                     */
-    const insideSceneX = scrollX - sceneStart;
-
-    /* move it leftward by a fraction of the scene scroll        */
-    const offset = -insideSceneX * (1 - depth); // 0.35 → 65 % slower
-    el.style.transform = `translateX(${offset}px)`;
-  });
-}
-
-/* throttle with requestAnimationFrame for 60 fps-ish smoothness */
-let ticking = false;
-scrollWrapper.addEventListener('scroll', () => {
-  if (!ticking){
-    requestAnimationFrame(() => {
-      updateParallax();
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
-
-/* run once on load & when viewport resizes                       */
-updateParallax();
-window.addEventListener('resize', updateParallax);
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  lottie.loadAnimation({
-    container : document.getElementById('legsAnimation'),
-    renderer  : 'svg',
-    loop      : true,
-    autoplay  : true,
-    path      : 'folikelben.json'   // ← relative to this HTML file
-  });
-});
-
-
-/* ── Hormon-niveau overlay logic ─────────────────────────── */
-const overlay   = document.getElementById('hormonOverlay');
-const fills     = [...overlay.querySelectorAll('.h-fill')];
-
-/* fill-bar helper */
-function setFillWidths(){
-  fills.forEach(el=>{
-    const pct = el.style.getPropertyValue('--pct') || 0;
-    el.style.inset = `0 ${100-pct}% 0 0`;
-  });
-}
-
-/* show / hide helpers */
-function showOverlay(){
-  overlay.classList.add('show');
-  setFillWidths();
-}
-function hideOverlay(){
-  overlay.classList.remove('show');
-}
-
-/* 1. SCROLL behaviour  — drop only in Scene 2, hide elsewhere */
-scrollWrapper.addEventListener('scroll', ()=>{
-  const idx = Math.round(scrollWrapper.scrollLeft / innerWidth);
-
-  if(idx === 2){
-    /* scene 2 in view → make sure it’s down */
-    if(!overlay.classList.contains('show')) showOverlay();
-  }else{
-    /* any other scene → make sure it’s up  */
-    if(overlay.classList.contains('show'))  hideOverlay();
-  }
-}, {passive:true});
-
-/* 2. CLICK behaviour — toggle while you’re *in* Scene 2       */
-document.addEventListener('click', ()=>{
-  const idx = Math.round(scrollWrapper.scrollLeft / innerWidth);
-  if(idx !== 2) return;                 // ignore clicks outside Scene 2
-  overlay.classList.contains('show') ? hideOverlay() : showOverlay();
-});
-
-
-/* drop down when Scene 2 first comes fully into view */
-scrollWrapper.addEventListener('scroll', ()=>{
-  const index = Math.round(scrollWrapper.scrollLeft / window.innerWidth);
-  if(index===2 && !overlayShown){
-    overlayShown = true;
-    setTimeout(showOverlay, 400);   // 0.4 s delay
-  }
-});
-
-/* ── Scene 4: “growing” follikkel ─────────────────── */
-const follicle        = document.getElementById('follicle');
-const growPrompt      = document.getElementById('growPrompt');
-const ovulationPrompt = document.getElementById('ovulationPrompt');
-const ovulationArrow  = document.getElementById('ovulationArrow');
-
-let clicks = 0;                         // 0-to-6
-
-follicle.addEventListener('click', e=>{
-  e.stopPropagation();                  // keep overlay clicks local
-  if(clicks >= 6) return;               // already at max size
-
-  clicks++;
-  const scale = 1 + clicks * 3;      // ends at 2.5×
-  follicle.style.transform = `scale(${scale})`;
-
-  if(clicks === 6){
-    growPrompt.style.display = 'none';
-    ovulationPrompt.style.display = 'grid';   // centred via CSS
-  }
-});
-
-/* arrow scrolls one scene to the right */
-ovulationArrow.addEventListener('click', e=>{
-  e.stopPropagation();
-  scrollWrapper.scrollBy({left:window.innerWidth, behavior:'smooth'});
-});
-
-
-  </script>
+      <section class="scene" id="scene2">
+        <div class="legs-wrapper" data-parallax data-depth="0.35">
+          <div id="legsAnimation"></div>
+        </div>
+      </section>
+
+      <!-- Scene 3 -->
+      <section class="scene" id="scene3">
+        <!--  Skrivemaskine‑tekst -->
+        <div class="typewriter-container" data-parallax data-depth="0.35">
+          <span id="typeText" class="typewriter-text"></span>
+          <span id="typeCursor" class="cursor">|</span>
+        </div>
+
+        <!--  Gule SVG’er — dupliker / flyt / størrelsesjuster som du vil -->
+        <img class="yellow-svg" data-parallax data-depth="0.15" style="top:22%; left:18%;" src="images/folikelfase/yellow1.svg" alt="" />
+        <img class="yellow-svg" data-parallax data-depth="0.25" style="top:68%; left:72%;" src="images/folikelfase/yellow2.svg" alt="" />
+        <img class="yellow-svg" data-parallax data-depth="0.20" style="top:40%; left:80%;" src="images/folikelfase/yellow3.svg" alt="" />
+      </section>
+
+      <!-- Scene 4: Folliklen vokser -->
+      <section class="scene" id="scene4">
+        <!-- Faktisk træ‑grafik (positioneres med CSS) -->
+        <img class="tree-img" src="images/folikelfase/tree.png" alt="Træ" />
+
+        <!-- Selve folliklen -->
+        <div class="follicle-wrapper" data-parallax data-depth="0.35">
+          <img id="follicle" src="images/folikelfase/follikkeltryk.svg" alt="Follikkel" />
+          <p id="growPrompt">Tryk for at se folliklen vokse</p>
+
+          <!-- Vises først efter 6 klik -->
+          <div id="ovulationPrompt">
+            <span>Gå til næste fase:<br />Ægløsningsfasen</span><br />
+            <!-- Link direkte til næste HTML‑fil -->
+            <a id="ovulationArrow" href="3egglosningsfasen.html" aria-label="Gå videre">→</a>
+          </div>
+        </div>
+      </section>
+
+    </div> <!-- /journey -->
+  </div> <!-- /scroll-wrapper -->
+
+  <!-- Eksterne scripts -->
+  <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+  <script src="js/follikelfasen.js"></script>
 </body>
-
-
-<script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
-
-
 </html>

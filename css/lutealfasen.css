@@ -12,14 +12,35 @@ body{
   font-style: normal;
 }
 
+:root {
+    /* Sort og hvidtoner */
+    --color-hvid: #FFFCF5;
+    --color-sort: #1D1D1B;
+  
+    /* Primære farver */
+    --color-primar-rod: #7F1524;
+    --color-primar-lyserod: #C2858C;
+    --color-primar-rosa: #AE635B; 
+    --color-primar-lysebla: #8DA1BD;
+    --color-primar-morkebla: #6F8095;
+  
+    /* Sekundære farver */
+    --color-sekundar-rod: #7D302D;
+    --color-sekundar-lyserod: #A36A73;
+    --color-sekundar-rosa: #AA8386;
+    --color-sekundar-orange: #EF966F;
+    --color-sekundar-gul: #F7F797;
+  }
+
 p{
    font-family: 'Poppins', sans-serif;
+   color: #F7F797;
 }
 /* Overskriften */
 h1{
     font-size: 8rem;
     font-family: "Super Funky", sans-serif;
-    color: var(-color-hvid: #FFFCF5);
+    color: #FFFCF5;
     text-align: center;
     margin-top: 2rem;
     margin-bottom: -1rem;
@@ -28,19 +49,19 @@ h1{
 h2{
    font-size:5rem;
    font-family: "Super Funky", sans-serif;
-   color:var(-color-primar-lysebla: #8DA1BD);
+  color:#8DA1BD;
 }
 
 h3{
    font-size:3rem;
    font-family: "Super Funky", sans-serif;
-  color:var(-color-primar-lysebla: #8DA1BD);
+   color:#8DA1BD;
 }
 
 h4{
    font-size:2rem;
    font-family: "Super Funky", sans-serif;
-  color: var(-color-hvid: #FFFCF5);
+  color:#FFFCF5;
    margin-top: -3rem;
 }
 h5 {
@@ -79,7 +100,7 @@ h5 {
 
     .text {
       position: absolute;
-      color:var(-color-primar-lysebla: #8DA1BD);
+      color:#8DA1BD;
       font-size: 3rem;
       font-family:"Super Funky", sans-serif;
       opacity: 0;
@@ -145,7 +166,7 @@ h5 {
       align-items:first baseline;
       margin-top: 2rem;
       flex-direction: column;
-      color: var(-color-hvid: #FFFCF5)
+      color: #FFFCF5;
       pointer-events: auto;
     }
 
@@ -174,7 +195,7 @@ h5 {
   height: 5px;
   border-radius: 5px;
   width: 100%;
-  background:var(--color-sekundar-gul: #F7F797);
+  background:#F7F797;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 1s ease-out;
@@ -211,7 +232,7 @@ h5 {
   text-align: center;
   padding: 1rem;
   box-sizing: border-box;
-  color: var(-color-sekundar-gul: #F7F797);
+  color: #F7F797;
   font-family: 'Poppins', sans-serif;
   font-size: 2rem;
   font-weight:200;
@@ -308,7 +329,7 @@ h5 {
 
 /* Bagside med tekst */
 .flip-card-back {
-  background-color:var(-color-primar-lysebla: #8DA1BD);
+  background-color:#8DA1BD;
   color: #FFFCF5;
   transform: rotateY(180deg);
   display: flex;
@@ -347,7 +368,7 @@ h5 {
       width: 650px;
       height: 650px;
       border-radius: 50%;
-      background-color:var(-color-primar-lysebla: #8DA1BD);
+      background-color:#8DA1BD;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -372,7 +393,7 @@ h5 {
      position: relative;
       width: 100%;
       height: 64px;
-      background-color:var(--color-primar-morkebla);
+      background-color: #6F8095;
       border-radius: 22px;
       overflow: hidden;
       font-size: 30px;
@@ -382,7 +403,7 @@ h5 {
       padding-left: 10px;
       justify-content:last baseline;
        z-index: 0;
-      color:var(-color-primar-lysebla: #8DA1BD);
+      color: #8DA1BD;
 
      }
 
@@ -393,7 +414,7 @@ h5 {
       left: 0;
       height: 100%;
       width: 0;
-      background:var(--color-sekundar-gul: #F7F797);
+      background:#F7F797;
       border-radius: 12px;
       transition: width 4s ease;
     }
@@ -411,7 +432,7 @@ h5 {
 .next-arrow-faelles{
    position: absolute;
   right: -80px;
-  top: 4850px;
+  top: 4700px;
   width: 300px;        
   background:none; border:none; cursor:pointer;
   animation:blink 3s infinite;

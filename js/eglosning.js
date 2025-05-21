@@ -77,14 +77,19 @@ hvordan hormoner påvirker energi, følelser og fysiske forandringer.`;
   typer.textContent = '';
   typer.style.minHeight = finalH;
   typer.style.visibility = 'visible';
+ // ----- DELAY -----
+ const delayBeforeStart = 12000; // delay før typewriteren starter
 
-  /* skrivemaskine-effekt */
+ setTimeout(() => {
+    /* skrivemaskine-effekt */ 
   let i = 0;
-  const iv = setInterval(() => {
-    typer.textContent += text.charAt(i);
-    if (++i === text.length) clearInterval(iv);
-  }, 40);   // 40 ms pr. tegn ≈ 25 tegn/sek.
+   const iv = setInterval(() => {
+     typer.textContent += text.charAt(i);
+     if (++i === text.length) clearInterval(iv);
+   }, 40);
+ }, delayBeforeStart);
 });
+
 
 /* Næste-side pil */
 /* Klik på knappen så kommer man til næste side */

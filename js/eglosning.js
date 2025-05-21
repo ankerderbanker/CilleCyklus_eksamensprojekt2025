@@ -68,7 +68,7 @@ document.addEventListener('scroll', () => {
   Klik på punkterne for at opdage,
   hvordan hormoner påvirker energi, følelser og fysiske forandringer.`;
   
-    /* Låser højden, ellers hopper alt nedenunder mens typewriteren skriver */
+/* Låser højden, ellers hopper alt nedenunder mens typewriteren skriver */
     typer.style.visibility = 'hidden';
     typer.style.whiteSpace  = 'pre-line';
     typer.textContent       = text;
@@ -77,8 +77,10 @@ document.addEventListener('scroll', () => {
     typer.textContent = '';
     typer.style.minHeight = finalH;
     typer.style.visibility = 'visible';
-   // ----- DELAY -----
-   const delayBeforeStart = 12000; // delay før typewriteren starter
+
+
+/* delay på typewriteren, i introvideoens længde */ 
+   const delayBeforeStart = 12000; // delay 
   
    setTimeout(() => {
       /* skrivemaskine-effekt */ 

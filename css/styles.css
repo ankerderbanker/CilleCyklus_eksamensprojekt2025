@@ -32,4 +32,4 @@ body{
 
 /* ---------- CIRKEL HÅNDTAG ---------- */
 #handleCircle{fill:#7f1524;cursor:pointer;touch-action:none;transition:transform .2s ease}
-#handleText{fill:#fff;font-weight:100;font-size:11px;user-select:none;pointer-events:none;display:none; font-family: 'Super Funky', cursive;}
+#handleText{fill:#a36a73;font-weight:100;font-size:11px;user-select:none;pointer-events:none;display:none; font-family: 'Super Funky', cursive;}

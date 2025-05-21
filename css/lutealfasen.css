@@ -16,7 +16,7 @@ h1{
     text-align: center;
     margin-top: 2rem;
     margin-bottom: -1rem;
-    margin-left: 4.5rem;
+    margin-left: 4.2rem;
 }
 h2{
    font-size:5rem;
@@ -135,6 +135,7 @@ h5 {
       justify-content: center;
       align-items:first baseline;
       margin-top: 2rem;
+      
       flex-direction: column;
       color: #FFFCF5;
       pointer-events: auto;

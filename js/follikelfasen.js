@@ -11,6 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
 (() => {
   "use strict";
 
+
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById("ambientAudio");
+
+    // Prøv direkte autoplay
+    audio.play().catch(() => {
+      // Brugerinteraktion kræves – scroll som trigger
+      const tryPlay = () => {
+        audio.play().catch(() => {});
+        window.removeEventListener("scroll", tryPlay);
+      };
+      window.addEventListener("scroll", tryPlay, { once: true });
+    });
+  });
+
   /* ───────────────────────── 1. Generel navigation ───────────────────────── */
   window.goBack = () => (window.location.href = "index.html"); // Tilbage til forside
 

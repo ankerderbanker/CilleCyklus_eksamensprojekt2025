@@ -194,7 +194,7 @@ h5 {
 
 .infographic img{
   max-width: 80%;  /* Scaleringen af størrelse sat i % */
-  max-height: auto; 
+
 }
 
  /* Typewriter efftekt som animere tekst og styler sectionen*/
@@ -375,7 +375,8 @@ h5 {
       display: flex;
       align-items: center;
       padding-left: 10px;
-      justify-content:last baseline;
+      justify-content: flex-end;
+   
        z-index: 0;
       color: #8DA1BD;
 

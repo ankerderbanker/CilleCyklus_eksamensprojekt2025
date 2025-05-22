@@ -1,314 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- metatags -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-        <meta name="title" content="Menstruationsfasen – Interaktiv Cyklus">
-        <meta name="description" content="Oplev menstruationsfasen gennem historier, animationer, quizzer og data om smerte og hormoner. Lyt til fortællinger og udforsk interaktive elementer.">
-        <meta name="keywords" content="menstruation, smerte, hormoner, interaktiv, historie, unge, museum, kvindekrop, cyklus">
-        <meta name="robots" content="index, follow">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="language" content="English">
-        <title>Document</title>
-     
-        <!-- googlefont: Poppins -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-        <!-- superfunky font fra DaFont her -->
-        <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet" />
-          <!-- Preload overgangsvideo for denne fase -->
+<html lang="da">
+<head>
+    <!-- metatags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Menstruationsfasen – Interaktiv Cyklus">
+    <meta name="description" content="Oplev menstruationsfasen gennem historier, animationer, quizzer og data om smerte og hormoner. Lyt til fortællinger og udforsk interaktive elementer.">
+    <meta name="keywords" content="menstruation, smerte, hormoner, interaktiv, historie, unge, museum, kvindekrop, cyklus">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="da">
+    <title>Menstruationsfasen – Interaktiv Cyklus</title>
+ 
+    <!-- googlefont: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- superfunky font fra DaFont her -->
+    <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
+    <!-- Preload overgangsvideo for denne fase -->
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/menstruation.css">
+    <link rel="preload" as="video" href="mp4/overgang-til-mens.mp4">
+</head>
+<body>
 
-             <!-- general css -->
-        <link rel="stylesheet" href="css/css.css" />
-
-        <!-- specifikt til ægløsningsiden -->
-        <link rel="stylesheet" href="css/menstruation.css" />
-  <link rel="preload" as="video" href="mp4/overgang-til-mens.mp4">
-    </head>
-    <body>
-
-
-      
-        <div id="phaseVideoOverlay" style="
+    <div id="phaseVideoOverlay" style="
         position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;
         background:black;display:flex;justify-content:center;align-items:center;
         opacity:1;transition:opacity .7s cubic-bezier(.77,0,.18,1);pointer-events:auto;">
-        <video id="phaseVideo" src="mp4/overgang-til-mens.mp4" 
-               style="width:100vw;height:100vh;object-fit:cover;" 
-               preload="auto" autoplay playsinline muted></video>
-      </div>
+        <video id="phaseVideo" src="mp4/overgang-til-mens.mp4"
+            style="width:100vw;height:100vh;object-fit:cover;"
+            preload="auto" autoplay playsinline muted></video>
+    </div>
 
+    <!-- Logo og tilbage-pil (øverst til højre) -->
+    <a href="index.html">
+        <img src="images/baggrund/Fase1/logocillehjempink.svg" alt="Logo: Gå til forsiden" class="logo-link">
+    </a>
 
+    <!-- overskrift, piger og livmor baggrund -->
+    <div class="intro">
+        <img id="overskrift" src="images/menstruation/titel.svg" alt="Overskrift: Menstruationsfasen">
+        <img id="piger" src="images/menstruation/3piger.svg" alt="Illustration af tre piger">
+        <img id="livmor" src="images/menstruation/uterus.svg" alt="Baggrundsbillede af livmoder">
+    </div>
 
+    <!-- animerede bobler via JS -->
+    <section id="livmorhals"></section>
 
-        <!-- Logo og tilbage-pil (øverst til højre) -->
-        <a href="index.html">
-            <img src="images/baggrund/Fase1/logocillehjempink.svg" alt="Gå til forsiden" class="logo-link" />
-        </a>
-
-        <!-- overskfrit image + intro image + livmor image som fylder hele siden-->
-        <div class="intro">
-            <img id="overskrift" src="images/menstruation/titel.svg" alt="titel" />
-            <img id="piger" src="images/menstruation/3piger.svg" alt="tre piger" />
-            <img id="livmor" src="images/menstruation/uterus.svg" alt="livmorbaggrund" />
+    <!-- første menstruationshistorier fra 3 piger for forskellige årstal -->
+    <article class="personer">
+        <h1>Hør deres historier</h1>
+        <!-- cille fra 2000 -->
+        <div class="person" id="person1">
+            <img class="clickImage" src="images/menstruation/cille2000.svg" alt="Klik for at høre Cilles historie (år 2000)">
+            <div class="year">2000</div>
+            <div class="videoContainer">
+                <video class="myVideo" preload="auto" autoplay muted>
+                    <source src="mp4/cille2000.mp4" type="video/mp4">
+                </video>
+            </div>
+            <audio class="audio" preload="auto" src="lyd/cilleny.mp3"></audio>
         </div>
-
-        <!--  animeret bobler kommer her fra js -->
-        <section id="livmorhals"></section>
-
-        <!-- første menstraution historier fra 3 piger for forskellige årstal -->
-        <article class="personer">
-            <h1>
-                Hør deres historier
-            </h1>
-            <!-- cille fra 2000 -->
-            <div class="person" id="person1">
-                <img class="clickImage" src="images/menstruation/cille2000.svg" alt="Klik for at starte" />
-                <div class="year">2000</div>
-                <div class="videoContainer">
-                    <video class="myVideo" preload="auto" autoplay muted>
-                        <source src="mp4/cille2000.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <audio class="audio" preload="auto" src="lyd/cilleny.mp3"></audio>
+        <!-- anna fra 1800 -->
+        <div class="person" id="person2">
+            <img class="clickImage" src="images/menstruation/Cille1800.svg" alt="Klik for at høre Annas historie (år 1800)">
+            <div class="year">1800</div>
+            <div class="videoContainer">
+                <video class="myVideo" preload="auto" autoplay muted>
+                    <source src="mp4/cille2002.mp4" type="video/mp4">
+                </video>
             </div>
-            <!-- anna fra 1800 -->
-            <div class="person" id="person2">
-                <img class="clickImage" src="images/menstruation/Cille1800.svg" alt="Klik for at starte" />
-                <div class="year">1800</div>
-                <div class="videoContainer">
-                    <video class="myVideo" preload="auto" autoplay muted>
-                        <source src="mp4/cille2002.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <audio class="audio" preload="auto" src="lyd/Anna_1800ny.mp3"></audio>
+            <audio class="audio" preload="auto" src="lyd/Anna_1800ny.mp3"></audio>
+        </div>
+        <!-- maren fra 1600 -->
+        <div class="person" id="person3">
+            <img class="clickImage" src="images/menstruation/cille1600.svg" alt="Klik for at høre Marens historie (år 1600)">
+            <div class="year">1600</div>
+            <div class="videoContainer">
+                <video class="myVideo" preload="auto" autoplay muted>
+                    <source src="mp4/cille1600.mp4" type="video/mp4">
+                </video>
             </div>
-            <!-- margen fra 1600 -->
-            <div class="person" id="person3">
-                <img class="clickImage" src="images/menstruation/cille1600.svg" alt="Klik for at starte" />
-                <div class="year">1600</div>
-                <div class="videoContainer">
-                    <video class="myVideo" preload="auto" autoplay muted>
-                        <source src="mp4/cille1600.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <audio class="audio" preload="auto" src="lyd/Maren-(vintre)ny.mp3"></audio>
-            </div>
-        </article>
+            <audio class="audio" preload="auto" src="lyd/Maren-(vintre)ny.mp3"></audio>
+        </div>
+    </article>
 
-        <!-- menstruation smerter i skala -->
-        <aside class="smerteskalaSection">
-            <!-- intro tekst til skala -->
-            <h1>
-                Smerteskala
-            </h1>
-
-            <section class="typewriter-section">
-                <p id="typewriter"></p>
-                <!-- sat ind med js -->
-            </section>
-
-            <!-- Smerteskala -->
-            <div class="smerteskala">
-                <!-- Niveau 1 -->
-                <div class="niveau" data-nr="1">
-                    <button class="cirkel">
-                        <span class="nummer">1</span>
-                        <img class="ikon" src="images/menstruation/hovedpine.svg" alt="Hovedpine" />
-                    </button>
-                    <div class="info">
-                        <strong>1. Hovedpine</strong><br />
-                        Mildt ubehag – du kan stadig smile lidt.
-                    </div>
-                </div>
-
-                <!-- Niveau 2 -->
-                <div class="niveau" data-nr="2">
-                    <button class="cirkel">
-                        <span class="nummer">2</span>
-                        <img class="ikon" src="images/menstruation/bloat.svg" alt="Oppustet mave" />
-                    </button>
-                    <div class="info">
-                        <strong>2. Oppustet mave</strong><br />
-                        Strammer i buksekanten og humøret.
-                    </div>
-                </div>
-
-                <!-- Niveau 3 -->
-                <div class="niveau" data-nr="3">
-                    <button class="cirkel">
-                        <span class="nummer">3</span>
-                        <img class="ikon" src="images/menstruation/muskel.svg" alt="Muskelømhed" />
-                    </button>
-                    <div class="info">
-                        <strong>3. Muskelømhed</strong><br />
-                        Du bevæger dig langsommere og med lyde.
-                    </div>
-                </div>
-
-                <!-- Niveau 4 -->
-                <div class="niveau" data-nr="4">
-                    <button class="cirkel">
-                        <span class="nummer">4</span>
-                        <img class="ikon" src="images/menstruation/fod.svg" alt="Forstuvet fod" />
-                    </button>
-                    <div class="info">
-                        <strong>4. Forstuvet fod</strong><br />
-                        Du har brug for en pause og plaster på egoet.
-                    </div>
-                </div>
-
-                <!-- Niveau 5 -->
-                <div class="niveau" data-nr="5">
-                    <button class="cirkel">
-                        <span class="nummer">5</span>
-                        <img class="ikon" src="images/menstruation/riben.svg" alt="Brækket ribben" />
-                    </button>
-                    <div class="info">
-                        <strong>5. Brækket ribben</strong><br />
-                        Det gør ondt at trække vejret og tænke.
-                    </div>
-                </div>
-
-                <!-- Niveau 6 -->
-                <div class="niveau" data-nr="6">
-                    <button class="cirkel">
-                        <span class="nummer">6</span>
-                        <img class="ikon" src="images/menstruation/nyresten.svg" alt="Nyresten" />
-                    </button>
-                    <div class="info">
-                        <strong>6. Nyresten</strong><br />
-                        Du ved ikke om du skal kaste op eller skrige.
-                    </div>
-                </div>
-
-                <!-- Niveau 7 -->
-                <div class="niveau" data-nr="7">
-                    <button class="cirkel">
-                        <span class="nummer">7</span>
-                        <img class="ikon" src="images/menstruation/surlivmor.svg" alt="Livmoderen går amok" />
-                    </button>
-                    <div class="info">
-                        <strong>7. Livmoderen går amok</strong><br />
-                        Du ligger i fosterstilling og overvejer at ringe 112.
-                    </div>
+    <!-- menstruation smerter i skala -->
+    <aside class="smerteskalaSection">
+        <h1>Smerteskala</h1>
+        <section class="typewriter-section">
+            <p id="typewriter"></p>
+            <!-- sat ind med js -->
+        </section>
+        <div class="smerteskala">
+            <div class="niveau" data-nr="1">
+                <button class="cirkel">
+                    <span class="nummer">1</span>
+                    <img class="ikon" src="images/menstruation/hovedpine.svg" alt="Ikon: Hovedpine">
+                </button>
+                <div class="info">
+                    <strong>1. Hovedpine</strong><br>
+                    Mildt ubehag – du kan stadig smile lidt.
                 </div>
             </div>
-        </aside>
-
-  <!-- hormoncirklen -->
-        <!-- Buet overskrift-SVG -->
-        <div class="hormon-container">
-            <img src="images/lutealfasen/hormonniveau.png" alt="Hormon-niveau" class="overskrift-bue" />
-            <!-- Selve hormontabellen (bjælkerne starter på 0%, JS animerer til de korrekte niveauer nedenfor) -->
-             
-            <div class="hormon-wrapper">
-                <div class="hormon-bar">
-                    <div class="gul-niveau" data-niveau="40%"></div>
-                    <div class="label">FSH</div>
+            <div class="niveau" data-nr="2">
+                <button class="cirkel">
+                    <span class="nummer">2</span>
+                    <img class="ikon" src="images/menstruation/bloat.svg" alt="Ikon: Oppustet mave">
+                </button>
+                <div class="info">
+                    <strong>2. Oppustet mave</strong><br>
+                    Strammer i buksekanten og humøret.
                 </div>
-
-                <div class="hormon-bar">
-                    <div class="gul-niveau" data-niveau="70%"></div>
-                    <div class="label">FH</div>
+            </div>
+            <div class="niveau" data-nr="3">
+                <button class="cirkel">
+                    <span class="nummer">3</span>
+                    <img class="ikon" src="images/menstruation/muskel.svg" alt="Ikon: Muskelømhed">
+                </button>
+                <div class="info">
+                    <strong>3. Muskelømhed</strong><br>
+                    Du bevæger dig langsommere og med lyde.
                 </div>
-
-                <div class="hormon-bar">
-                    <div class="gul-niveau" data-niveau="90%"></div>
-                    <div class="label">ØSTROGEN</div>
+            </div>
+            <div class="niveau" data-nr="4">
+                <button class="cirkel">
+                    <span class="nummer">4</span>
+                    <img class="ikon" src="images/menstruation/fod.svg" alt="Ikon: Forstuvet fod">
+                </button>
+                <div class="info">
+                    <strong>4. Forstuvet fod</strong><br>
+                    Du har brug for en pause og plaster på egoet.
                 </div>
-
-                <div class="hormon-bar">
-                    <div class="gul-niveau" data-niveau="30%"></div>
-                    <div class="label">PROGESTERON</div>
+            </div>
+            <div class="niveau" data-nr="5">
+                <button class="cirkel">
+                    <span class="nummer">5</span>
+                    <img class="ikon" src="images/menstruation/riben.svg" alt="Ikon: Brækket ribben">
+                </button>
+                <div class="info">
+                    <strong>5. Brækket ribben</strong><br>
+                    Det gør ondt at trække vejret og tænke.
                 </div>
-
-                <div class="hormon-bar">
-                    <div class="gul-niveau" data-niveau="60%"></div>
-                    <div class="label">TESTOSTERON</div>
+            </div>
+            <div class="niveau" data-nr="6">
+                <button class="cirkel">
+                    <span class="nummer">6</span>
+                    <img class="ikon" src="images/menstruation/nyresten.svg" alt="Ikon: Nyresten">
+                </button>
+                <div class="info">
+                    <strong>6. Nyresten</strong><br>
+                    Du ved ikke om du skal kaste op eller skrige.
+                </div>
+            </div>
+            <div class="niveau" data-nr="7">
+                <button class="cirkel">
+                    <span class="nummer">7</span>
+                    <img class="ikon" src="images/menstruation/surlivmor.svg" alt="Ikon: Livmoderen går amok">
+                </button>
+                <div class="info">
+                    <strong>7. Livmoderen går amok</strong><br>
+                    Du ligger i fosterstilling og overvejer at ringe 112.
                 </div>
             </div>
         </div>
+    </aside>
 
-        <!-- interaktiv humør spørgekema cirkel -->
-        <article class="humorcircle">
-            <div>
-                <!-- omridset af cirklen -->
-                <img class="baggrundHumor" src="images/menstruation/humørRing.svg" alt="" />
-                <!-- overskift ved start -->
-                <img class="overskrift_1" src="images/menstruation/overskrift1.svg" alt="" />
-                <!-- overskrift efter tryk og typewriter -->
-                <img class="overskrift_2" src="images/menstruation/overskrift2.svg" alt="" />
+    <!-- hormoncirklen -->
+    <div class="hormon-container">
+        <img src="images/lutealfasen/hormonniveau.png" alt="Infografik: Hormon-niveauer" class="overskrift-bue">
+        <div class="hormon-wrapper">
+            <div class="hormon-bar">
+                <div class="gul-niveau" data-niveau="40%"></div>
+                <div class="label">FSH</div>
             </div>
-            <!-- cirklen med humør ikoner -->
-            <div class="humor-icons">
-                <img src="images/menstruation/glad.svg" alt="Glad" class="mood-icon" data-mood="glad" />
-                <img src="images/menstruation/sur.svg" alt="Sur" class="mood-icon" data-mood="sur" />
-                <img src="images/menstruation/trist.svg" alt="Træt" class="mood-icon" data-mood="trist" />
+            <div class="hormon-bar">
+                <div class="gul-niveau" data-niveau="70%"></div>
+                <div class="label">FH</div>
             </div>
-
-            <!-- animeret tekst lavet i js -->
-            <section class="typewriter-section-humor" style="display: none;">
-                <p id="typewriter-humor"></p>
-            </section>
-            <!-- pil for at se diagrammet -->
-            <button class="next-arrow" style="display: none;" aria-label="Se diagram">
-                <img src="images/menstruation/arrow.svg" alt="" />
-            </button>
-            <!-- diagrammet over humør på verdensplan -->
-            <div class="diagram-container" style="display: none;">
-                <div class="mood-bar">
-                    <div class="bar">
-                        <img src="images/menstruation/glad.svg" alt="Glad" />
-                    </div>
-                    <p>GLAD</p>
-                </div>
-                <div class="mood-bar">
-                    <div class="bar">
-                        <img src="images/menstruation/trist.svg" alt="Trist" />
-                    </div>
-                    <p>TRIST</p>
-                </div>
-                <div class="mood-bar">
-                    <div class="bar">
-                        <img src="images/menstruation/sur.svg" alt="Vred" />
-                    </div>
-                    <p>VRED</p>
-                </div>
+            <div class="hormon-bar">
+                <div class="gul-niveau" data-niveau="90%"></div>
+                <div class="label">ØSTROGEN</div>
             </div>
-        </article>
-
-        <!-- parrallex scroling -->
-        <!-- ikonerne + deres "fart" -->
-        <div class="parallax-overlay">
-            <img src="images/baggrund/Fase1/menstruation_rød1.svg" class="parallax icon1a" data-speed="5" />
-            <img src="images/baggrund/Fase1/menstruation_rød1.svg" class="parallax icon1b" data-speed="5" />
-
-            <img src="images/baggrund/Fase1/menstruation_rød2.svg" class="parallax icon2a" data-speed="4" />
-            <img src="images/baggrund/Fase1/menstruation_rød2.svg" class="parallax icon2b" data-speed="4" />
-
-            <img src="images/baggrund/Fase1/menstruation_rød3.svg" class="parallax icon4a" data-speed="3" />
-            <img src="images/baggrund/Fase1/menstruation_rød3.svg" class="parallax icon4b" data-speed="3" />
-
-            <img src="images/baggrund/Fase1/menstruation_rød4.svg" class="parallax icon5a" data-speed="3" />
-            <img src="images/baggrund/Fase1/menstruation_rød4.svg" class="parallax icon5b" data-speed="3" />
-
-            <img src="images/baggrund/Fase1/menstruation_rød5.svg" class="parallax icon6a" data-speed="5" />
-            <img src="images/baggrund/Fase1/menstruation_rød5.svg" class="parallax icon6b" data-speed="5" />
-
-            <img src="images/baggrund/Fase1/menstruation_rød6.svg" class="parallax icon7a" data-speed="4" />
-            <img src="images/baggrund/Fase1/menstruation_rød6.svg" class="parallax icon7b" data-speed="4" />
+            <div class="hormon-bar">
+                <div class="gul-niveau" data-niveau="30%"></div>
+                <div class="label">PROGESTERON</div>
+            </div>
+            <div class="hormon-bar">
+                <div class="gul-niveau" data-niveau="60%"></div>
+                <div class="label">TESTOSTERON</div>
+            </div>
         </div>
+    </div>
 
-        <!-- Fast pil videre-->
-        <button class="next-arrow-faelles">
-            <img src="images/lutealfasen/næstefasepil.svg" alt="" />
+    <!-- interaktiv humør spørgeskema cirkel -->
+    <article class="humorcircle">
+        <div>
+            <img class="baggrundHumor" src="images/menstruation/humørRing.svg" alt="Baggrundsgrafik: Humørcirkel">
+            <img class="overskrift_1" src="images/menstruation/overskrift1.svg" alt="Humørquiz: introoverskrift">
+            <img class="overskrift_2" src="images/menstruation/overskrift2.svg" alt="Humørquiz: resultatoverskrift">
+        </div>
+        <!-- cirklen med humør ikoner -->
+        <div class="humor-icons">
+            <img src="images/menstruation/glad.svg" alt="Humørikon: Glad" class="mood-icon" data-mood="glad">
+            <img src="images/menstruation/sur.svg" alt="Humørikon: Sur" class="mood-icon" data-mood="sur">
+            <img src="images/menstruation/trist.svg" alt="Humørikon: Træt" class="mood-icon" data-mood="trist">
+        </div>
+        <!-- animeret tekst lavet i js -->
+        <section class="typewriter-section-humor" style="display: none;">
+            <p id="typewriter-humor"></p>
+        </section>
+        <!-- pil for at se diagrammet -->
+        <button class="next-arrow" style="display: none;" aria-label="Se diagram">
+            <img src="images/menstruation/arrow.svg" alt="Pil: Se humør-diagram">
         </button>
+        <!-- diagrammet over humør på verdensplan -->
+        <div class="diagram-container" style="display: none;">
+            <div class="mood-bar">
+                <div class="bar">
+                    <img src="images/menstruation/glad.svg" alt="Humør-diagram: Glad">
+                </div>
+                <p>GLAD</p>
+            </div>
+            <div class="mood-bar">
+                <div class="bar">
+                    <img src="images/menstruation/trist.svg" alt="Humør-diagram: Trist">
+                </div>
+                <p>TRIST</p>
+            </div>
+            <div class="mood-bar">
+                <div class="bar">
+                    <img src="images/menstruation/sur.svg" alt="Humør-diagram: Vred">
+                </div>
+                <p>VRED</p>
+            </div>
+        </div>
+    </article>
 
-        <!-- Henter Animate On Scroll-biblioteket (giver liv til alle data-aos animationer) -->
-        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-        <script src="js/mens.js"></script>
-    </body>
+    <!-- parallax scrolling ikoner -->
+    <div class="parallax-overlay">
+        <img src="images/baggrund/Fase1/menstruation_rød1.svg" class="parallax icon1a" data-speed="5" alt="Baggrundsikon 1">
+        <img src="images/baggrund/Fase1/menstruation_rød1.svg" class="parallax icon1b" data-speed="5" alt="Baggrundsikon 1 kopi">
+        <img src="images/baggrund/Fase1/menstruation_rød2.svg" class="parallax icon2a" data-speed="4" alt="Baggrundsikon 2">
+        <img src="images/baggrund/Fase1/menstruation_rød2.svg" class="parallax icon2b" data-speed="4" alt="Baggrundsikon 2 kopi">
+        <img src="images/baggrund/Fase1/menstruation_rød3.svg" class="parallax icon4a" data-speed="3" alt="Baggrundsikon 3">
+        <img src="images/baggrund/Fase1/menstruation_rød3.svg" class="parallax icon4b" data-speed="3" alt="Baggrundsikon 3 kopi">
+        <img src="images/baggrund/Fase1/menstruation_rød4.svg" class="parallax icon5a" data-speed="3" alt="Baggrundsikon 4">
+        <img src="images/baggrund/Fase1/menstruation_rød4.svg" class="parallax icon5b" data-speed="3" alt="Baggrundsikon 4 kopi">
+        <img src="images/baggrund/Fase1/menstruation_rød5.svg" class="parallax icon6a" data-speed="5" alt="Baggrundsikon 5">
+        <img src="images/baggrund/Fase1/menstruation_rød5.svg" class="parallax icon6b" data-speed="5" alt="Baggrundsikon 5 kopi">
+        <img src="images/baggrund/Fase1/menstruation_rød6.svg" class="parallax icon7a" data-speed="4" alt="Baggrundsikon 6">
+        <img src="images/baggrund/Fase1/menstruation_rød6.svg" class="parallax icon7b" data-speed="4" alt="Baggrundsikon 6 kopi">
+    </div>
+
+    <!-- Fast pil videre-->
+    <button class="next-arrow-faelles">
+        <img src="images/lutealfasen/næstefasepil.svg" alt="Pil: Gå til næste fase">
+    </button>
+
+    <!-- Animate On Scroll-biblioteket -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/mens.js"></script>
+</body>
 </html>

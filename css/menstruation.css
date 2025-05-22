@@ -2,9 +2,7 @@
 html{
   overflow-x:hidden;
 }
-*{
-  border: 2px solid #30ff00ff;
-}
+
 body {
   background-color: var(--color-primar-rod);
   overflow-x: hidden;
@@ -32,6 +30,8 @@ body {
 #livmor {
   width: 100rem;
   margin-bottom: 5rem;
+
+ 
 }
 
 /* ---------- LOGO OG TILBAGE-PIL ---------- */
@@ -66,9 +66,10 @@ body {
 .personer {
   display: flex;
   flex-direction: column;
+max-width: 100%;
 
-  
 }
+
 /* Overskrift til historier */
 .personer h1 {
   font-size: 2rem;
@@ -77,16 +78,20 @@ body {
   top: 120rem;
   text-align: center;
   margin-top: 10rem;
+  left: 50%;
+  transform: translateX(-50%)
 }
 /* Hver person (figur) med billede, årstal, video, lyd */
 .person {
   max-width:100%;
-  height: 100%;
+  height: auto;
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%)
 }
-#person1 { top: 140rem; left: 30%; }
-#person2 { top: 155rem; left: 60%; }
-#person3 { top: 175rem; left: 30%; }
+#person1 { top: 140rem; left: 33%;}
+#person2 { top: 155rem;  left: 66%;}
+#person3 { top: 175rem;  left: 33%;}
 /* Årstal ved hver figur */
 .year {
   font-size: 2rem;
@@ -129,6 +134,7 @@ body {
 .smerteskalaSection h1 {
   font-size: 4rem;
   color: var(--color-primar-rod);
+  font-family: "Super Funky", sans-serif;
 }
 /* Typewriter-animation container */
 .typewriter-section {
@@ -231,7 +237,6 @@ body {
 .overskrift-bue {
   width: 50rem;
   margin-bottom: -730px;
-  margin-left: 23px;
   color: #000;
 }
 /* Wrapper til alle hormon-barer */
@@ -277,10 +282,12 @@ body {
 /* ---------- HUMØRCIRKEL & HUMØR-DIAGRAM ---------- */
 /* Baggrundscirkel for humør-quiz */
 .baggrundHumor {
-  width: 100%;
   height: 70vh;
   position: absolute;
   top: 500rem;
+  max-width: 70%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 /* To forskellige overskrifter, vises før/efter */
 .overskrift_1, .overskrift_2 {
@@ -296,7 +303,7 @@ body {
 /* Ikonerne til humørvalg */
 .humor-icons {
   position: absolute;
-  top: 519rem; left: 50%;
+  top: 517rem; left: 50%;
   transform: translateX(-50%);
   display: flex; gap: 2rem;
 }
@@ -329,7 +336,7 @@ body {
   align-items: flex-end;
   height: 200px;
   position: absolute;
-  top: 530rem; left: 50%;
+  top: 527rem; left: 50%;
   transform: translateX(-50%);
   z-index: 1100;
 }
@@ -389,8 +396,9 @@ body {
 .parallax-overlay {
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 100%;
+   height: 100%;
   pointer-events: none;
+  
 }
 /* Generel parallax-styling */
 .parallax {
@@ -398,20 +406,21 @@ body {
   width: 200px;
   transform: translate(-50%, -50%);
   z-index: -100;
+  
 }
 /* Positioner for de enkelte parallax-ikoner */
 .icon1a { top: 130rem; left: 8rem; }
-.icon2a { top: 180rem; left: 12rem; }
-.icon4a { top: 230rem; left: 9rem; }
-.icon5a { top: 280rem; left: 14rem; }
-.icon6a { top: 300rem; left: 10rem; }
-.icon7a { top: 380rem; left: 13rem; }
-.icon1b { top: 380rem; left: 86rem; }
-.icon2b { top: 330rem; left: 82rem; }
-.icon4b { top: 280rem; left: 85rem; }
-.icon5b { top: 230rem; left: 80rem; }
-.icon6b { top: 180rem; left: 88rem; }
-.icon7b { top: 130rem; left: 84rem; }
+.icon2a { top: 180rem; left: 8rem; }
+.icon4a { top: 230rem; left: 8rem; }
+.icon5a { top: 280rem; left: 8rem; }
+.icon6a { top: 300rem; left: 8rem; }
+.icon7a { top: 380rem; left: 8rem; }
+.icon1b { top: 380rem; left: 77rem; }
+.icon2b { top: 330rem; left: 77rem; }
+.icon4b { top: 280rem; left: 77rem; }
+.icon5b { top: 230rem; left: 77rem; }
+.icon6b { top: 180rem; left: 77rem; }
+.icon7b { top: 130rem; left: 77rem; }
 
 /* ---------- NÆSTE-FÆLLES PIL ---------- */
 /* Fast pil videre i bunden */
@@ -424,8 +433,8 @@ body {
 }
 .simple-bobler {
   position: absolute;
-  top: 360rem;
-  width: 100vw;
+  top: 370rem;
+  max-width: 100%;
   height: 35rem; /* Brug en fast højde! */
   pointer-events: none;
   opacity: 0;
@@ -453,7 +462,7 @@ body {
 
 .simple-bobler-2 {
   top: 450rem; /* eller hvad der nu passer ift. layout */
-  width: 100vw;
+  max-width: 100%;
 }
 
 .simple-boble6 { width: 100px;  height: 100px;  left: 27vw; top: 70px;}

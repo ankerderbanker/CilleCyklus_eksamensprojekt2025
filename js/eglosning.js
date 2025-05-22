@@ -96,6 +96,7 @@ document.addEventListener('scroll', () => {
      }, 40);
    }, delayBeforeStart);
   });
+  
 /* Næste-side pil */
 /* Klik på knappen så kommer man til næste side */
 const nextArrow = document.querySelector('.naestefase-pil');

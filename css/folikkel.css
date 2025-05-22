@@ -45,7 +45,7 @@ body {
   position: absolute;
   right: 30px;
   width: 100px;
-  z-index: 10000;
+  z-index: 99;
 }
 .logo-link { top: 30px; }
 .tilbage-link { top: 140px; }

@@ -21,7 +21,7 @@ body {
 
 .introduktionstekst h1 {
   font-family: 'Super Funky', sans-serif;
-  font-size: 64px;
+  font-size: 128px;
   margin-bottom: 20px;
 }
 
@@ -118,7 +118,7 @@ body {
 .icon7{ top:650px;  left:200px; }
 
 /* cille-logo og tilbage link */
-.logo-link   { position:absolute; top:70px;  right:70px;  width:200px; }
+.logo-link   { position:absolute; top:70px;  right:70px;  width:125px; }
 
 /* næstefase-pil */
 .naestefase-pil {

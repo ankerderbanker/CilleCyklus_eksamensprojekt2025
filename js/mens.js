@@ -150,14 +150,21 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- HORMON-BARER: ANIMATION ---------- */
   // Formål: Viser hormon-niveauer (gul bjælke) vokse op til deres ønskede bredde lidt efter load for "progress"-effekt.
 
-  const hormonBarer = document.querySelectorAll('.gul-niveau');
-  setTimeout(() => {
-    hormonBarer.forEach(niveau => {
-      const ønsketBredde = niveau.getAttribute('data-niveau') || '60%';
-      niveau.style.width = ønsketBredde; // CSS transition laver animationen
-    });
-  }, 1000); // Starter 1 sekund efter load for at sikre DOM er klar
+  // Observer til hormon-barer
+const hormonObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.gul-niveau').forEach(niveau => {
+        const ønsketBredde = niveau.getAttribute('data-niveau') || '60%';
+        niveau.style.width = ønsketBredde;
+      });
+      hormonObserver.unobserve(entry.target); // Kør kun én gang
+    }
+  });
+}, { threshold: 0.4 }); // Kan justeres hvis de skal være mere eller mindre synlige før animation
 
+const hormonContainer = document.querySelector('.hormon-container');
+if (hormonContainer) hormonObserver.observe(hormonContainer);
 
   /* ---------- HUMØRCIRKEL: INTERAKTIV QUIZ ---------- */
   // Formål: Brugeren vælger et humør, ser skrivemaskine-tekst, og får til sidst et animeret diagram
@@ -235,5 +242,23 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.transform = `translate(-50%, calc(-50% + ${y * speed * 0.05}px))`;
     });
   });
+// Får fade-on-scroll til at virke for simple-bobler
 
+  document.querySelectorAll('.fade-on-scroll').forEach(section => {
+    const observer = new IntersectionObserver(
+      (entries) => { 
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            section.classList.add('visible');
+          } else {
+            section.classList.remove('visible');
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+    observer.observe(section);
+  });
 });
+
+

@@ -2,8 +2,7 @@
 <html lang="da">
 <head>
   <!-- metatags -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="title" content="Follikelfasen – Interaktiv Cyklus">
   <meta name="description" content="Følg rejsen gennem follikelfasen med affirmationer, hormonoverblik, voksende follikler og interaktive scener. Udforsk hvordan kroppen forandrer sig i denne fase.">
   <meta name="keywords" content="follikelfasen, cyklus, hormoner, interaktiv, museum, affirmation, kvindekrop, udvikling">
@@ -13,90 +12,70 @@
   <title>Menstruationsrejsen</title>
 
   <!-- Skrifttyper -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
-  <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/c1c6a15b0d8114a9438a5c217a06d5f1?family=Super+Funky" rel="stylesheet">
 
   <!-- stylesheets -->
-  <link rel="stylesheet" href="css/folikkel.css" />
+  <link rel="stylesheet" href="css/folikkel.css">
 
   <!-- Forudindlæs træ‑baggrund (PNG) -->
-  <link rel="preload" href="images/folikelfase/tree.png" as="image" />
-   <!-- Preload overgangsvideo for denne fase -->
-   <link rel="preload" as="video" href="mp4/overgang-til-forllikel.mp4">
+  <link rel="preload" href="images/folikelfase/tree.png" as="image">
+  <!-- Preload overgangsvideo for denne fase -->
+  <link rel="preload" as="video" href="mp4/overgang-til-forllikel.mp4">
 
   <style>
-    /* ─────────────  SCENE‑BAGGRUNDE  ───────────── */
-
+    /* SCENE‑BAGGRUNDE - se din egen kode for detaljer */
     .scene::before {
-      /* Universel baggrund styling */
       content: "";
       position: absolute;
-      inset: 0; 
+      inset: 0;
       background-repeat: no-repeat;
-      background-size: contain; 
+      background-size: contain;
       background-position: center center;
-      z-index: 1; /* under spejle / pige / tekst (z-index ≥5) */
-      pointer-events: none; 
+      z-index: 1;
+      pointer-events: none;
     }
-
-    /* baggrundsgrafik til alle scener */
     #scene1::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg1.svg"); }
     #scene2::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg2.svg"); }
-    #scene3::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg3.svg"); 
-   top: 8%;
-  
-  }
-    /* 2a. Scene 4 skal ikke tegne et ::before‑lag */
+    #scene3::before { background-image: url("images/folikelfase/backgroundsSVG/SVG/bg3.svg"); top: 8%; }
     #scene4::before { background-image: none !important; }
-
-    /* Scene 4 – træ, PNG istedet for SVG */
     #scene4 .tree-img {
       position: absolute;
-      top: 48%; 
-      left: 50%;
-      transform: translate(-50%, -50%); 
-
+      top: 48%; left: 50%;
+      transform: translate(-50%, -50%);
       width: 100vw;
-      max-width: 950px; 
+      max-width: 950px;
       height: auto;
-
       pointer-events: none;
       user-select: none;
-     
     }
-
-   
   </style>
 </head>
 
-<!-- Ambient musik til rejsen -->
-<audio id="ambientAudio" src="Data/audio/girlonbindmusic.wav" loop></audio>
-
 <body>
-  <div id="phaseVideoOverlay" style="
-  position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;
+  <!-- Ambient musik til rejsen -->
+  <audio id="ambientAudio" src="lyd/girlonbindmusic.wav" loop></audio>
+
+  <div id="phaseVideoOverlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;
   background:black;display:flex;justify-content:center;align-items:center;
   opacity:1;transition:opacity .7s cubic-bezier(.77,0,.18,1);pointer-events:auto;">
-  <video id="phaseVideo" src="mp4/overgang-til-forllikel.mp4" 
-         style="width:100vw;height:100vh;object-fit:cover;" 
-         preload="auto" autoplay playsinline muted></video>
-</div>
+    <video id="phaseVideo" src="mp4/overgang-til-forllikel.mp4"
+      style="width:100vw;height:100vh;object-fit:cover;"
+      preload="auto" autoplay playsinline muted></video>
+  </div>
+  
   <!-- Logo og tilbage-pil (øverst til højre) -->
-        <a href="index.html">
-  <img src="images/baggrund/fase3/logocillehjem.svg" alt="Gå til forsiden" class="logo-link">
-</a>
-
-
+  <a href="index.html">
+    <img src="images/baggrund/Fase3/logocillehjem.svg" alt="Logo: Gå til forsiden" class="logo-link">
+  </a>
 
   <!--  Hormon‑niveau overlay  -->
   <div id="hormonOverlay" aria-hidden="true">
-    <!-- Buet overskrift -->
     <svg class="h-heading" viewBox="0 0 800 330" aria-hidden="true">
       <defs>
-        <!-- Stor bue med 300 px radius -->
-        <path id="h-arc" d="M40,300 A400,360 0 0 1 760 300" />
+        <path id="h-arc" d="M40,300 A400,360 0 0 1 760 300">
       </defs>
       <text class="arcText">
         <textPath href="#h-arc" startOffset="50%" text-anchor="middle">
@@ -104,10 +83,7 @@
         </textPath>
       </text>
     </svg>
-
-    <!--  cirkel med søjler -->
     <div class="h-circle">
-      <!-- data-pct angiver slutbredde -->
       <div class="h-bar"><div class="h-fill" style="--pct:85"></div><span class="h-label">FSH</span></div>
       <div class="h-bar"><div class="h-fill" style="--pct:35"></div><span class="h-label">LH</span></div>
       <div class="h-bar"><div class="h-fill" style="--pct:90"></div><span class="h-label">ØSTROGEN</span></div>
@@ -115,11 +91,11 @@
       <div class="h-bar"><div class="h-fill" style="--pct:25"></div><span class="h-label">TESTOSTERON</span></div>
     </div>
   </div>
-  <!-- ▴▴▴ /overlay slut ▴▴▴ -->
+  <!-- /overlay slut -->
 
   <!-- Flydende pige‑billede -->
   <div id="floating-girl">
-    <img src="Data/billeder/girlonbind.png" alt="Flydende pige" />
+    <img src="images/folikelfase/girlonbind.png" alt="Flydende pige på bind">
   </div>
 
   <!-- Animeret bølge -->
@@ -138,14 +114,14 @@
 
       <!-- Scene 0 -->
       <section class="scene" id="scene0">
-        <p class="intro-text">Velkommen til rejsen igennem follikelfasen.<br/> <br>Scroll til højre for at begynde.</p>
+        <p class="intro-text">Velkommen til rejsen igennem follikelfasen.<br> <br>Scroll til højre for at begynde.</p>
       </section>
 
       <!-- Scene 1 -->
       <section class="scene" id="scene1">
         <div class="mirror-scene-layout">
           <div class="mirror-wrapper" data-parallax data-depth="0.35">
-            <img src="images/folikelfase/mirrorgirl.svg" alt="Spejl" />
+            <img src="images/folikelfase/mirrorgirl.svg" alt="Pige foran spejl">
           </div>
           <div class="affirmation-text" id="affirmationText">JEG ER DEJLIG</div>
         </div>
@@ -165,28 +141,23 @@
           <span id="typeText" class="typewriter-text"></span>
           <span id="typeCursor" class="cursor">|</span>
         </div>
-
-        <!--  Gule SVG’er -->
-        <img class="yellow-svg" data-parallax data-depth="0.15" style="top:22%; left:18%;" src="images/folikelfase/yellow1.svg" alt="" />
-        <img class="yellow-svg" data-parallax data-depth="0.25" style="top:68%; left:72%;" src="images/folikelfase/yellow2.svg" alt="" />
-        <img class="yellow-svg" data-parallax data-depth="0.20" style="top:40%; left:80%;" src="images/folikelfase/yellow3.svg" alt="" />
+        
+       
       </section>
 
       <!-- Scene 4: Folliklen vokser -->
       <section class="scene" id="scene4">
         <!-- træ‑grafik BAGGRUND -->
-        <img class="tree-img" src="images/folikelfase/tree.png" alt="Træ" />
-
+        <img class="tree-img" src="images/folikelfase/tree.png" alt="Træ baggrund">
         <!-- folliklen -->
         <div class="follicle-wrapper" data-parallax data-depth="0.35">
-          <img id="follicle" src="images/folikelfase/follikkeltryk.svg" alt="Follikkel" />
-          <p id="growPrompt">Tryk <br>se folliklen vokse</p>
-
+          <img id="follicle" src="images/folikelfase/follikkeltryk.svg" alt="Follikkel">
+          <p id="growPrompt">  <span class="grow-bold">Tryk</span> <br>se folliklen vokse</p>
           <!-- Vises først efter 6 klik -->
           <div id="ovulationPrompt">
-            <span>Gå til næste fase:<br />Ægløsningsfasen</span><br />
+            <span>Gå til næste fase:<br>Ægløsningsfasen</span><br>
             <!-- Link til ægløsningsfasen HTML -->
-            <a id="ovulationArrow" href="3egglosningsfasen.html" aria-label="Gå videre"><img src="images/lutealfasen/næstefasepil.svg" alt="" /></a>
+            <a id="ovulationArrow" href="3egglosningsfasen.html" aria-label="Gå videre"><img src="images/lutealfasen/næstefasepil.svg" alt="Pil til næste fase"></a>
           </div>
         </div>
       </section>

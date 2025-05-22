@@ -1,5 +1,10 @@
 /* ---------- GENERELT ---------- */
-
+html{
+  overflow-x:hidden;
+}
+*{
+  border: 2px solid #30ff00ff;
+}
 body {
   background-color: var(--color-primar-rod);
   overflow-x: hidden;
@@ -31,13 +36,14 @@ body {
 
 /* ---------- LOGO OG TILBAGE-PIL ---------- */
 /* Logo og tilbage-pil placeret i øverste hjørne */
-.logo-link, .tilbage-link {
+.logo-link {
   position: absolute;
-  right: 60px;
+  top:50px;  
+  right:70px;  
   width: 125px;
 }
-.logo-link { top: 90px; }
-.tilbage-link { top: 220px; }
+
+
 
 /* ---------- BOBLE-ANIMATION (LIVMORHALS) ---------- */
 /* Wrapper hvor JS placerer animerede bobler */
@@ -46,7 +52,8 @@ body {
   top: 100%; left: 48.7%;
   transform: translateX(-50%);
   width: 220px; height: 900px;
-  overflow: hidden;
+  max-width:100%;
+  overflow-x: hidden;
 }
 /* Boble-typer */
 .boble { position: absolute; background: #770016; border-radius: 50%; }
@@ -59,7 +66,8 @@ body {
 .personer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  
 }
 /* Overskrift til historier */
 .personer h1 {
@@ -72,13 +80,13 @@ body {
 }
 /* Hver person (figur) med billede, årstal, video, lyd */
 .person {
-  width: 100%;
+  max-width:100%;
   height: 100%;
   position: absolute;
 }
-#person1 { top: 140rem; left: 25rem; }
-#person2 { top: 155rem; left: 48rem; }
-#person3 { top: 175rem; left: 28rem; }
+#person1 { top: 140rem; left: 30%; }
+#person2 { top: 155rem; left: 60%; }
+#person3 { top: 175rem; left: 30%; }
 /* Årstal ved hver figur */
 .year {
   font-size: 2rem;
@@ -414,3 +422,54 @@ body {
   background: none; border: none; cursor: pointer;
   animation: blink 3s infinite;
 }
+.simple-bobler {
+  position: absolute;
+  top: 360rem;
+  width: 100vw;
+  height: 35rem; /* Brug en fast højde! */
+  pointer-events: none;
+  opacity: 0;
+  
+  transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+}
+.simple-bobler.visible {
+  opacity: 1;
+}
+.simple-boble {
+  position: absolute;
+  background: #770016;
+  border-radius: 50%;
+  top: 1rem;
+  opacity: 0.7;
+  /* animation: zoom ind ved load */
+  animation: fadezoom 3s;
+}
+.simple-boble1 { width: 142px;  height: 142px;  left: 33vw; top: 350px;}
+.simple-boble2 { width: 68px;  height: 68px;  left: 32vw; top: 90px; }
+.simple-boble3 { width: 132px;  height: 132px;  left: 56vw; top: 450px; }
+.simple-boble4 { width: 110px;  height: 110px;  left: 59vw; top: 18px; }
+.simple-boble5 { width: 196px;  height: 196px;  left: 40vw; top: 180px; }
+
+
+.simple-bobler-2 {
+  top: 450rem; /* eller hvad der nu passer ift. layout */
+  width: 100vw;
+}
+
+.simple-boble6 { width: 100px;  height: 100px;  left: 27vw; top: 70px;}
+.simple-boble7 { width: 64px;   height: 64px;   left: 45vw; top: 120px; }
+.simple-boble8 { width: 132px;  height: 132px;  left: 68vw; top: 30px; }
+.simple-boble9 { width: 75px;   height: 75px;   left: 58vw; top: 220px; }
+
+.simple-boble10 { width: 100px;  height: 100px;  left: 40vw; top: 300px;}
+.simple-boble11 { width: 64px;   height: 64px;   left: 45vw; top: 480px; }
+.simple-boble12 { width: 132px;  height: 132px;  left: 20vw; top: 360px; }
+.simple-boble13 { width: 75px;   height: 75px;   left: 58vw; top: 220px; }
+.simple-boble13 { width: 200px;   height: 200px;   left: 58vw; top: 450px; }
+
+
+@keyframes fadezoom {
+  from { opacity: 0; transform: scale(0.1);}
+  to   { opacity: 0.7; transform: scale(1);}
+}
+

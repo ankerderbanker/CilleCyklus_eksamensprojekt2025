@@ -120,7 +120,11 @@ function pointerUp(e){
   document.removeEventListener('pointermove',pointerMove);
   document.removeEventListener('pointerup',pointerUp);
   const loc=clientToSvg(e.clientX,e.clientY),dist=pointDist(loc,CENTER);
-  Math.abs(dist-OUTER_R)<STROKE ? snapToPhase(currentPhaseIdx) : resetToTop();
+  if(Math.abs(dist-OUTER_R)<STROKE) {
+    snapToPhase(currentPhaseIdx);
+  } else {
+    resetToTop();
+  }
 }
 
 // Når man klikker direkte på håndtaget (uden at trække)

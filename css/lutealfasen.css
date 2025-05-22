@@ -1,425 +1,425 @@
 /** css for lutealfasen */
 
 body{
-    background-color: var(--color-primar-morkebla);
+  background-color: var(--color-primar-morkebla);
 }
 
 p{
-   font-family: 'Poppins', sans-serif;
-   color: #F7F797;
+ font-family: 'Poppins', sans-serif;
+ color: #F7F797;
 }
 /* Overskriften */
 h1{
-    font-size: 8rem;
-    font-family: "Super Funky", sans-serif;
-    color: #FFFCF5;
-    text-align: center;
-    margin-top: -1rem;
-    margin-bottom: -1rem;
-    margin-left: 4.2rem;
+  font-size: 7.3rem;
+  font-family: "Super Funky", sans-serif;
+  color: #FFFCF5;
+  text-align: center;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+  margin-left: 4.2rem;
 }
 h2{
-   font-size:5rem;
-   font-family: "Super Funky", sans-serif;
-  color:#8DA1BD;
+ font-size:5rem;
+ font-family: "Super Funky", sans-serif;
+color:#8DA1BD;
 }
 
 h3{
-   font-size:3rem;
-   font-family: "Super Funky", sans-serif;
-   color:#8DA1BD;
+ font-size:3rem;
+ font-family: "Super Funky", sans-serif;
+ color:#8DA1BD;
 }
 
 h4{
-   font-size:2rem;
-   font-family: "Super Funky", sans-serif;
-  color:#FFFCF5;
-   margin-top: -3rem;
+ font-size:2rem;
+ font-family: "Super Funky", sans-serif;
+color:#FFFCF5;
+ margin-top: -3rem;
 }
 h5 {
-  font-size: 2.1rem;
-  margin-top: 1rem;
-  margin-bottom: -1rem;
-  font-family: "Super Funky", sans-serif;
+font-size: 2.1rem;
+margin-top: 1rem;
+margin-bottom: -1rem;
+font-family: "Super Funky", sans-serif;
 }
 
 /* cillelogoet linker tilbage til forside*/
 .logo-link {
-  position: absolute;
-  z-index: 100;
-  top:50px;  
-  right:70px;  
-  width:125px; /* juster størrelse her */
+position: absolute;
+z-index: 100;
+top:50px;  
+right:70px;  
+width:125px; /* juster størrelse her */
 }
 
-    /* Baggrundstekst lag */
-    .background-texts {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
+  /* Baggrundstekst lag */
+  .background-texts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-    /* Baggrundstekst der er animeret til at fade ind */
-    .text {
-      position: absolute;
-      color:#8DA1BD;
-      font-size: 3rem;
-      font-family:"Super Funky", sans-serif;
-      opacity: 0;
-      transform: rotate(-40deg) scale(0.5);
-      animation: popFade 7s infinite;
-      white-space: nowrap;
-    }
-
-    /* Child 1-5 som er del af samme class med stylet og placeret forskelligt*/
-
-    .text:nth-child(1) {
-      top:40%;
-      left: 25%;
-    }
-
-    .text:nth-child(2) {
-      animation-delay: 3s;
-       top:38%;
-      left: 62%;
-      rotate: 70deg;
-      font-size: 4.5rem;
-    }
-
-    .text:nth-child(3) {
-      top:66.5%;
-      left: 62%;
-      rotate: 50deg;
-      animation-delay: 2s;
-    }
-
-      .text:nth-child(4) {
-      top:70%;
-      left: 21%;
-       animation-delay: 5s;
-       rotate: 20deg;
-       font-size: 4rem;
-    }
-      .text:nth-child(5) {
-      top:90%;
-      left: 53%;
-       animation-delay: 6s;
-       rotate: 30deg;
-       font-size: 2rem;
-    }
-
-     /* Animationen af texten med keyframes for 0% og 50%*/
-   @keyframes popFade {
-  0%, 100% {
+  /* Baggrundstekst der er animeret til at fade ind */
+  .text {
+    position: absolute;
+    color:#8DA1BD;
+    font-size: 3rem;
+    font-family:"Super Funky", sans-serif;
     opacity: 0;
-    transform: rotate(-40deg) scale(0.8);
+    transform: rotate(-40deg) scale(0.5);
+    animation: popFade 7s infinite;
+    white-space: nowrap;
   }
-  50% {
-    opacity: 1;
-    transform: rotate(-40deg) scale(1);
+
+  /* Child 1-5 som er del af samme class med stylet og placeret forskelligt*/
+
+  .text:nth-child(1) {
+    top:40%;
+    left: 25%;
   }
+
+  .text:nth-child(2) {
+    animation-delay: 3s;
+     top:38%;
+    left: 62%;
+    rotate: 70deg;
+    font-size: 4.5rem;
+  }
+
+  .text:nth-child(3) {
+    top:66.5%;
+    left: 62%;
+    rotate: 50deg;
+    animation-delay: 2s;
+  }
+
+    .text:nth-child(4) {
+    top:70%;
+    left: 21%;
+     animation-delay: 5s;
+     rotate: 20deg;
+     font-size: 4rem;
+  }
+    .text:nth-child(5) {
+    top:92%;
+    left: 53%;
+     animation-delay: 6s;
+     rotate: 30deg;
+     font-size: 2rem;
+  }
+
+   /* Animationen af texten med keyframes for 0% og 50%*/
+ @keyframes popFade {
+0%, 100% {
+  opacity: 0;
+  transform: rotate(-40deg) scale(0.8);
+}
+50% {
+  opacity: 1;
+  transform: rotate(-40deg) scale(1);
+}
 }
 
- 
-    /* Overskriften */
-    .intro {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items:first baseline;
-      margin-top: 2rem;;
-      
-      flex-direction: column;
-      color: #FFFCF5;
-      pointer-events: auto;
-    }
 
-   /* Placering af cille der er animeret i centrum*/
+  /* Overskriften */
+  .intro {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items:first baseline;
+    margin-top: 2rem;;
+    
+    flex-direction: column;
+    color: #FFFCF5;
+    pointer-events: auto;
+  }
+
+ /* Placering af cille der er animeret i centrum*/
 #cille-animation {
-  width: 100%;      /* eller 100% / vw / vh */
-  height: 500px;
-  margin: 13rem auto;
-  justify-content: center;
-  display: block;    /* centrerer elementet */
-  position: relative; /* gør det muligt at placere det i forhold til sin egen position */
-  z-index: 10000;    /* sikrer at det er ovenpå andre elementer */
+width: 100%;      /* eller 100% / vw / vh */
+height: 500px;
+margin: 13rem auto;
+justify-content: center;
+display: block;    /* centrerer elementet */
+position: relative; /* gør det muligt at placere det i forhold til sin egen position */
+z-index: 10000;    /* sikrer at det er ovenpå andre elementer */
 }
- 
- /* Underline effekt som understreger "Normal" når brugeren scroller ned til det på skærmen. */
+
+/* Underline effekt som understreger "Normal" når brugeren scroller ned til det på skærmen. */
 .underline-word {
-  position: relative;
-  display: inline-block;
-  font-family: "Super Funky", sans-serif;
+position: relative;
+display: inline-block;
+font-family: "Super Funky", sans-serif;
 }
 
 .underline-word::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 5px;
-  border-radius: 5px;
-  width: 100%;
-  background:#F7F797;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1s ease-out;  /* Styling af animationen */
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+height: 5px;
+border-radius: 5px;
+width: 100%;
+background:#F7F797;
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 1s ease-out;  /* Styling af animationen */
 }
 
 /* Når .in-view tilføjes, starter animationen */
 .underline-word.in-view::after {
-  transform: scaleX(1);
+transform: scaleX(1);
 }
 
 
- /* placering af infographicen */
+/* placering af infographicen */
 .info{
-    display: flex;
-   justify-content: center;
-  align-items: center;
+  display: flex;
+ justify-content: center;
+align-items: center;
 }
 
 .infographic{
-  display: flex;
-  justify-content: center; /* vandret centreret */
-  align-items: center;     /* lodret centreret */
+display: flex;
+justify-content: center; /* vandret centreret */
+align-items: center;     /* lodret centreret */
 }
 
 .infographic img{
-  max-width: 80%;  /* Scaleringen af størrelse sat i % */
+max-width: 80%;  /* Scaleringen af størrelse sat i % */
 
 }
 
- /* Typewriter efftekt som animere tekst og styler sectionen*/
+/* Typewriter efftekt som animere tekst og styler sectionen*/
 .typewriter-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30rem;          
-  text-align: center;
-  padding: 1rem;
-  box-sizing: border-box;
-  color: #F7F797;
-  font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
-  font-weight:200;
-  line-height: 1.5;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 30rem;          
+text-align: center;
+padding: 1rem;
+box-sizing: border-box;
+color: #F7F797;
+font-family: 'Poppins', sans-serif;
+font-size: 2rem;
+font-weight:200;
+line-height: 1.5;
 }
 
 #typewriter-lutealfase {
-  max-width: 800px;
-  white-space: pre-line;
+max-width: 800px;
+white-space: pre-line;
 }
 
- /* Styling af coins*/
+/* Styling af coins*/
 .coins{
-  display: flex;
-   flex-direction: column;
-   justify-content: center;
-  align-items: center;
-  margin-top: 4rem;
+display: flex;
+ flex-direction: column;
+ justify-content: center;
+align-items: center;
+margin-top: 4rem;
 }
 
 
 /* Container for begge rækker til coins */
 .flip-card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 2rem;
+padding: 2rem;
 }
 
 /* Rækker med 3 flip-cards */
 .flip-card-row {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
+display: flex;
+gap: 2rem;
+justify-content: center;
 }
 
 
 /* Flip card container */
 .flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 300px;
-  perspective: 1000px; /* 3D-effekt */
-  margin: 20px;
+background-color: transparent;
+width: 300px;
+height: 300px;
+perspective: 1000px; /* 3D-effekt */
+margin: 20px;
 }
 
 /* Flip card indhold */
 .flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+position: relative;
+width: 100%;
+height: 100%;
+border-radius: 50%;
+text-align: center;
+transition: transform 0.8s;
+transform-style: preserve-3d;
 }
 
 .flip-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
+transform: rotateY(180deg);
 }
 
 /* Forside og bagside */
 .flip-card-front,
 .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+position: absolute;
+width: 100%;
+height: 100%;
+border-radius: 50%;
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
 }
 
 /* Forside med billede */
 .flip-card-front {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 /* Gør cotainer rund */
 .flip-card-front img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 50%;
+width: 300px;
+height: 300px;
+object-fit: cover;
+border-radius: 50%;
 }
 
 /* Bagside med tekst */
 .flip-card-back {
-  background-color:#8DA1BD;
-  color: #FFFCF5;
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  box-sizing: border-box;
+background-color:#8DA1BD;
+color: #FFFCF5;
+transform: rotateY(180deg);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 1rem;
+box-sizing: border-box;
 }
 
 
- /* Placering af overskrift*/
+/* Placering af overskrift*/
 .hormon{
-  display: flex;
-  justify-content: center; /* vandret centreret */
-  align-items: center;     /* lodret centreret */
+display: flex;
+justify-content: center; /* vandret centreret */
+align-items: center;     /* lodret centreret */
 }
 
 .hormon img{
-  max-width: 65%;
-  margin-top: 70rem;
-  position:absolute ;
+max-width: 65%;
+margin-top: 70rem;
+position:absolute ;
 }
 
- .hormoncirkel{
-      margin: 0;
-      font-family: sans-serif;
-    }
-
-     /* Spacer sat for at forsinke animation og skabe et mellemrum*/
-    .spacer {
-      height: 30vh;
-      visibility: hidden;
-    
-    }
-     /* contanier til hormon-niveau */
-    .circle-container {
-      width: 650px;
-      height: 650px;
-      border-radius: 50%;
-      background-color:#8DA1BD;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 18px;
-      padding: 40px;
-      margin: auto;
-      margin-top: -50px;
-      box-sizing: border-box;
-    }
-
-     /* bredden af niveau-barene i containeren */
-    .bar-container {
-      width: 65%;
-
-    }
-
-     /* Font-familiy sat til inherit for at være den samme */
-    .bar span {
-      position: relative;
-      font-family: inherit;
-     }
-
-      /* Styling af barene */
-    .bar {
-     position: relative;
-      width: 100%;
-      height: 64px;
-      background-color: #6F8095;
-      border-radius: 22px;
-      overflow: hidden;
-      font-size: 30px;
-      font-family:"Super Funky", sans-serif;
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-      justify-content: flex-end;
-   
-       z-index: 0;
-      color: #8DA1BD;
-
-     }
-
-      /* Styling af fill som animeres */
-    .fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0;
-      background:#F7F797;
-      border-radius: 12px;
-      transition: width 4s ease;
-    }
-
-
-    /* Procent-klasser med mål-width tilpasser mængden af hormoner */
-    .fill-70.start { width: 25%; }
-    .fill-40.start { width: 15%; }
-    .fill-90.start { width: 60%; }
-    .fill-60.start { width: 100%; }
-    .fill-30.start { width: 50%; }
-
-    /* næstefase + pil (svg) */
-
-
- /* næste side pil som er animeret til at bevæge sig lidt */
-.next-arrow-faelles{
-   position: absolute;
-  right: -80px;
-  top: 4700px;
-  width: 300px;        
-  background:none; border:none; cursor:pointer;
-  animation:blink 3s infinite;
+hormoncirkel{
+    margin: 0;
+    font-family: sans-serif;
   }
 
-   /* lille blink / nudge-animation */
-  @keyframes blink{
-    0%,60%{opacity:1; transform:translate(-50%,0)}
-    80%  {opacity:.4; transform:translate(-50%,6px)}
-    100% {opacity:1; transform:translate(-50%,0)}
-  }
-
+   /* Spacer sat for at forsinke animation og skabe et mellemrum*/
+  .spacer {
+    height: 30vh;
+    visibility: hidden;
   
+  }
+   /* contanier til hormon-niveau */
+  .circle-container {
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    background-color:#8DA1BD;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    padding: 40px;
+    margin: auto;
+    margin-top: -50px;
+    box-sizing: border-box;
+  }
+
+   /* bredden af niveau-barene i containeren */
+  .bar-container {
+    width: 65%;
+
+  }
+
+   /* Font-familiy sat til inherit for at være den samme */
+  .bar span {
+    position: relative;
+    font-family: inherit;
+    text-align:left;
+    padding-left:10px; 
+    font-size: 30px;
+   }
+
+    /* Styling af barene */
+  .bar {
+   position: relative;
+    width: 100%;
+    height: 64px;
+    background-color: #6F8095;
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: 1px;
+    justify-content: flex-start;
+    font-family:"Super Funky", sans-serif;
+     z-index: 0;
+    color: #8DA1BD;
+
+   }
+
+    /* Styling af fill som animeres */
+  .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background:#F7F797;
+    border-radius: 12px;
+    transition: width 4s ease;
+  }
+
+
+  /* Procent-klasser med mål-width tilpasser mængden af hormoner */
+  .fill-70.start { width: 25%; }
+  .fill-40.start { width: 15%; }
+  .fill-90.start { width: 60%; }
+  .fill-60.start { width: 100%; }
+  .fill-30.start { width: 50%; }
+
+  /* næstefase + pil (svg) */
+
+
+/* næste side pil som er animeret til at bevæge sig lidt */
+.next-arrow-faelles{
+ position: absolute;
+right: -80px;
+top: 4700px;
+width: 300px;        
+background:none; border:none; cursor:pointer;
+animation:blink 3s infinite;
+}
+
+ /* lille blink / nudge-animation */
+@keyframes blink{
+  0%,60%{opacity:1; transform:translate(-50%,0)}
+  80%  {opacity:.4; transform:translate(-50%,6px)}
+  100% {opacity:1; transform:translate(-50%,0)}
+}
+

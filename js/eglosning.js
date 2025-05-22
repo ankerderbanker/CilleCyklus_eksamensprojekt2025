@@ -85,7 +85,7 @@ document.addEventListener('scroll', () => {
 
 
 /* delay på typewriteren, i introvideoens længde */ 
-   const delayBeforeStart = 12000; // delay 
+   const delayBeforeStart = 8000; // delay 
   
    setTimeout(() => {
       /* skrivemaskine-effekt */ 
@@ -96,7 +96,7 @@ document.addEventListener('scroll', () => {
      }, 40);
    }, delayBeforeStart);
   });
-  
+
 /* Næste-side pil */
 /* Klik på knappen så kommer man til næste side */
 const nextArrow = document.querySelector('.naestefase-pil');

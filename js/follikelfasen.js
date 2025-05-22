@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         affirmationEl.style.opacity = 1;
       }, 1000); // matcher CSS‑transition
     }
-    setInterval(cycleAffirmation, 3000); // kør hvert 3. sekund
+    setInterval(cycleAffirmation, 2000); // kør hvert 3. sekund
 
     /* ───────────────────────── 5. Scene 3: Skrivemaskine ────────────────────── */
     const scene3Lines = `Du har mere overskud,

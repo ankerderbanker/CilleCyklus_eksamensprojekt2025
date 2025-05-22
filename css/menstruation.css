@@ -33,10 +33,11 @@ body {
 /* Logo og tilbage-pil placeret i øverste hjørne */
 .logo-link {
   position: absolute;
-  right: 60px;
+  top:50px;  
+  right:70px;  
   width: 125px;
 }
-.logo-link { top: 90px; }
+
 
 
 /* ---------- BOBLE-ANIMATION (LIVMORHALS) ---------- */

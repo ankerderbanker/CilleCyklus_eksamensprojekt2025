@@ -14,7 +14,7 @@ h1{
     font-family: "Super Funky", sans-serif;
     color: #FFFCF5;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: -1rem;
     margin-bottom: -1rem;
     margin-left: 4.2rem;
 }
@@ -47,9 +47,9 @@ h5 {
 .logo-link {
   position: absolute;
   z-index: 100;
-  top: 90px;
-  right: 60px;
-  width: 125px; /* juster størrelse her */
+  top:50px;  
+  right:70px;  
+  width:125px; /* juster størrelse her */
 }
 
     /* Baggrundstekst lag */
@@ -134,7 +134,7 @@ h5 {
       display: flex;
       justify-content: center;
       align-items:first baseline;
-      margin-top: 2rem;
+      margin-top: 2rem;;
       
       flex-direction: column;
       color: #FFFCF5;
@@ -145,7 +145,7 @@ h5 {
 #cille-animation {
   width: 100%;      /* eller 100% / vw / vh */
   height: 500px;
-  margin: 10rem auto;
+  margin: 13rem auto;
   justify-content: center;
   display: block;    /* centrerer elementet */
   position: relative; /* gør det muligt at placere det i forhold til sin egen position */

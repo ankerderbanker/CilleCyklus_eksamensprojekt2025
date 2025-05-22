@@ -31,13 +31,13 @@ body {
 
 /* ---------- LOGO OG TILBAGE-PIL ---------- */
 /* Logo og tilbage-pil placeret i øverste hjørne */
-.logo-link, .tilbage-link {
+.logo-link {
   position: absolute;
   right: 60px;
   width: 125px;
 }
 .logo-link { top: 90px; }
-.tilbage-link { top: 220px; }
+
 
 /* ---------- BOBLE-ANIMATION (LIVMORHALS) ---------- */
 /* Wrapper hvor JS placerer animerede bobler */

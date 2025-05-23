@@ -113,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const typewriterEl = document.getElementById("typewriter");
   if (typewriterEl) {
-    // Brug IntersectionObserver så effekten kun sker når elementet faktisk bliver synlig for brugeren (god performance)
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
